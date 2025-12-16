@@ -1,0 +1,92 @@
+package lk.ijse.nrlbag.model;
+
+import lk.ijse.nrlbag.dto.MaterialDTO;
+import lk.ijse.nrlbag.util.CrudUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MaterialModel {
+
+    public MaterialDTO searchMaterial(int id) throws SQLException {
+        ResultSet rs = CrudUtil.execute("SELECT * FROM Material WHERE material_id=?", id);
+
+        if (rs.next()) {
+            int materialId = rs.getInt("material_id");
+            int supId = rs.getInt("supplier_id");
+            String materialName = rs.getString("name");
+            String unit = rs.getString("unit");
+            double qty = rs.getDouble("qty_available");
+
+            return new MaterialDTO(materialId,supId,materialName,unit,qty);
+        }
+        return null;
+    }
+
+    // pass values, to insert in the database
+    public boolean saveMaterial(MaterialDTO materialDTO) throws SQLException {
+        boolean result = CrudUtil.execute("INSERT INTO Material (name, unit, qty_available, supplier_id) VALUES (?,?,?,?)",
+                materialDTO.getMaterial_name(),
+                materialDTO.getUnit(),
+                materialDTO.getQtyAvailable(),
+                materialDTO.getSupplier_id()
+        );
+        return result;
+    }
+
+    public boolean updateMaterial(MaterialDTO materialDTO) throws SQLException {
+        boolean result = CrudUtil.execute("UPDATE Material SET name=?, unit=?, qty_available=?, supplier_id=? WHERE material_id=? ",
+                materialDTO.getMaterial_name(),
+                materialDTO.getUnit(),
+                materialDTO.getQtyAvailable(),
+                materialDTO.getSupplier_id(),
+                materialDTO.getMaterial_id()
+        );
+        return result;
+    }
+
+    public boolean deleteMaterial(int id) throws SQLException {
+        boolean result = CrudUtil.execute("DELETE FROM Material WHERE material_id=?",id);
+
+        return result;
+    }
+
+    public static int totalLowMaterialCount() throws SQLException {
+
+        // in here get the number of material below 10 from Material table
+        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_Low_material FROM Material WHERE qty_available<10;");
+        int materialCount = 0;
+
+        // get the int value from the execution
+        if (result.next()) {
+            materialCount = result.getInt("Total_Low_material");
+        }
+
+        return materialCount;
+
+    }
+
+    public List<MaterialDTO> getMaterial() throws SQLException {
+
+        // here, get the all the material details to the list using MaterialDTO
+        ResultSet rs = CrudUtil.execute("SELECT * FROM Material ORDER BY material_id DESC");
+
+        List<MaterialDTO> materialList = new ArrayList<>();
+
+        while(rs.next()) {
+            MaterialDTO matDTO = new MaterialDTO(
+                    rs.getInt("material_id"),
+                    rs.getInt("supplier_id"),
+                    rs.getString("name"),
+                    rs.getString("unit"),
+                    rs.getDouble("qty_available")
+
+            );
+            materialList.add(matDTO);
+        }
+        return materialList;
+    }
+
+}

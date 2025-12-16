@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="640.0" prefWidth="900.0" stylesheets="@../css/customerpopUp.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.OrderPopupController">
+   <children>
+      <TabPane prefHeight="640.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Add New Order">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="221.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="223.0" fitWidth="900.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="475.0" prefWidth="450.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox prefHeight="54.0" prefWidth="452.0" spacing="50.0">
+                                 <VBox.margin>
+                                    <Insets left="50.0" right="40.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Pane prefHeight="54.0" prefWidth="346.0">
+                                       <children>
+                                          <Label text="Customer ID">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="idField" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" promptText="Customer ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="54.0" prefWidth="346.0">
+                                       <children>
+                                          <Label text="Product ID">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="productIdField" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" promptText="Product ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="50.0">
+                                 <VBox.margin>
+                                    <Insets left="50.0" right="40.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Pane prefHeight="54.0" prefWidth="347.0">
+                                       <children>
+                                          <Label text="Order Date">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="orderDateField" layoutY="18.399993896484375" prefHeight="35.0" prefWidth="345.0" promptText="yyyy-mm-dd" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="54.0" prefWidth="346.0">
+                                       <children>
+                                          <Label text="Deadline">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="deadlineField" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" promptText="yyyy-mm-dd" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="50.0">
+                                 <VBox.margin>
+                                    <Insets left="50.0" right="40.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Pane prefHeight="54.0" prefWidth="347.0">
+                                       <children>
+                                          <Label text="Quantity">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="qtyField" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" promptText="Qty" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="54.0" prefWidth="347.0">
+                                       <children>
+                                          <Label text="Product Name">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="productNameField" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" promptText="Product Name" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="50.0">
+                                 <VBox.margin>
+                                    <Insets left="50.0" right="40.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Pane prefHeight="54.0" prefWidth="348.0">
+                                       <children>
+                                          <Label text="Unit Price">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="unitPriceField" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" promptText="Unit Price" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="54.0" prefWidth="348.0">
+                                       <children>
+                                          <Label text="Total Cost">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="costField" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" promptText="Total Cost" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </TextField>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                              <Pane prefWidth="570.0">
+                                 <children>
+                                    <ComboBox fx:id="comboStatus" layoutX="95.0" layoutY="-1.0" prefHeight="35.0" prefWidth="130.0" promptText="Status" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff);; -fx-background-radius: 10;" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="250.0" right="250.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <VBox alignment="CENTER" prefHeight="130.0" prefWidth="390.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleSaveOrder" prefHeight="30.0" prefWidth="307.0" text="Save">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="my-button" />
+                                          <String fx:value="my-button:hover" />
+                                          <String fx:value="my-button:pressed" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" right="30.0" top="40.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Update / Delete Order">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <VBox prefHeight="221.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="223.0" fitWidth="900.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="118.0" prefWidth="900.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleUpdateOrder" prefHeight="30.0" prefWidth="250.0" text="Update">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="update-btn" />
+                                          <String fx:value="update-btn:hover" />
+                                          <String fx:value="update-btn:pressed" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleDeleteOrder" prefHeight="30.0" prefWidth="250.0" text="Delete">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="delete-btn" />
+                                          <String fx:value="delete-btn:hover" />
+                                          <String fx:value="delete-btn:pressed" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets left="200.0" />
+                                 </padding>
+                              </HBox>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClearFields" prefHeight="30.0" prefWidth="250.0" text="Clear">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="clear-btn" />
+                                    <String fx:value="clear-btn:hover" />
+                                    <String fx:value="clear-btn:pressed" />
+                                 </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox layoutY="5.0" prefHeight="439.0" prefWidth="440.0" spacing="15.0">
+                           <children>
+                              <Pane prefHeight="44.0" prefWidth="366.0" style="-fx-background-color: #002966;">
+                                 <children>
+                                    <TextField fx:id="searchField1" layoutX="4.0" layoutY="6.0" prefHeight="33.0" prefWidth="160.0" promptText="Enter Order ID" style="-fx-background-color: white;">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                    <TextField fx:id="productSearchField" layoutX="170.0" layoutY="6.0" prefHeight="33.0" prefWidth="160.0" promptText="Enter Product ID" style="-fx-background-color: white;">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                    <ImageView accessibleRole="BUTTON" blendMode="HARD_LIGHT" fitHeight="23.0" fitWidth="22.0" layoutX="340.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/search_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Button ellipsisString="" layoutX="326.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleSearchOrderByOrderID" prefHeight="36.0" prefWidth="49.0">
+                                       <font>
+                                          <Font name="Segoe UI Semibold" size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="btn-search" />
+                                          <String fx:value="btn-search:hover" />
+                                          <String fx:value="btn-search:pressed" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="56.0" prefWidth="379.0">
+                                 <children>
+                                    <Label text="Order ID">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderIdField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Order ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="54.0" prefWidth="379.0">
+                                 <children>
+                                    <Label text="Customer ID">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="idField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Customer ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="54.0" prefWidth="358.0">
+                                 <children>
+                                    <Label text="Product ID">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="productIdField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Product ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="54.0" prefWidth="347.0">
+                                 <children>
+                                    <Label text="Quantity">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="qtyField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Qty" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="54.0" prefWidth="348.0">
+                                 <children>
+                                    <Label text="Unit Price">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="unitPriceField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Unit Price" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" right="30.0" top="28.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="440.0" layoutY="82.0" prefHeight="404.0" prefWidth="440.0" spacing="15.0">
+                           <children>
+                              <Pane prefHeight="54.0" prefWidth="379.0">
+                                 <children>
+                                    <Label text="Order Date">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderDateField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="yyyy-mm-dd" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="56.0" prefWidth="379.0">
+                                 <children>
+                                    <Label text="Deadline">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="deadlineField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="yyyy-mm-dd" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="54.0" prefWidth="347.0">
+                                 <children>
+                                    <Label text="Product Name">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="productNameField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Product Name" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="54.0" prefWidth="379.0">
+                                 <children>
+                                    <Label text="Total Cost">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="costField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Total Cost" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="50.0" prefWidth="379.0">
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                                 <children>
+                                    <ComboBox fx:id="comboStatus1" layoutY="14.0" prefHeight="35.0" prefWidth="130.0" promptText="Status" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff);; -fx-background-radius: 10;" />
+                                 </children>
+                              </Pane>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" right="30.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Material Usage">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="640.0" prefWidth="900.0">
+                     <children>
+                        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" stylesheets="@../css/product.css">
+                           <left>
+                              <VBox prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom,  #003D99, #001433);" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox prefHeight="390.0" prefWidth="300.0" spacing="10.0">
+                                       <children>
+                                          <Pane prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #002966;">
+                                             <children>
+                                                <TextField fx:id="searchField" layoutX="4.0" layoutY="5.0" prefHeight="33.0" prefWidth="220.0" promptText="Enter ID Number" style="-fx-background-color: white;">
+                                                   <font>
+                                                      <Font name="Roboto" size="14.0" />
+                                                   </font>
+                                                   <effect>
+                                                      <DropShadow>
+                                                         <color>
+                                                            <Color opacity="0.10000000149011612" />
+                                                         </color>
+                                                      </DropShadow>
+                                                   </effect>
+                                                </TextField>
+                                                <ImageView accessibleRole="BUTTON" blendMode="HARD_LIGHT" fitHeight="22.0" fitWidth="35.0" layoutX="235.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/search_96px.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Button ellipsisString="" layoutX="223.0" layoutY="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="32.0">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="14.0" />
+                                                   </font>
+                                                   <styleClass>
+                                                      <String fx:value="btn-search" />
+                                                      <String fx:value="btn-search:hover" />
+                                                      <String fx:value="btn-search:pressed" />
+                                                   </styleClass>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="56.0" prefWidth="280.0">
+                                             <children>
+                                                <Label text="Order ID" textFill="#f7f7f7">
+                                                   <font>
+                                                      <Font name="Segoe UI" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="productIdField2" layoutY="18.0" prefHeight="35.0" prefWidth="270.0" promptText="Order ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                   <effect>
+                                                      <DropShadow>
+                                                         <color>
+                                                            <Color opacity="0.10000000149011612" />
+                                                         </color>
+                                                      </DropShadow>
+                                                   </effect>
+                                                </TextField>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane prefHeight="54.0" prefWidth="280.0">
+                                             <children>
+                                                <Label text="Material ID" textFill="#f7f7f7">
+                                                   <font>
+                                                      <Font name="Segoe UI" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="nameField" layoutY="18.0" prefHeight="35.0" prefWidth="270.0" promptText="Material ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                   <effect>
+                                                      <DropShadow>
+                                                         <color>
+                                                            <Color opacity="0.10000000149011612" />
+                                                         </color>
+                                                      </DropShadow>
+                                                   </effect>
+                                                </TextField>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane prefHeight="56.0" prefWidth="280.0">
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                             <children>
+                                                <Label text="Quantity" textFill="#f7f7f7">
+                                                   <font>
+                                                      <Font name="Segoe UI" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceField1" layoutY="20.0" prefHeight="35.0" prefWidth="270.0" promptText="Quantity" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                   <effect>
+                                                      <DropShadow>
+                                                         <color>
+                                                            <Color opacity="0.10000000149011612" />
+                                                         </color>
+                                                      </DropShadow>
+                                                   </effect>
+                                                </TextField>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="54.0" prefWidth="280.0">
+                                             <children>
+                                                <Label text="Material Name " textFill="#f7f7f7">
+                                                   <font>
+                                                      <Font name="Segoe UI" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceField" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" promptText="Material Name " style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                   <effect>
+                                                      <DropShadow>
+                                                         <color>
+                                                            <Color opacity="0.10000000149011612" />
+                                                         </color>
+                                                      </DropShadow>
+                                                   </effect>
+                                                </TextField>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Pane>
+                                          <Pane prefHeight="54.0" prefWidth="280.0">
+                                             <children>
+                                                <Label text="Available Qty" textFill="#f7f7f7">
+                                                   <font>
+                                                      <Font name="Segoe UI" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceField2" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" promptText="Available Qty" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                   <effect>
+                                                      <DropShadow>
+                                                         <color>
+                                                            <Color opacity="0.10000000149011612" />
+                                                         </color>
+                                                      </DropShadow>
+                                                   </effect>
+                                                </TextField>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Pane>
+                                       </children>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="222.0" prefWidth="300.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Save">
+                                             <styleClass>
+                                                <String fx:value="save-btn" />
+                                                <String fx:value="save-btn:hover" />
+                                                <String fx:value="save-btn:pressed" />
+                                             </styleClass>
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="15.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Update">
+                                             <styleClass>
+                                                <String fx:value="update-btn" />
+                                                <String fx:value="update-btn:hover" />
+                                                <String fx:value="update-btn:pressed" />
+                                             </styleClass>
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="20.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Clear">
+                                             <styleClass>
+                                                <String fx:value="clear-btn" />
+                                                <String fx:value="clear-btn:hover" />
+                                                <String fx:value="clear-btn:pressed" />
+                                             </styleClass>
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="15.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Delete">
+                                             <styleClass>
+                                                <String fx:value="delete-btn" />
+                                                <String fx:value="delete-btn:hover" />
+                                                <String fx:value="delete-btn:pressed" />
+                                             </styleClass>
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="15.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </left>
+                           <center>
+                              <AnchorPane prefHeight="640.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox layoutX="117.0" layoutY="179.0" prefHeight="240.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <ImageView fitHeight="240.0" fitWidth="600.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="8.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <TableView fx:id="tblMaterialUsage" prefHeight="586.0" prefWidth="570.0">
+                                             <columns>
+                                                <TableColumn fx:id="colOrderID" prefWidth="82.3999662399292" text="Order ID" />
+                                                <TableColumn fx:id="colMaterialID" prefWidth="108.80007934570312" text="Material ID" />
+                                                <TableColumn fx:id="colName" prefWidth="136.7999725341797" text="Material Name" />
+                                                <TableColumn fx:id="colQty" prefWidth="120.00006103515625" text="Quantity" />
+                                                <TableColumn fx:id="colUnit" prefWidth="103.2000732421875" text="Unit" />
+                                             </columns>
+                                             <VBox.margin>
+                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </TableView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </center>
+                        </BorderPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

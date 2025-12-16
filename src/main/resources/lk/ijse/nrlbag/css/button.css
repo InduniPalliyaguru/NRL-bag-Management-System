@@ -1,0 +1,123 @@
+.button {
+    -fx-background-radius: 25;
+    background-color: #0D3B66;
+    -fx-background-color: #0D3B66;
+    -fx-text-fill: white;
+    font-size: 14pt;
+    -fx-font-size: 14pt;
+    font-weight: bold;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    background-color: #0A2C4D;
+    -fx-background-color: #0A2C4D;
+    cursor: hand;
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    background-color: #052036;
+    -fx-background-color: #052036;
+}
+
+.menu-btn {
+    -fx-pref-height: 40px;
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #B8C2CC;
+    -fx-background-color: transparent;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+	-fx-background-insets: 0;
+    -fx-transition: all 0.25s ease;
+}
+
+
+.menu-btn:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3385FF;
+}
+
+.menu-btn:pressed {
+    -fx-background-color: transparent; 
+    -fx-text-fill: #003D99;
+}
+.menu-btn-active {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: 600;
+}
+
+
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.chart-horizontal-grid-lines,
+.chart-vertical-grid-lines {
+    -fx-stroke: #99C2FF;
+    -fx-stroke-width: 1px;
+}
+
+.axis {
+    -fx-tick-label-fill: #001433;
+    -fx-tick-mark-stroke: #003D99;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.axis-label {
+    -fx-text-fill: #001433;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10 0 0 0;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #001433;
+    -fx-font-size: 13px;
+}
+
+.chart-legend-item-symbol {
+    -fx-background-color: #002966;
+    -fx-background-radius: 5;
+}
+
+.chart-bar {
+    -fx-background-radius: 1;
+    -fx-margin: 5;
+	-fx-width:15px;
+	-fx-bar-fill: #002966;
+}
+
+
+.chart-bar:hover {
+    -fx-opacity: 0.8;
+    -fx-cursor: hand;
+}
+
+.chart-series-area-fill {
+    -fx-fill: linear-gradient(to top, #80bfff55, #cce6ff55);
+}
+
+.chart-series-area-line {
+    -fx-stroke: #0059b3;
+    -fx-stroke-width: 2px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #003366;
+}

@@ -1,0 +1,116 @@
+.my-button {
+    -fx-background-color: linear-gradient(to bottom, #1E3A8A, #1E40AF);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.my-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2A4BBF, #2E53D6);
+}
+
+.my-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #162F72, #1A356C);
+}
+
+.btn-search {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3A6FF8;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-padding: 8 24;
+}
+
+.btn-search:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);;
+}
+
+.btn-search:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.20);
+}
+
+/* UPDATE BUTTON */
+.update-btn {
+    -fx-background-color: linear-gradient(to bottom, #4A6CF7, #3554E0);
+    -fx-text-fill: white;
+}
+.update-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #5A7BFF, #4966F0);
+}
+.update-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #2F46C4, #2538A3);
+}
+
+/* CLEAR BUTTON */
+.clear-btn {
+    -fx-background-color: linear-gradient(to bottom, #F7D36A, #F5B841);
+    -fx-text-fill: white;
+}
+.clear-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #F9DD84, #F7C558);
+}
+.clear-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #DFAE38, #C99528);
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    -fx-background-color: linear-gradient(to bottom, #E44A4A, #C73535);
+    -fx-text-fill: white;
+}
+.delete-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #EF5959, #D64242);
+}
+.delete-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #B92C2C, #9F2323);
+}
+
+/* ============================
+    TABPANE – MODERN DESIGN
+   ============================ */
+
+/* TabPane Background */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+/* Tab Header Area Background */
+.tab-pane .tab-header-area {
+    -fx-background-color: linear-gradient(to bottom, #9ED4F4, #7AB7E8);
+
+    -fx-background-radius: 10;
+}
+
+/* Tab (Unselected) */
+.tab-pane .tab {
+    -fx-background-color: #EAF4FF;
+    -fx-background-radius: 8 8 0 0;
+
+    -fx-text-base-color: #1E293B;
+    -fx-font-size: 13px;
+}
+
+/* Hover Effect */
+.tab-pane .tab:hover {
+    -fx-background-color: #D6E9FF;
+}
+
+/* Selected Tab */
+.tab-pane .tab:selected {
+    -fx-background-color: linear-gradient(to bottom, #7AB7E8, #4F8FD3);
+    -fx-text-base-color: white;
+    -fx-background-radius: 8 8 0 0;
+}
+
+/* Tab Labels */
+.tab-pane .tab-label {
+    -fx-text-fill: inherit; /* follow the tab text color */
+}
+
+/* Content Area under tabs */
+.tab-pane *.tab-content-area {
+    -fx-background-color: #F6FAFF;
+    -fx-background-radius: 0 0 10 10;
+
+}
+

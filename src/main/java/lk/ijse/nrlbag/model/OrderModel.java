@@ -1,0 +1,231 @@
+package lk.ijse.nrlbag.model;
+
+import javafx.fxml.FXML;
+import lk.ijse.nrlbag.dto.OderDetailsDTO;
+import lk.ijse.nrlbag.dto.OrderDTO;
+import lk.ijse.nrlbag.util.CrudUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderModel {
+
+    // get the all details in orders table join with customer details also
+    public List< OrderDTO> getOrders() throws SQLException {
+        ResultSet rs = CrudUtil.execute("SELECT " +
+                " o.orders_id," +
+                " o.customer_id," +
+                " c.name," +
+                " c.contact," +
+                " o.order_date," +
+                " o.deadline," +
+                " o.status," +
+                " o.total_cost," +
+                " o.remaining_payment," +
+                " od.product_id," +
+                " od.quantity" +
+                " FROM Orders o" +
+                " JOIN Customer c ON o.customer_id = c.customer_id" +
+                " LEFT JOIN Order_Details od ON o.orders_id = od.orders_id;");
+
+        List< OrderDTO> orderList = new ArrayList<>();
+
+        // get rows one by one and add into order list
+        while (rs.next()) {
+            OrderDTO orderDTO = new OrderDTO(
+                    rs.getInt("orders_id"),
+                    rs.getInt("customer_id"),
+                    rs.getString("name"),
+                    rs.getString("contact"),
+                    rs.getString("order_date"),
+                    rs.getString("deadline"),
+                    rs.getString("status"),
+                    rs.getDouble("total_cost"),
+                    rs.getDouble(("remaining_payment")),
+                    rs.getInt("product_id"),
+                    rs.getInt("quantity")
+            );
+            orderList.add(orderDTO);
+        }
+        return orderList;
+
+    }
+
+    public static int totalOrderCount() throws SQLException {
+
+        // in here get the number of orders from customer table
+        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_orders FROM Orders");
+        int orderCount = 0;
+
+        // get the int value from the execution
+        if (result.next()) {
+            orderCount = result.getInt("Total_orders");
+        }
+
+        return orderCount;
+
+    }
+
+    public int saveOrderAndOrderID(OrderDTO orderDto) throws SQLException {
+
+        // pass the query for save to the database
+        int result = CrudUtil.executeAndReturnGeneratedKey("INSERT INTO Orders (customer_id, order_date, deadline, status, total_cost) VALUES (?,?,?,?,?)",
+                orderDto.getCustomer_id(),
+                orderDto.getOrder_date(),
+                orderDto.getDeadline(),
+                orderDto.getStatus(),
+                orderDto.getTotal_cost()
+        );
+        return result;
+
+    }
+
+    public OrderDTO searchOrderByOrderID(int id) throws SQLException {
+
+        // here, get details of the order and customer who place that order using a join query
+        ResultSet rs = CrudUtil.execute("SELECT c.name, c.contact,o.customer_id, o.orders_id, o.order_date, " +
+                "o.deadline, o.status, o.total_cost, o.remaining_payment FROM Orders o JOIN Customer c ON " +
+                "o.customer_id = c.customer_id WHERE orders_id=?;",id);
+
+        if(rs.next()) {
+            int orderId = rs.getInt("orders_id");
+            int cus_id = rs.getInt("customer_id");
+            String order_date = rs.getString("order_date");
+            String deadline = rs.getString("deadline");
+            String status = rs.getString("status");
+            double cost = rs.getDouble("total_cost");
+            double remain = rs.getDouble("remaining_payment");
+            String cusName = rs.getString("name");
+            String contact = rs.getString("contact");
+
+            return new OrderDTO(orderId,cus_id,cusName,contact,order_date,deadline,status,cost,remain);
+        }
+        return null;
+    }
+
+    public OrderDTO searchOrderByCustomerID(int id) throws SQLException {
+
+        // here, get details of the all orders and customer who place that orders using a join query
+        ResultSet rs = CrudUtil.execute("SELECT c.name, c.contact,o.customer_id, o.orders_id, o.order_date, " +
+                "o.deadline, o.status, o.total_cost, o.remaining_payment FROM Orders o JOIN Customer c ON " +
+                "o.customer_id = c.customer_id WHERE o.customer_id=?;",id);
+
+        if(rs.next()) {
+            int orderId = rs.getInt("orders_id");
+            int cus_id = rs.getInt("customer_id");
+            String order_date = rs.getString("order_date");
+            String deadline = rs.getString("deadline");
+            String status = rs.getString("status");
+            double cost = rs.getDouble("total_cost");
+            double remain = rs.getDouble("remaining_payment");
+            String cusName = rs.getString("name");
+            String contact = rs.getString("contact");
+
+            return new OrderDTO(orderId,cus_id,cusName,contact,order_date,deadline,status,cost,remain);
+        }
+        return null;
+    }
+
+    public boolean updateOrder(OrderDTO orderDto) throws SQLException {
+
+        // pass the query for update the database
+        boolean result = CrudUtil.execute("UPDATE Orders SET customer_id=?, order_date=?, deadline=?, status=?, total_cost=? WHERE orders_id=?;",
+                orderDto.getCustomer_id(),
+                orderDto.getOrder_date(),
+                orderDto.getDeadline(),
+                orderDto.getStatus(),
+                orderDto.getTotal_cost(),
+                orderDto.getId()
+        );
+        return result;
+
+    }
+
+    public boolean deleteOrder(int id) throws SQLException {
+
+        boolean result = CrudUtil.execute("DELETE FROM Orders WHERE orders_id=?",id);
+        return result;
+
+    }
+
+    public int completeOrderCount() throws SQLException{
+
+        // in here get the number of orders from customer table
+        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_Complete_Orders FROM Orders WHERE status='Completed';");
+        int orderCount = 0;
+
+        // get the int value from the execution
+        if (result.next()) {
+            orderCount = result.getInt("Total_Complete_Orders");
+        }
+
+        return orderCount;
+
+    }
+
+    public int pendingOrderCount() throws SQLException{
+
+        // in here get the number of orders from customer table
+        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_Pending_Orders FROM Orders WHERE status='Pending';");
+        int orderCount = 0;
+
+        // get the int value from the execution
+        if (result.next()) {
+            orderCount = result.getInt("Total_Pending_Orders");
+        }
+
+        return orderCount;
+
+    }
+
+    public int processingOrderCount() throws SQLException{
+
+        // in here get the number of orders from customer table
+        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_Processing_Orders FROM Orders WHERE status='Processing';");
+        int orderCount = 0;
+
+        // get the int value from the execution
+        if (result.next()) {
+            orderCount = result.getInt("Total_Processing_Orders");
+        }
+
+        return orderCount;
+
+    }
+
+    public int cancelledOrderCount() throws SQLException{
+
+        // in here get the number of orders from customer table
+        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_Cancel_Orders FROM Orders WHERE status='Cancelled';");
+        int orderCount = 0;
+
+        // get the int value from the execution
+        if (result.next()) {
+            orderCount = result.getInt("Total_Cancel_Orders");
+        }
+
+        return orderCount;
+
+    }
+
+    public static int getOrderByMonths(int month) throws SQLException {
+        ResultSet rs = CrudUtil.execute("SELECT COUNT(*) FROM Orders WHERE MONTH(order_date)=?",month);
+
+        if(rs.next()) {
+            return rs.getInt(1);
+        }
+        return 0;
+    }
+
+    public static ResultSet getMonthlyIncome() throws SQLException {
+
+        ResultSet resultSet = CrudUtil.execute("SELECT MONTH(payment_date) AS month, SUM(amount) AS income " +
+                "FROM Payment WHERE status IN ('Partial','Completed') " +
+                "GROUP BY MONTH(payment_date)");
+
+        return resultSet;
+    }
+
+}

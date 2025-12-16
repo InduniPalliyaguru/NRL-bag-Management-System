@@ -1,0 +1,136 @@
+
+.table {
+    -fx-background-color: transparent;   
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #D7DAE0;           
+    -fx-border-width: 1;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+}
+
+
+.table-view {
+    -fx-background-color: transparent;   
+    -fx-border-color: #D7DAE0;           
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+
+.table-view .column-header-background {
+    -fx-background-color: #7aa1f0;      
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;   
+    -fx-font-weight: bold;
+}
+
+
+.table-view .column-header .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .table-row-cell:filled {
+    -fx-background-color: transparent;   
+    -fx-text-fill: #1c1638;              
+}
+
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #e0d38d;  
+    -fx-text-fill: black;              
+}
+
+
+.table-view .table-cell:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1c1638;              
+}
+
+
+.table-view .virtual-flow .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:empty .table-cell {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;     
+    -fx-border-width: 0 0 1 1;     
+}
+
+.manage-btn {
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+
+
+    -fx-background-color: linear-gradient(to bottom, #4F8FD3, #336DBF);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.20), 6, 0, 0, 2);
+}
+
+
+.manage-btn:hover {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+
+.manage-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #4F8FD3, #336DBF);
+    -fx-effect: none;
+}
+
+
+.btn-search {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3A6FF8;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-padding: 8 24;
+}
+
+.btn-search:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);;
+}
+
+.btn-search:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.20);
+}
+
+.form-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #344767;
+}
+
+
+.input-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 6 10;
+    -fx-border-color: #B8C5D6;
+    -fx-border-width: 1.2;
+    -fx-font-size: 14px;
+}
+.input-field:focused {
+    -fx-border-color: #377DFF;
+    -fx-background-color: #F6FAFF;
+}
+

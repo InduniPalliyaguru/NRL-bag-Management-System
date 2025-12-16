@@ -1,0 +1,142 @@
+
+.table {
+    -fx-background-color: transparent;   
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #D7DAE0;           
+    -fx-border-width: 1;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+}
+
+
+.table-view {
+    -fx-background-color: transparent;   
+    -fx-border-color: #D7DAE0;           
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+
+.table-view .column-header-background {
+    -fx-background-color: #7aa1f0;      
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;   
+    -fx-font-weight: bold;
+}
+
+
+.table-view .column-header .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .table-row-cell:filled {
+    -fx-background-color: transparent;   
+    -fx-text-fill: #1c1638;              
+}
+
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #e0d38d;  
+    -fx-text-fill: black;              
+}
+
+
+.table-view .table-cell:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1c1638;              
+}
+
+
+.table-view .virtual-flow .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:empty .table-cell {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;     
+    -fx-border-width: 0 0 1 1;     
+}
+
+.btn-search {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3A6FF8;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-padding: 8 24;
+}
+
+.btn-search:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);;
+}
+
+.btn-search:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.20);
+}
+
+/* UPDATE BUTTON */
+.update-btn {
+    -fx-background-color: linear-gradient(to bottom, #4A6CF7, #3554E0);
+    -fx-text-fill: white;
+	-fx-font-weight: bold;
+}
+.update-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #5A7BFF, #4966F0);
+}
+.update-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #2F46C4, #2538A3);
+}
+
+/* CLEAR BUTTON */
+.clear-btn {
+    -fx-background-color: linear-gradient(to bottom, #F7D36A, #F5B841);
+    -fx-text-fill: white;
+	-fx-font-weight: bold;
+}
+.clear-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #F9DD84, #F7C558);
+}
+.clear-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #DFAE38, #C99528);
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    -fx-background-color: linear-gradient(to bottom, #E44A4A, #C73535);
+    -fx-text-fill: white;
+	-fx-font-weight: bold;
+}
+.delete-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #EF5959, #D64242);
+}
+.delete-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #B92C2C, #9F2323);
+}
+
+.save-btn {
+    -fx-background-color: linear-gradient(to bottom, #1E3A8A, #1E40AF);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.save-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #2A4BBF, #2E53D6);
+}
+
+.save-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #162F72, #1A356C);
+}

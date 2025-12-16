@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="769.0" prefWidth="1096.0" stylesheets="@../css/supplier.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.SupplierController">
+   <children>
+      <VBox prefHeight="414.0" prefWidth="1096.0" spacing="5.0" style="-fx-background-color: #F3F3F3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #e5f2ff, #ffffff); -fx-background-radius: 10 0 10 0; -fx-padding: 20 35 15 35; -fx-border-radius: 10 0 10 0; -fx-border-width: 2 2 2 2;">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.10000000149011612" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <Label text="Supplier Management" textFill="#2b2b2b">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="50.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" scaleX="1.5" scaleY="1.5">
+                     <HBox.margin>
+                        <Insets left="700.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../images/truck.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="70.0" prefHeight="61.0" prefWidth="980.0" spacing="12.0">
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+               <children>
+                  <Pane prefHeight="52.0" prefWidth="300.0" style="-fx-background-color: #002966;">
+                     <children>
+                        <TextField fx:id="searchField" layoutX="8.0" layoutY="7.0" prefHeight="39.0" prefWidth="250.0" promptText="Enter ID Number" style="-fx-background-color: white;">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color opacity="0.10000000149011612" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </TextField>
+                        <ImageView accessibleRole="BUTTON" blendMode="HARD_LIGHT" fitHeight="23.0" fitWidth="22.0" layoutX="266.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
+                           <image>
+                              <Image url="@../images/search_96px.png" />
+                           </image>
+                        </ImageView>
+                        <Button ellipsisString="" layoutX="252.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleSearchSupplier" prefHeight="36.0" prefWidth="17.0">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn-search" />
+                              <String fx:value="btn-search:hover" />
+                              <String fx:value="btn-search:pressed" />
+                           </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Button mnemonicParsing="false" onAction="#btnAddOnActionSupplier" prefHeight="25.0" prefWidth="223.0" text="Supplier Manage">
+                     <styleClass>
+                        <String fx:value="manage-btn" />
+                        <String fx:value="manage-btn:hover" />
+                        <String fx:value="manage-btn:pressed" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="450.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/natural_user_interface_2_96px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <GridPane alignment="CENTER" hgap="30.0" prefHeight="112.0" prefWidth="1038.0" style="-fx-border-radius: 10; -fx-background-color: transparent;" styleClass="form-label" vgap="18.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="supIdField" promptText="Supllier ID">
+                     <styleClass>
+                        <String fx:value="input-field" />
+                        <String fx:value="input-field:focused" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="supNameField" promptText="Supplier Name" GridPane.columnIndex="1">
+                     <styleClass>
+                        <String fx:value="input-field" />
+                        <String fx:value="input-field:focused" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="addressField" promptText="Address" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="input-field" />
+                        <String fx:value="input-field:focused" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="contactField" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="input-field" />
+                        <String fx:value="input-field:focused" />
+                     </styleClass>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="30.0" right="30.0" />
+               </padding>
+            </GridPane>
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="42.0" prefWidth="1038.0" spacing="18.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleClearField" prefHeight="36.0" prefWidth="105.0" text="Clear">
+                     <styleClass>
+                        <String fx:value="btn-clear" />
+                        <String fx:value="btn-clear:hover" />
+                        <String fx:value="btn" />
+                        <String fx:value="btn-clear:pressed" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="18.0" right="18.0" top="18.0" />
+         </padding>
+      </VBox>
+      <VBox layoutY="427.0" prefHeight="297.0" prefWidth="1096.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="341.0" fitWidth="1096.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox layoutY="353.0" prefHeight="417.0" prefWidth="1096.0" spacing="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TableView fx:id="tblSupplier" prefHeight="395.0" prefWidth="982.0" VBox.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="colSupId" prefWidth="109.59997406005823" text="Supplier ID" />
+                  <TableColumn fx:id="colSupName" prefWidth="155.19998168945312" text="Supplier Name" />
+                  <TableColumn fx:id="colAddress" prefWidth="254.39993286132812" text="Address" />
+                  <TableColumn fx:id="colContact" prefWidth="187.4666748046875" text="Contact" />
+                  <TableColumn fx:id="colMaterialId" prefWidth="127.7333984375" text="Material ID" />
+                  <TableColumn fx:id="colMaterialName" prefWidth="153.86669921875" text="Material Name" />
+               </columns>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="table" />
+                  <String fx:value="table-view .column-header-background" />
+                  <String fx:value="table-view .column-header" />
+                  <String fx:value="table-view .table-row-cell:filled" />
+                  <String fx:value="table-view .table-row-cell:selected" />
+                  <String fx:value="table-view .table-cell:selected" />
+                  <String fx:value="table-view .virtual-flow .corner" />
+                  <String fx:value="table-view .filler" />
+                  <String fx:value="table-view .table-row-cell:empty" />
+                  <String fx:value="table-view .table-row-cell:empty .table-cell" />
+                  <String fx:value="table-view .table-cell" />
+                  <String fx:value="table-view .column-header .label" />
+               </styleClass>
+            </TableView>
+         </children>
+         <padding>
+            <Insets bottom="18.0" left="18.0" right="18.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

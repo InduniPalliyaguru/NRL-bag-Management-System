@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="450.0" stylesheets="@../css/customerpopUp.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.SupplierPopup">
+   <children>
+      <TabPane prefHeight="500.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Add New Supplier">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="450.0">
+                     <children>
+                        <VBox layoutX="-3.2" prefHeight="221.0" prefWidth="454.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="223.0" fitWidth="455.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox layoutY="3.0" prefHeight="475.0" prefWidth="450.0" spacing="20.0">
+                           <children>
+                              <Pane>
+                                 <children>
+                                    <Label text="Supplier Name">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="supNameField" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Name" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                              <Pane>
+                                 <children>
+                                    <Label text="Supplier Address">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressField" layoutY="18.399993896484375" prefHeight="35.0" prefWidth="390.0" promptText="Address" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                              <Pane>
+                                 <children>
+                                    <Label text="Supplier Contact">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="contactField" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Contact" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                              <VBox alignment="CENTER" prefHeight="130.0" prefWidth="390.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleSaveSupplier" prefHeight="30.0" prefWidth="307.0" text="Save">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="my-button" />
+                                          <String fx:value="my-button:hover" />
+                                          <String fx:value="my-button:pressed" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" right="30.0" top="40.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Update / Delete Supplier">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="435.0">
+                     <children>
+                        <VBox prefHeight="221.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="223.0" fitWidth="455.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="475.0" prefWidth="450.0" spacing="10.0">
+                           <children>
+                              <Pane prefHeight="41.0" prefWidth="390.0" style="-fx-background-color: #002966;">
+                                 <children>
+                                    <TextField fx:id="searchField1" layoutX="4.0" layoutY="4.0" prefHeight="33.0" prefWidth="336.0" promptText="Enter ID" style="-fx-background-color: white;">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                    <ImageView accessibleRole="BUTTON" blendMode="HARD_LIGHT" fitHeight="23.0" fitWidth="22.0" layoutX="353.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/search_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Button ellipsisString="" layoutX="341.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleSearchSupplier" prefHeight="36.0" prefWidth="31.0">
+                                       <font>
+                                          <Font name="Segoe UI Semibold" size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="btn-search" />
+                                          <String fx:value="btn-search:hover" />
+                                          <String fx:value="btn-search:pressed" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="55.0" prefWidth="390.0">
+                                 <children>
+                                    <Label text="Supplier ID">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="supIdField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="54.0" prefWidth="390.0">
+                                 <children>
+                                    <Label text="Supplier Name">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="supNameField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Name" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="55.0" prefWidth="390.0">
+                                 <children>
+                                    <Label text="Supplier Address">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressField1" layoutY="18.399993896484375" prefHeight="35.0" prefWidth="390.0" promptText="Address" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <Pane prefHeight="56.0" prefWidth="390.0">
+                                 <children>
+                                    <Label text="Supplier Contact">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="contactField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Contact" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding>
+                              </Pane>
+                              <VBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="362.0" spacing="10.0">
+                                 <children>
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleUpdateSupplier" prefHeight="30.0" prefWidth="307.0" text="Update">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <styleClass>
+                                                <String fx:value="update-btn" />
+                                                <String fx:value="update-btn:hover" />
+                                                <String fx:value="update-btn:pressed" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleDeleteSupplier" prefHeight="30.0" prefWidth="307.0" text="Delete">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <styleClass>
+                                                <String fx:value="delete-btn" />
+                                                <String fx:value="delete-btn:hover" />
+                                                <String fx:value="delete-btn:pressed" />
+                                             </styleClass>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClearField" prefHeight="30.0" prefWidth="253.0" text="Clear">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="clear-btn" />
+                                          <String fx:value="clear-btn:hover" />
+                                          <String fx:value="clear-btn:pressed" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+         <styleClass>
+            <String fx:value="tab-pane .tab-header-area" />
+            <String fx:value="tab-pane .tab" />
+            <String fx:value="tab-pane" />
+            <String fx:value="tab-pane .tab:hover" />
+            <String fx:value="tab-pane .tab:selected" />
+            <String fx:value="tab-pane *.tab-content-area" />
+            <String fx:value="tab-pane .tab-label" />
+         </styleClass>
+      </TabPane>
+   </children>
+</AnchorPane>

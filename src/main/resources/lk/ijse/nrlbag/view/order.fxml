@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="769.0" prefWidth="1096.0" stylesheets="@../css/orders.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.OrderController">
+   <children>
+      <VBox layoutX="31.0" layoutY="47.0" prefHeight="414.0" prefWidth="1096.0" spacing="8.0" style="-fx-background-color: #F3F3F3;" AnchorPane.bottomAnchor="354.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #e5f2ff, #ffffff); -fx-background-radius: 0 0 18 18; -fx-padding: 20 35 15 35; -fx-border-radius: 10 0 10 0; -fx-border-width: 2 2 2 2;">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.10000000149011612" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <Label text="Order Management" textFill="#2b2b2b">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="51.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
+                     <HBox.margin>
+                        <Insets left="720.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../images/list_8722697.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="70.0" prefHeight="61.0" prefWidth="980.0" spacing="12.0">
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+               <children>
+                  <TextField fx:id="searchField" maxHeight="42.0" maxWidth="320.0" promptText="Enter OrderID / CusID">
+                     <styleClass>
+                        <String fx:value="input-field, .date-picker, .combo-box" />
+                        <String fx:value="input-field:focused, .date-picker:focused, .combo-box:focused" />
+                     </styleClass>
+                  </TextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search By">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Text>
+                  <Button mnemonicParsing="false" onAction="#handleSearchOrderByOrderID" prefHeight="36.0" prefWidth="90.0" text="Order ID">
+                     <styleClass>
+                        <String fx:value="main-btn" />
+                        <String fx:value="main-btn:hover" />
+                        <String fx:value="main-btn:pressed" />
+                        <String fx:value="main-btn:disabled" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleSearchOrderByCustomerID" prefHeight="36.0" prefWidth="90.0" text="Cus. ID">
+                     <styleClass>
+                        <String fx:value="main-btn" />
+                        <String fx:value="main-btn:hover" />
+                        <String fx:value="main-btn:pressed" />
+                        <String fx:value="main-btn:disabled" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#btnAddOnActionOrder" prefHeight="25.0" prefWidth="223.0" text="Manage Orders ">
+                     <styleClass>
+                        <String fx:value="manage-btn" />
+                        <String fx:value="manage-btn:hover" />
+                        <String fx:value="manage-btn:pressed" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="300.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/natural_user_interface_2_96px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <GridPane hgap="25.0" prefHeight="228.0" prefWidth="979.0" styleClass="form-grid" vgap="18.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="idField" promptText="Customer ID" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" styleClass="text-field:focused" />
+                  <TextField fx:id="nameField" promptText="Customer Name" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1">
+                     <styleClass>
+                        <String fx:value="text-field:focused" />
+                        <String fx:value="text-field:disabled" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="orderIdField" promptText="Order ID" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="text-field:focused" />
+                        <String fx:value="text-field:disabled" />
+                     </styleClass>
+                  </TextField>
+                  <ComboBox fx:id="comboStatus" prefHeight="23.0" prefWidth="150.0" promptText="Status" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff);" GridPane.rowIndex="3">
+                     <styleClass>
+                        <String fx:value="combo-box" />
+                        <String fx:value="combo-box:focused" />
+                     </styleClass>
+                  </ComboBox>
+                  <TextField fx:id="costField" promptText="Total Cost" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" styleClass="text-field:focused" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="remainField" promptText="Remainig Payment" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.rowIndex="4">
+                     <styleClass>
+                        <String fx:value="text-field:focused" />
+                        <String fx:value="text-field:disabled" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="contactField" promptText="Customer Contact" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="text-field:focused" />
+                        <String fx:value="text-field:disabled" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="orderDateField" promptText=" yyyy-mm-dd (Order Date)" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="text-field:focused" />
+                        <String fx:value="text-field:disabled" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="deadlineField" promptText=" yyyy-mm-dd (Deadline)" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="text-field:focused" />
+                        <String fx:value="text-field:disabled" />
+                     </styleClass>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#handleClearFields" prefHeight="36.0" prefWidth="105.0" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <styleClass>
+                        <String fx:value="btn-reset" />
+                        <String fx:value="btn-reset:hover" />
+                        <String fx:value="btn-reset:pressed" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets left="18.0" right="18.0" top="18.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="17.0" layoutY="500.0" prefHeight="297.0" prefWidth="1096.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="341.0" fitWidth="1095.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
+               </image></ImageView>
+         </children>
+      </VBox>
+      <VBox prefHeight="350.0" prefWidth="1096.0" spacing="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="88.0" prefWidth="979.0" spacing="18.0">
+               <children>
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="79.0" prefWidth="84.0" style="-fx-background-color: white; -fx-border-color: #3385FF;" styleClass="card-box">
+                     <children>
+                        <ImageView fitHeight="42.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/double-check.gif" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblComplete" alignment="CENTER" ellipsisString="" prefHeight="27.0" prefWidth="58.0" style="-fx-text-fill: #000E24;" text="0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.20000000298023224" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="79.0" prefWidth="84.0" style="-fx-background-color: white; -fx-border-color: #3385FF;" styleClass="card-box">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" translateX="4.0">
+                           <image>
+                              <Image url="@../images/file.gif" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblPending" alignment="CENTER" ellipsisString="" prefHeight="27.0" prefWidth="58.0" style="-fx-text-fill: #000E24;" text="0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.20000000298023224" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="79.0" prefWidth="84.0" style="-fx-background-color: white; -fx-border-color: #3385FF;" styleClass="card-box">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" scaleX="1.15" scaleY="1.15">
+                           <image>
+                              <Image url="@../images/process.gif" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblProcessing" alignment="CENTER" ellipsisString="" prefHeight="27.0" prefWidth="58.0" style="-fx-text-fill: #000E24;" text="0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.20000000298023224" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="79.0" prefWidth="84.0" style="-fx-background-color: white; -fx-border-color: #3385FF;" styleClass="card-box">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/cancel.gif" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblCancel" alignment="CENTER" ellipsisString="" prefHeight="27.0" prefWidth="58.0" style="-fx-text-fill: #000E24;" text="0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color opacity="0.20000000298023224" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <TableView fx:id="tblOrder" prefHeight="253.0" prefWidth="979.0" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="colOrderId" prefWidth="57.0666446685791" text="Order ID" />
+                <TableColumn fx:id="colCusId" prefWidth="47.733306884765625" text="Cus ID" />
+                  <TableColumn fx:id="colCusName" prefWidth="122.66666412353516" text="Cus Name" />
+                  <TableColumn fx:id="colContact" prefWidth="125.33334350585938" text="Contact" />
+                  <TableColumn fx:id="colOrderDate" prefWidth="109.066650390625" text="Order Date" />
+                  <TableColumn fx:id="colDeadline" prefWidth="104.26663208007812" text="Deadline" />
+                  <TableColumn fx:id="colStatus" prefWidth="86.6666259765625" text="Status" />
+                  <TableColumn fx:id="colTotal" minWidth="0.0" prefWidth="110.93328857421875" text="Total" />
+                  <TableColumn fx:id="colRemain" prefWidth="118.93328857421875" text="Remaining" />
+                  <TableColumn fx:id="colProductID" prefWidth="83.46661376953125" text="Product ID" />
+                  <TableColumn fx:id="colQty" prefWidth="81.3333740234375" text="Qty" />
+              </columns>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="table" />
+                  <String fx:value="table-view .column-header-background" />
+                  <String fx:value="table-view .column-header" />
+                  <String fx:value="able-view .table-row-cell:filled" />
+                  <String fx:value="table-view .table-row-cell:selected" />
+                  <String fx:value="table-view .table-cell:selected" />
+                  <String fx:value="table-view .virtual-flow .corner" />
+                  <String fx:value="table-view .filler" />
+                  <String fx:value="table-view .table-row-cell:empty" />
+                  <String fx:value="table-view .table-row-cell:empty .table-cell" />
+                  <String fx:value="table-view .table-cell" />
+                  <String fx:value="table-view .column-header .label" />
+               </styleClass>
+            </TableView>
+         </children>
+         <padding>
+            <Insets bottom="18.0" left="18.0" right="18.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
