@@ -6,8 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import lk.ijse.nrlbag.dto.CustomerDTO;
-import lk.ijse.nrlbag.dto.MaterialDTO;
 import lk.ijse.nrlbag.dto.PaymentDTO;
 import lk.ijse.nrlbag.model.PaymentModel;
 
@@ -116,7 +114,11 @@ public class PaymentPopupController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid Payment Amount").show();
         } else if (!isValidDate(date)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Date Input").show();
-        } else {
+        } else if (type.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Payment type is empty").show();
+        } else if (status.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Payment status is empty").show();
+        }  else {
 
             // in here, if all details are valid
             // pass the data to the model class for save to the database
@@ -158,6 +160,10 @@ public class PaymentPopupController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid Payment Amount").show();
         } else if (!isValidDate(date)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Date Input").show();
+        } else if (type.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Payment type is empty").show();
+        } else if (status.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Payment status is empty").show();
         } else {
 
             // in here, if all details are valid
@@ -196,7 +202,7 @@ public class PaymentPopupController implements Initializable {
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm Delete");
             confirmAlert.setHeaderText("Are you sure to delete this Payment?");
-            confirmAlert.setContentText("Payment ID: "+id);
+            confirmAlert.setContentText("Payment ID: "+id + "\nOrder ID: "+orderId);
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 

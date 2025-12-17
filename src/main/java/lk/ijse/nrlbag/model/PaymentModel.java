@@ -1,7 +1,6 @@
 package lk.ijse.nrlbag.model;
 
 import lk.ijse.nrlbag.db.DBConnection;
-import lk.ijse.nrlbag.dto.CustomerDTO;
 import lk.ijse.nrlbag.dto.PaymentDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
 
@@ -12,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentModel {
+
+    private final OrderModel orderModel = new OrderModel();
 
     public static int totalPendingPaymentsCount() throws SQLException {
 
@@ -75,10 +76,10 @@ public class PaymentModel {
         Connection conn = DBConnection.getInstance().getConnection();
 
         try {
-            // in here start the transaction
+            // in here start the transaction and give a msg to stop the auto commit.
             conn.setAutoCommit(false);
 
-            // next save the payment in database
+            // next save the payment in database in temporary
             boolean paymentSaved = CrudUtil.execute(
                     conn,
                     "INSERT INTO Payment (amount, payment_date, type, status, orders_id) VALUES (?,?,?,?,?)",
@@ -93,12 +94,9 @@ public class PaymentModel {
                 return false;
             }
 
-            // here get the total order cost
-            ResultSet orderTotal = CrudUtil.execute(
-                    conn,
-                    "SELECT total_cost FROM Orders WHERE orders_id = ?",
-                    paymentDTO.getOrder_id()
-            );
+            // here get the total order cost from order table through orderModel
+            ResultSet orderTotal = orderModel.getOrderCost(conn, paymentDTO.getOrder_id());
+
             if (!orderTotal.next()) {
                 conn.rollback();
                 return false;
@@ -125,12 +123,7 @@ public class PaymentModel {
             }
 
             // update the order table
-            boolean orderUpdate = CrudUtil.execute(
-                    conn,
-                    "UPDATE Orders SET remaining_payment = ? WHERE orders_id = ?",
-                    remaining,
-                    paymentDTO.getOrder_id()
-            );
+            boolean orderUpdate = orderModel.updateOrderRemainingPayment(conn, remaining, paymentDTO.getOrder_id());
 
             if (!orderUpdate) {
                 conn.rollback();
@@ -172,11 +165,7 @@ public class PaymentModel {
             }
 
             // here get the total order cost
-            ResultSet orderTotal = CrudUtil.execute(
-                    conn,
-                    "SELECT total_cost FROM Orders WHERE orders_id = ?",
-                    paymentDTO.getOrder_id()
-            );
+            ResultSet orderTotal = orderModel.getOrderCost(conn, paymentDTO.getOrder_id());
             if (!orderTotal.next()) {
                 conn.rollback();
                 return false;
@@ -203,12 +192,7 @@ public class PaymentModel {
             }
 
             // update the order table
-            boolean orderUpdate = CrudUtil.execute(
-                    conn,
-                    "UPDATE Orders SET remaining_payment = ? WHERE orders_id = ?",
-                    remaining,
-                    paymentDTO.getOrder_id()
-            );
+            boolean orderUpdate = orderModel.updateOrderRemainingPayment(conn, remaining, paymentDTO.getOrder_id());
 
             if (!orderUpdate) {
                 conn.rollback();
@@ -245,11 +229,7 @@ public class PaymentModel {
             }
 
             // here get the total order cost
-            ResultSet orderTotal = CrudUtil.execute(
-                    conn,
-                    "SELECT total_cost FROM Orders WHERE orders_id = ?",
-                    orderID
-            );
+            ResultSet orderTotal = orderModel.getOrderCost(conn, orderID);
             if (!orderTotal.next()) {
                 conn.rollback();
                 return false;
@@ -257,31 +237,11 @@ public class PaymentModel {
 
             double totalCost = orderTotal.getDouble("total_cost");
 
-            // here get the total paid amount
-            /*ResultSet rsPaid = CrudUtil.execute(
-                    conn,
-                    "SELECT COALESCE(SUM(amount),0) AS paid FROM Payment WHERE orders_id = ?",
-                    paymentDTO.getOrder_id()
-            );
-
-            rsPaid.next();
-            double totalPaid = rsPaid.getDouble("paid");*/
-
-            // when payment is delete , the remaining is equal to totalCost
+            // when payment is deleted , the remaining is equal to totalCost
             double remaining = totalCost;
 
-            if (remaining<0) {
-                conn.rollback();
-                throw new SQLException("Over Payment is not allowed");
-            }
-
             // update the order table
-            boolean orderUpdate = CrudUtil.execute(
-                    conn,
-                    "UPDATE Orders SET remaining_payment = ? WHERE orders_id = ?",
-                    remaining,
-                    orderID
-            );
+            boolean orderUpdate = orderModel.updateOrderRemainingPayment(conn, remaining, orderID);
 
             if (!orderUpdate) {
                 conn.rollback();

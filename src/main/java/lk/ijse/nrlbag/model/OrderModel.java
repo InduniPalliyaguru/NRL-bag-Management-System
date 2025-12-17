@@ -1,10 +1,9 @@
 package lk.ijse.nrlbag.model;
 
-import javafx.fxml.FXML;
-import lk.ijse.nrlbag.dto.OderDetailsDTO;
 import lk.ijse.nrlbag.dto.OrderDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -226,6 +225,33 @@ public class OrderModel {
                 "GROUP BY MONTH(payment_date)");
 
         return resultSet;
+    }
+
+    public ResultSet getOrderCost(Connection conn, int id) throws SQLException {
+
+        // here get the total order cost
+        ResultSet orderTotal = CrudUtil.execute(
+                conn,
+                "SELECT total_cost FROM Orders WHERE orders_id = ?",
+                id
+        );
+
+        return orderTotal;
+
+    }
+
+    public boolean updateOrderRemainingPayment(Connection conn, double remaining, int id) throws SQLException {
+
+        // here get the total order cost
+        boolean orderUpdate = CrudUtil.execute(
+                conn,
+                "UPDATE Orders SET remaining_payment = ? WHERE orders_id = ?",
+                remaining,
+                id
+        );
+
+        return orderUpdate;
+
     }
 
 }

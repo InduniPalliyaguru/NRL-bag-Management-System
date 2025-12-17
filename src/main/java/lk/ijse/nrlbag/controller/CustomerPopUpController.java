@@ -34,7 +34,7 @@ public class CustomerPopUpController {
     private final CustomerModel customerModel = new CustomerModel();
 
     private final String CUSTOMER_ID_REGEX = "^[0-9]+$";
-    private final String CUSTOMER_NAME_REGEX = "^[A-Za-z]{3,}$";
+    private final String CUSTOMER_NAME_REGEX = "^[A-Za-z]{3,}\\s[A-Za-z]{3,}$";
     private final String CUSTOMER_ADDRESS_REGEX = "^[A-Za-z0-9]{5,}$";
     private final String CUSTOMER_CONTACT_REGEX = "^[0-9]{10}$";
 
