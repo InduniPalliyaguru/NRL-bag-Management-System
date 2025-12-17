@@ -89,4 +89,12 @@ public class MaterialModel {
         return materialList;
     }
 
+    public boolean updateMaterialQtyAvailable(double newQty, int materialID) throws SQLException {
+        boolean result = CrudUtil.execute("UPDATE Material SET qty_available=? WHERE material_id=? ",
+                newQty,
+                materialID
+        );
+        return result;
+    }
+
 }

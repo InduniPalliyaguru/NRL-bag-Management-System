@@ -1,6 +1,5 @@
 package lk.ijse.nrlbag.model;
 
-import javafx.scene.control.Alert;
 import lk.ijse.nrlbag.dto.CustomerDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
 
@@ -32,19 +31,16 @@ public class CustomerModel {
 
     public boolean updateCustomer(CustomerDTO customerDTO) throws SQLException {
 
-        boolean result = CrudUtil.execute("UPDATE Customer SET name=? , address=? , contact=? WHERE customer_id=?",
+        return CrudUtil.execute("UPDATE Customer SET name=? , address=? , contact=? WHERE customer_id=?",
                 customerDTO.getName(),
                 customerDTO.getAddress(),
                 customerDTO.getContact(),
                 customerDTO.getId());
-
-        return result;
     }
 
     public boolean deleteCustomer(String id) throws SQLException {
 
-        boolean result = CrudUtil.execute("DELETE FROM Customer WHERE customer_id=?", Integer.parseInt(id));
-        return result;
+        return CrudUtil.execute("DELETE FROM Customer WHERE customer_id=?", Integer.parseInt(id));
 
     }
 

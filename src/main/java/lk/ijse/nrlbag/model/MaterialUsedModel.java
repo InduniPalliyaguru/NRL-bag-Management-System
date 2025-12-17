@@ -1,14 +1,18 @@
 package lk.ijse.nrlbag.model;
 
+import lk.ijse.nrlbag.db.DBConnection;
 import lk.ijse.nrlbag.dto.MaterialUsedDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MaterialUsedModel {
+
+    private final MaterialModel materialModel = new MaterialModel();
 
     public List<MaterialUsedDTO> getMaterialUsage() throws SQLException {
         ResultSet rs = CrudUtil.execute(
@@ -33,6 +37,41 @@ public class MaterialUsedModel {
 
     }
 
+    public boolean saveMaterialUsage(MaterialUsedDTO materialUsedDTO, double newAvailableQty) throws SQLException{
 
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        try {
+            // in here start the transaction and give a msg to stop the auto commit.
+            conn.setAutoCommit(false);
+            boolean isSaved = CrudUtil.execute(
+                    conn,
+                    "INSERT INTO Material_Used (orders_id, material_id, used_qty) VALUES (?,?,?)",
+                    materialUsedDTO.getOrder_id(),
+                    materialUsedDTO.getMaterial_id(),
+                    materialUsedDTO.getQty_used()
+            );
+            if (!isSaved) {
+                conn.rollback();
+                return false;
+            }
+            // in here send qty available for database update
+            boolean isUpdated = materialModel.updateMaterialQtyAvailable(newAvailableQty, materialUsedDTO.getMaterial_id());
+
+            if (!isUpdated) {
+                conn.rollback();
+                return false;
+            }
+            conn.commit();
+            return true;
+
+        } catch (Exception e) {
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.setAutoCommit(true);
+        }
+
+    }
 
 }

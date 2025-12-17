@@ -2,12 +2,9 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.nrlbag.dto.*;
 import lk.ijse.nrlbag.dto.tm.MaterialUsedTM;
 import lk.ijse.nrlbag.model.*;
@@ -89,7 +86,7 @@ public class OrderPopupController implements Initializable {
     private final String CUSTOMER_ID_REGEX = "^[0-9]+$";
     private final String ORDER_COST_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     private final String PRODUCT_ID_REGEX = "^[0-9]+$";
-    private final String QTY_REGEX = "^[0-9]+$";
+    private final String QTY_REGEX = "^[0-9]+(\\.[0-9]+)?$";
     private final String MATERIAL_ID_REGEX = "^[0-9]+$";
 
     private final OrderModel orderModel = new OrderModel();
@@ -123,7 +120,7 @@ public class OrderPopupController implements Initializable {
         //Autoload qty decreasing when enter the need qty in material usage side
         orderQtyField.textProperty().addListener((a, b, c) -> loadDecreasingQty());
 
-        //in here set up the how each column in the tree table view get the data
+        //in here set up how each column in the tree table view get the data
         colOrderID.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getOrder_id()));
         colMaterialID.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getMaterial_id()));
         colName.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMaterial_name()));
@@ -177,7 +174,7 @@ public class OrderPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -202,9 +199,9 @@ public class OrderPopupController implements Initializable {
             // check they are valid or not
             if (!id.matches(CUSTOMER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid customer ID").show();
-            } else if (!isValidDate(orderDate)) {
+            } else if (isValidDate(orderDate)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order Date").show();
-            } else if (!isValidDate(deadline)) {
+            } else if (isValidDate(deadline)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Deadline Date").show();
             } else if (!cost.matches(ORDER_COST_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Cost Input").show();
@@ -232,7 +229,7 @@ public class OrderPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -261,9 +258,9 @@ public class OrderPopupController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
             } else if (!id.matches(CUSTOMER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid customer ID").show();
-            } else if (!isValidDate(orderDate)) {
+            } else if (isValidDate(orderDate)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order Date").show();
-            } else if (!isValidDate(deadline)) {
+            } else if (isValidDate(deadline)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Deadline Date").show();
             } else if (!productID.matches(PRODUCT_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Product ID").show();
@@ -286,7 +283,7 @@ public class OrderPopupController implements Initializable {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -332,7 +329,7 @@ public class OrderPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -343,12 +340,50 @@ public class OrderPopupController implements Initializable {
         clearFields();
     }
 
+    @FXML
+    private void handleSaveMaterialUsage() {
+        try {
+            String orderId = orderIdField.getText().trim();
+            String materialId = materialIdField.getText().trim();
+            String orderQty = orderQtyField.getText().trim();
+            String availableQty = availableQtyField.getText().trim();
+
+            if (!orderId.matches(ORDER_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
+            } else if (!materialId.matches(MATERIAL_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Material ID").show();
+            } else if (!orderQty.matches(QTY_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order Quantity").show();
+            } else if (!availableQty.matches(QTY_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order Quantity").show();
+            } else {
+
+                // in here set the details into the materialUsedDTO
+                MaterialUsedDTO materialUsedDTO = new MaterialUsedDTO(Integer.parseInt(orderId), Integer.parseInt(materialId), Integer.parseInt(orderQty));
+
+                // pass to the model class to insert into the database
+                boolean isSaved = materialUsedModel.saveMaterialUsage(materialUsedDTO, Double.parseDouble(availableQty));
+
+                if (isSaved) {
+                    new Alert(Alert.AlertType.INFORMATION, "Material Usage Added Successfully!").show();
+                    loadMaterialUsageTreeTable();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+        }
+    }
+
     private boolean isValidDate(String input) {
         try {
             LocalDate.parse(input);
-            return true;
-        } catch (Exception e) {
             return false;
+        } catch (Exception e) {
+            return true;
         }
     }
 
@@ -405,7 +440,7 @@ public class OrderPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -433,7 +468,7 @@ public class OrderPopupController implements Initializable {
             costField.setText(String.valueOf(total));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -463,7 +498,7 @@ public class OrderPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -491,7 +526,7 @@ public class OrderPopupController implements Initializable {
             costField1.setText(String.valueOf(total));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -548,7 +583,7 @@ public class OrderPopupController implements Initializable {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -578,7 +613,7 @@ public class OrderPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -612,7 +647,7 @@ public class OrderPopupController implements Initializable {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

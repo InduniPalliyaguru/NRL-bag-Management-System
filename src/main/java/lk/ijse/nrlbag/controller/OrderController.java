@@ -2,7 +2,6 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lk.ijse.nrlbag.dto.OderDetailsDTO;
 import lk.ijse.nrlbag.dto.OrderDTO;
 import lk.ijse.nrlbag.model.OrderModel;
 
@@ -118,7 +116,7 @@ public class OrderController implements Initializable {
             label total cancelled order that have in order Management. */
             lblCancel.setText(String.valueOf(orderModel.cancelledOrderCount()));
         } catch(Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -141,7 +139,7 @@ public class OrderController implements Initializable {
             tblOrder.setItems(obList);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -178,7 +176,7 @@ public class OrderController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -206,7 +204,7 @@ public class OrderController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -231,7 +229,7 @@ public class OrderController implements Initializable {
     }
 
     private void highLightOrders(int id) {
-        //rowfactory allows us to define how each row look
+        //row factory allows us to define how each row look
         tblOrder.setRowFactory( tv -> new TableRow<OrderDTO>() {
             @Override
             // this method is called for every row in the table
@@ -249,7 +247,7 @@ public class OrderController implements Initializable {
                     // here set the colour for the search order row
                     setStyle("-fx-background-color: #e2baf7;");
                 } else {
-                    // if doesnt match that keep default style
+                    // if it does not match that keep default style
                     setStyle("");
                 }
             }
@@ -259,7 +257,7 @@ public class OrderController implements Initializable {
     }
 
     private void highLightOrdersWithAllProducts(int id) {
-        //rowfactory allows us to define how each row look
+        //row factory allows us to define how each row look
         tblOrder.setRowFactory( tv -> new TableRow<OrderDTO>() {
             @Override
             // this method is called for every row in the table
@@ -277,7 +275,7 @@ public class OrderController implements Initializable {
                     // here set the colour for the search order row
                     setStyle("-fx-background-color: #e2baf7;");
                 } else {
-                    // if doesnt match that keep default style
+                    // if it does not match that keep default style
                     setStyle("");
                 }
             }
@@ -287,7 +285,7 @@ public class OrderController implements Initializable {
     }
 
     @FXML
-    private void btnAddOnActionOrder(ActionEvent event) {
+    private void btnAddOnActionOrder() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk/ijse/nrlbag/view/orderPopup.fxml"));
             Parent root = fxmlLoader.load();
@@ -301,7 +299,7 @@ public class OrderController implements Initializable {
             loadOrderTable();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

@@ -2,7 +2,6 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -93,7 +92,7 @@ public class CustomerController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
         }
 
@@ -119,7 +118,7 @@ public class CustomerController implements Initializable {
             tblCustomer.setItems(obList);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -135,7 +134,7 @@ public class CustomerController implements Initializable {
     }
 
     private void highLightCustomer(String contact) {
-        //rowfactory allows us to define how each row look
+        //row factory allows us to define how each row look
         tblCustomer.setRowFactory( tv -> new TableRow<CustomerDTO>() {
             @Override
             // this method is called for every row in the table
@@ -153,7 +152,7 @@ public class CustomerController implements Initializable {
                     // here set the colour for the search customer row
                     setStyle("-fx-background-color: #e2baf7;");
                 } else {
-                    // if doesnt match that keep default style
+                    // if it does not match that keep default style
                     setStyle("");
                 }
             }
@@ -163,7 +162,7 @@ public class CustomerController implements Initializable {
     }
 
     @FXML
-    private void btnAddOnAction(ActionEvent event) {
+    private void btnAddOnAction() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk/ijse/nrlbag/view/customerPopUp.fxml"));
             Parent root = fxmlLoader.load();
@@ -177,7 +176,7 @@ public class CustomerController implements Initializable {
             loadCustomerTable();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

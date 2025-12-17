@@ -72,7 +72,7 @@ public class SupplierPopup {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -105,7 +105,7 @@ public class SupplierPopup {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -151,7 +151,7 @@ public class SupplierPopup {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -190,7 +190,7 @@ public class SupplierPopup {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong").show();
         }
 

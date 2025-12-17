@@ -79,7 +79,7 @@ public class StockPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -118,7 +118,7 @@ public class StockPopupController implements Initializable {
                     new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
             }
         }
@@ -161,7 +161,7 @@ public class StockPopupController implements Initializable {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -201,7 +201,7 @@ public class StockPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 

@@ -2,7 +2,6 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -85,7 +84,7 @@ public class SupplierController implements Initializable {
             tblSupplier.setItems(obList);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -118,7 +117,7 @@ public class SupplierController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -143,7 +142,7 @@ public class SupplierController implements Initializable {
 
     private void highlightSearchSupplier(int id) {
 
-        //rowfactory allows us to define how each row look
+        //row factory allows us to define how each row look
         tblSupplier.setRowFactory( tv -> new TableRow<SupplierDTO>() {
             @Override
             // this method is called for every row in the table
@@ -161,7 +160,7 @@ public class SupplierController implements Initializable {
                     // here set the colour for the search supplier row
                     setStyle("-fx-background-color: #e2baf7;");
                 } else {
-                    // if doesnt match that keep default style
+                    // if it does not match that keep default style
                     setStyle("");
                 }
             }
@@ -172,7 +171,7 @@ public class SupplierController implements Initializable {
     }
 
     @FXML
-    private void btnAddOnActionSupplier(ActionEvent event) {
+    private void btnAddOnActionSupplier() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk/ijse/nrlbag/view/supplierPopup.fxml"));
             Parent root = fxmlLoader.load();
@@ -186,7 +185,7 @@ public class SupplierController implements Initializable {
             loadSupplierTable();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

@@ -2,7 +2,6 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -92,7 +91,7 @@ public class StockController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -129,12 +128,12 @@ public class StockController implements Initializable {
             tblMaterial.setItems(obList);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     private void highLightStock(int id) {
-        //rowfactory allows us to define how each row look
+        //row factory allows us to define how each row look
         tblMaterial.setRowFactory( tv -> new TableRow<MaterialDTO>() {
             @Override
             // this method is called for every row in the table
@@ -152,7 +151,7 @@ public class StockController implements Initializable {
                     // here set the colour for the search material row
                     setStyle("-fx-background-color: #e2baf7;");
                 } else {
-                    // if doesnt match that keep default style
+                    // if it does not match that keep default style
                     setStyle("");
                 }
             }
@@ -162,7 +161,7 @@ public class StockController implements Initializable {
     }
 
     @FXML
-    private void btnAddOnActionStock(ActionEvent event) {
+    private void btnAddOnActionStock() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk/ijse/nrlbag/view/stockPopup.fxml"));
             Parent root = fxmlLoader.load();
@@ -176,12 +175,12 @@ public class StockController implements Initializable {
             loadMaterialTable();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     @FXML
-    private void btnAddOnActionProduct(ActionEvent event) {
+    private void btnAddOnActionProduct() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk/ijse/nrlbag/view/product.fxml"));
             Parent root = fxmlLoader.load();
@@ -194,7 +193,7 @@ public class StockController implements Initializable {
             stage.showAndWait();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

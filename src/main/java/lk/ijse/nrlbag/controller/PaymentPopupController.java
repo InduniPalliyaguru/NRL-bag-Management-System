@@ -89,7 +89,7 @@ public class PaymentPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
         }
 
@@ -112,7 +112,7 @@ public class PaymentPopupController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
         } else if (!amount.matches(PAY_AMOUNT_REGEX)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Payment Amount").show();
-        } else if (!isValidDate(date)) {
+        } else if (isValidDate(date)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Date Input").show();
         } else if (type.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Payment type is empty").show();
@@ -133,7 +133,7 @@ public class PaymentPopupController implements Initializable {
                     new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
             }
         }
@@ -158,7 +158,7 @@ public class PaymentPopupController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
         } else if (!amount.matches(PAY_AMOUNT_REGEX)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Payment Amount").show();
-        } else if (!isValidDate(date)) {
+        } else if (isValidDate(date)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Date Input").show();
         } else if (type.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Payment type is empty").show();
@@ -179,7 +179,7 @@ public class PaymentPopupController implements Initializable {
                     new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
             }
         }
@@ -221,7 +221,7 @@ public class PaymentPopupController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong").show();
         }
 
@@ -235,9 +235,9 @@ public class PaymentPopupController implements Initializable {
     private boolean isValidDate(String input) {
         try {
             LocalDate.parse(input);
-            return true;
-        } catch (Exception e) {
             return false;
+        } catch (Exception e) {
+            return true;
         }
     }
 

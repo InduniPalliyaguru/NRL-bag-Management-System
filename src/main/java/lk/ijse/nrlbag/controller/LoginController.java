@@ -42,7 +42,7 @@ public class LoginController {
             }
 
         } catch(Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR , "Something Went Wrong!").show();
         }
     }

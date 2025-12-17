@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.nrlbag.dto.CustomerDTO;
 import lk.ijse.nrlbag.dto.ProductDTO;
 import lk.ijse.nrlbag.model.ProductModel;
 
@@ -85,7 +84,7 @@ public class ProductController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
         }
 
@@ -123,7 +122,7 @@ public class ProductController implements Initializable {
 
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
             }
         }
@@ -170,7 +169,7 @@ public class ProductController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -213,7 +212,7 @@ public class ProductController implements Initializable {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong").show();
         }
 
@@ -239,12 +238,12 @@ public class ProductController implements Initializable {
             tblProduct.setItems(obList);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     private void highLightProduct(int id) {
-        //rowfactory allows us to define how each row look
+        //row factory allows us to define how each row look
         tblProduct.setRowFactory( tv -> new TableRow<ProductDTO>() {
             @Override
             // this method is called for every row in the table
@@ -262,7 +261,7 @@ public class ProductController implements Initializable {
                     // here set the colour for the search material row
                     setStyle("-fx-background-color: #e2baf7;");
                 } else {
-                    // if doesnt match that keep default style
+                    // if it does not match that keep default style
                     setStyle("");
                 }
             }

@@ -13,6 +13,7 @@ public class OrderModel {
 
     // get the all details in orders table join with customer details also
     public List< OrderDTO> getOrders() throws SQLException {
+
         ResultSet rs = CrudUtil.execute("SELECT " +
                 " o.orders_id," +
                 " o.customer_id," +

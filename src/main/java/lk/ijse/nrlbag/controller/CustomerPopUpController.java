@@ -2,7 +2,6 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import lk.ijse.nrlbag.dto.CustomerDTO;
@@ -75,7 +74,7 @@ public class CustomerPopUpController {
 
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
                 new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
             }
         }
@@ -109,7 +108,7 @@ public class CustomerPopUpController {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
         }
 
@@ -156,7 +155,7 @@ public class CustomerPopUpController {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
@@ -196,7 +195,7 @@ public class CustomerPopUpController {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong").show();
         }
 

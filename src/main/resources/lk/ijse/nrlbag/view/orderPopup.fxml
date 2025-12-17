@@ -716,7 +716,7 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="222.0" prefWidth="300.0">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Save">
+                                          <Button mnemonicParsing="false" onAction="#handleSaveMaterialUsage" prefHeight="30.0" prefWidth="250.0" text="Save">
                                              <styleClass>
                                                 <String fx:value="save-btn" />
                                                 <String fx:value="save-btn:hover" />

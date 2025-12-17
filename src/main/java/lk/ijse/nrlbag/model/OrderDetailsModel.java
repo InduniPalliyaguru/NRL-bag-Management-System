@@ -1,26 +1,22 @@
 package lk.ijse.nrlbag.model;
 
-import lk.ijse.nrlbag.dto.MaterialUsedDTO;
 import lk.ijse.nrlbag.dto.OderDetailsDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OrderDetailsModel {
 
     public boolean saveOrderDetails(OderDetailsDTO orderDTO) throws SQLException {
 
         // pass the query for save to the database
-        boolean result = CrudUtil.execute("INSERT INTO Order_Details (orders_id, product_id, quantity, unit_price) VALUES (?,?,?,?)",
+        return CrudUtil.execute("INSERT INTO Order_Details (orders_id, product_id, quantity, unit_price) VALUES (?,?,?,?)",
                 orderDTO.getOrder_id(),
                 orderDTO.getProduct_id(),
                 orderDTO.getQuantity(),
                 orderDTO.getUnit_price()
         );
-        return result;
 
     }
 

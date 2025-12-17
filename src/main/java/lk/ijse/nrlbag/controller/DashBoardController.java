@@ -15,11 +15,9 @@ import lk.ijse.nrlbag.model.OrderModel;
 import lk.ijse.nrlbag.model.PaymentModel;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.time.LocalDate;
 
 public class DashBoardController {
@@ -146,7 +144,7 @@ public class DashBoardController {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         barChart.getData().clear();
@@ -171,7 +169,7 @@ public class DashBoardController {
                 monthlyIncome[monthIndex] = income;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         for (int i = 0; i<12; i++) {
