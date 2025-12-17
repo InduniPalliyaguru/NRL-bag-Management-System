@@ -114,3 +114,140 @@
 
 }
 
+.table {
+    -fx-background-color: transparent;   
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #D7DAE0;           
+    -fx-border-width: 1;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+}
+
+
+.table-view {
+    -fx-background-color: transparent;   
+    -fx-border-color: #D7DAE0;           
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+
+.table-view .column-header-background {
+    -fx-background-color: #7aa1f0;      
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;   
+    -fx-font-weight: bold;
+}
+
+
+.table-view .column-header .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .table-row-cell:filled {
+    -fx-background-color: transparent;   
+    -fx-text-fill: #1c1638;              
+}
+
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #e0d38d;  
+    -fx-text-fill: black;              
+}
+
+
+.table-view .table-cell:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1c1638;              
+}
+
+
+.table-view .virtual-flow .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:empty .table-cell {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;     
+    -fx-border-width: 0 0 1 1;     
+}
+
+.tree-table {
+    -fx-background-color: transparent;   
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #D7DAE0;           
+    -fx-border-width: 1;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+}
+
+.tree-table-view {
+    -fx-background-color: transparent;   
+    -fx-border-color: #D7DAE0;           
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.tree-table-view .column-header-background {
+    -fx-background-color: #7aa1f0;      
+}
+
+.tree-table-view .column-header {
+    -fx-background-color: transparent;   
+    -fx-font-weight: bold;
+}
+
+.tree-table-view .column-header .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.tree-table-view .tree-table-row-cell:filled {
+    -fx-background-color: transparent;   
+    -fx-text-fill: #1c1638;              
+}
+
+.tree-table-view .tree-table-row-cell:selected {
+    -fx-background-color: #e0d38d;  
+    -fx-text-fill: black;              
+}
+
+.tree-table-view .tree-table-cell:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1c1638;              
+}
+
+.tree-table-view .virtual-flow .corner {
+    -fx-background-color: transparent;
+}
+
+.tree-table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.tree-table-view .tree-table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.tree-table-view .tree-table-row-cell:empty .tree-table-cell {
+    -fx-background-color: transparent;
+}
+
+.tree-table-view .tree-table-cell {
+    -fx-border-color: transparent;     
+    -fx-border-width: 0 0 1 1;     
+}

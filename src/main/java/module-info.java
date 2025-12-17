@@ -9,7 +9,9 @@ module lk.ijse.nrlbag {
 
     opens lk.ijse.nrlbag.controller to javafx.fxml;
     opens lk.ijse.nrlbag.dto to java.base;
+    opens lk.ijse.nrlbag.dto.tm to java.base;
     exports lk.ijse.nrlbag;
     exports lk.ijse.nrlbag.controller;
     exports lk.ijse.nrlbag.dto;
+    exports lk.ijse.nrlbag.dto.tm;
 }

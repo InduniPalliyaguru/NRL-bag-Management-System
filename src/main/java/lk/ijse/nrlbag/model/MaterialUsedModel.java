@@ -13,7 +13,7 @@ public class MaterialUsedModel {
     public List<MaterialUsedDTO> getMaterialUsage() throws SQLException {
         ResultSet rs = CrudUtil.execute(
                 "SELECT mu.orders_id, mu.material_id, mu.used_qty, m.name, m.unit " +
-                        "FROM Material m JOIN Material_Used mu ON m.material_id = mu.material_id WHERE m.material_id=?;"
+                        "FROM Material m JOIN Material_Used mu ON m.material_id = mu.material_id;"
         );
 
         List<MaterialUsedDTO> materialUsedList = new ArrayList<>();
@@ -32,5 +32,7 @@ public class MaterialUsedModel {
         return materialUsedList;
 
     }
+
+
 
 }

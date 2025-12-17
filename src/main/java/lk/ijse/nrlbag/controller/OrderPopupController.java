@@ -1,5 +1,7 @@
 package lk.ijse.nrlbag.controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import lk.ijse.nrlbag.dto.MaterialUsedDTO;
 import lk.ijse.nrlbag.dto.OderDetailsDTO;
 import lk.ijse.nrlbag.dto.OrderDTO;
 import lk.ijse.nrlbag.dto.ProductDTO;
+import lk.ijse.nrlbag.dto.tm.MaterialUsedTM;
 import lk.ijse.nrlbag.model.MaterialUsedModel;
 import lk.ijse.nrlbag.model.OrderDetailsModel;
 import lk.ijse.nrlbag.model.OrderModel;
@@ -17,9 +20,7 @@ import lk.ijse.nrlbag.model.ProductModel;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class OrderPopupController implements Initializable {
 
@@ -66,17 +67,17 @@ public class OrderPopupController implements Initializable {
     @FXML
     private TextField productNameField;
     @FXML
-    private TableView tblMaterialUsage;
+    private TreeTableColumn<MaterialUsedTM, Integer> colMaterialID;
     @FXML
-    private TableColumn colOrderID;
+    private TreeTableColumn<MaterialUsedTM, String> colName;
     @FXML
-    private TableColumn colMaterialID;
+    private TreeTableColumn<MaterialUsedTM, Integer> colOrderID;
     @FXML
-    private TableColumn colName;
+    private TreeTableColumn<MaterialUsedTM, Integer> colQty;
     @FXML
-    private TableColumn colQty;
+    private TreeTableColumn<MaterialUsedTM, String> colUnit;
     @FXML
-    private TableColumn colUnit;
+    private TreeTableView<MaterialUsedTM> tblMaterialUsage;
 
     private final String ORDER_ID_REGEX = "^[0-9]+$";
     private final String CUSTOMER_ID_REGEX = "^[0-9]+$";
@@ -108,13 +109,15 @@ public class OrderPopupController implements Initializable {
         //Auto calculate the total cost when enter the qty in updates side
         qtyField1.textProperty().addListener((a,b,c) -> calculateTotalCostForUpdates());
 
-        colOrderID.setCellValueFactory(new PropertyValueFactory<>("order_id"));
-        colMaterialID.setCellValueFactory(new PropertyValueFactory<>("material_id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("material_name"));
-        colQty.setCellValueFactory(new PropertyValueFactory<>("qty_used"));
-        colUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        //in here set up the how each column in the tree table view get the data
+        colOrderID.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getOrder_id()));
+        colMaterialID.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getMaterial_id()));
+        colName.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMaterial_name()));
+        colQty.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getQty_used()));
+        colUnit.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getUnit()));
 
-        loadMaterialUsageTable();
+        tblMaterialUsage.setShowRoot(false);
+        loadMaterialUsageTreeTable();
 
     }
 
@@ -479,22 +482,56 @@ public class OrderPopupController implements Initializable {
 
     }
 
-    private void loadMaterialUsageTable() {
+    // in here load data in to the material usage table
+    private void loadMaterialUsageTreeTable() {
 
         try {
 
+            // here get data from the material usage table
             List<MaterialUsedDTO> materialDTO = materialUsedModel.getMaterialUsage();
 
-            // TableView always requires and ObservableList it automatically update that details
-            ObservableList<MaterialUsedDTO> obList = FXCollections.observableArrayList();
+            // next crete root node of the tree table
+            TreeItem<MaterialUsedTM> root = new TreeItem<>();
+            root.setExpanded(true);
 
-            // after that we set one by one from oderList in to the observable list
-            for (MaterialUsedDTO matDTO : materialDTO) {
-                obList.add(matDTO);
+            // group by order id, map to the group child
+            Map<Integer, TreeItem<MaterialUsedTM>> orderMap = new LinkedHashMap<>();
+
+            // loop through all material usage records
+            for (MaterialUsedDTO usedDTO : materialDTO) {
+                int orderId = usedDTO.getOrder_id();
+
+                // chack if this order id already has a parent node
+                TreeItem<MaterialUsedTM> orderNode = orderMap.get(orderId);
+
+                if (orderNode == null) {
+                    // create parent node for this order id
+                    MaterialUsedTM parentTM = new MaterialUsedTM(usedDTO.getOrder_id(),null,null,"","");
+
+                    orderNode = new TreeItem<>(parentTM);
+
+                    // save ot to the map for the later
+                    orderMap.put(orderId, orderNode);
+                    // add the parent node to the root
+                    root.getChildren().add(orderNode);
+                }
+
+                // create a child node for each material under this order
+                MaterialUsedTM childTm = new MaterialUsedTM(
+                        usedDTO.getOrder_id(),
+                        usedDTO.getMaterial_id(),
+                        usedDTO.getQty_used(),
+                        usedDTO.getMaterial_name(),
+                        usedDTO.getUnit()
+                );
+                TreeItem<MaterialUsedTM> materialNode = new TreeItem<>(childTm);
+
+                orderNode.getChildren().add(materialNode);
             }
 
-            // then set that list to the table
-            tblMaterialUsage.setItems(obList);
+            tblMaterialUsage.setRoot(root);
+            tblMaterialUsage.setShowRoot(false);
+
 
         } catch (Exception e) {
             e.printStackTrace();
