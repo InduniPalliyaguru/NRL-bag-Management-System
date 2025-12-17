@@ -572,7 +572,7 @@
                                        <children>
                                           <Pane prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #002966;">
                                              <children>
-                                                <TextField fx:id="searchField" layoutX="4.0" layoutY="5.0" prefHeight="33.0" prefWidth="220.0" promptText="Enter ID Number" style="-fx-background-color: white;">
+                                                <TextField fx:id="searchOrderIdField" layoutX="4.0" layoutY="5.0" prefHeight="33.0" prefWidth="220.0" promptText="Enter ID Number" style="-fx-background-color: white;">
                                                    <font>
                                                       <Font name="Roboto" size="14.0" />
                                                    </font>
@@ -611,7 +611,7 @@
                                                       <Font name="Segoe UI" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="productIdField2" layoutY="18.0" prefHeight="35.0" prefWidth="270.0" promptText="Order ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                <TextField fx:id="orderIdField" layoutY="18.0" prefHeight="35.0" prefWidth="270.0" promptText="Order ID" style="-fx-background-color: white; -fx-background-radius: 10;">
                                                    <effect>
                                                       <DropShadow>
                                                          <color>
@@ -632,7 +632,7 @@
                                                       <Font name="Segoe UI" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="nameField" layoutY="18.0" prefHeight="35.0" prefWidth="270.0" promptText="Material ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                <TextField fx:id="materialIdField" layoutY="18.0" prefHeight="35.0" prefWidth="270.0" promptText="Material ID" style="-fx-background-color: white; -fx-background-radius: 10;">
                                                    <effect>
                                                       <DropShadow>
                                                          <color>
@@ -656,7 +656,7 @@
                                                       <Font name="Segoe UI" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="priceField1" layoutY="20.0" prefHeight="35.0" prefWidth="270.0" promptText="Quantity" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                <TextField fx:id="orderQtyField" layoutY="20.0" prefHeight="35.0" prefWidth="270.0" promptText="Quantity" style="-fx-background-color: white; -fx-background-radius: 10;">
                                                    <effect>
                                                       <DropShadow>
                                                          <color>
@@ -674,7 +674,7 @@
                                                       <Font name="Segoe UI" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="priceField" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: none; -fx-background-radius: 10;">
+                                                <TextField fx:id="materialNameField" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 10;">
                                                    <effect>
                                                       <DropShadow>
                                                          <color>
@@ -695,7 +695,7 @@
                                                       <Font name="Segoe UI" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="priceField2" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" promptText="Available Qty" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                <TextField fx:id="availableQtyField" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" promptText="Available Qty" style="-fx-background-color: white; -fx-background-radius: 10;">
                                                    <effect>
                                                       <DropShadow>
                                                          <color>

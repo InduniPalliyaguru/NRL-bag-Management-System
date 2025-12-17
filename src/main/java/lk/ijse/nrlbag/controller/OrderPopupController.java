@@ -8,15 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.nrlbag.dto.MaterialUsedDTO;
-import lk.ijse.nrlbag.dto.OderDetailsDTO;
-import lk.ijse.nrlbag.dto.OrderDTO;
-import lk.ijse.nrlbag.dto.ProductDTO;
+import lk.ijse.nrlbag.dto.*;
 import lk.ijse.nrlbag.dto.tm.MaterialUsedTM;
-import lk.ijse.nrlbag.model.MaterialUsedModel;
-import lk.ijse.nrlbag.model.OrderDetailsModel;
-import lk.ijse.nrlbag.model.OrderModel;
-import lk.ijse.nrlbag.model.ProductModel;
+import lk.ijse.nrlbag.model.*;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -78,36 +72,56 @@ public class OrderPopupController implements Initializable {
     private TreeTableColumn<MaterialUsedTM, String> colUnit;
     @FXML
     private TreeTableView<MaterialUsedTM> tblMaterialUsage;
+    @FXML
+    private TextField searchOrderIdField;
+    @FXML
+    private TextField orderIdField;
+    @FXML
+    private TextField materialIdField;
+    @FXML
+    private TextField orderQtyField;
+    @FXML
+    private TextField materialNameField;
+    @FXML
+    private TextField availableQtyField;
 
     private final String ORDER_ID_REGEX = "^[0-9]+$";
     private final String CUSTOMER_ID_REGEX = "^[0-9]+$";
     private final String ORDER_COST_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     private final String PRODUCT_ID_REGEX = "^[0-9]+$";
     private final String QTY_REGEX = "^[0-9]+$";
+    private final String MATERIAL_ID_REGEX = "^[0-9]+$";
 
     private final OrderModel orderModel = new OrderModel();
     private final ProductModel productModel = new ProductModel();
     private final OrderDetailsModel orderDetailsModel = new OrderDetailsModel();
     private final MaterialUsedModel materialUsedModel = new MaterialUsedModel();
+    private final MaterialModel materialModel = new MaterialModel();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         // in here set the values for the combo box to status
-        comboStatus.getItems().addAll("Pending","Processing","Completed","Cancelled");
-        comboStatus1.getItems().addAll("Pending","Processing","Completed","Cancelled");
+        comboStatus.getItems().addAll("Pending", "Processing", "Completed", "Cancelled");
+        comboStatus1.getItems().addAll("Pending", "Processing", "Completed", "Cancelled");
 
         //Autoload product details when enter the ID
-        productIdField.textProperty().addListener((a,b,c) -> loadProductDetails());
+        productIdField.textProperty().addListener((a, b, c) -> loadProductDetails());
 
         //Auto calculate the total cost when enter the qty
-        qtyField.textProperty().addListener((a,b,c) -> calculateTotalCost());
+        qtyField.textProperty().addListener((a, b, c) -> calculateTotalCost());
 
         //Autoload product details when enter the ID in updates side
-        productIdField1.textProperty().addListener((a,b,c) -> loadProductDetailsForUpdates());
+        productIdField1.textProperty().addListener((a, b, c) -> loadProductDetailsForUpdates());
 
         //Auto calculate the total cost when enter the qty in updates side
-        qtyField1.textProperty().addListener((a,b,c) -> calculateTotalCostForUpdates());
+        qtyField1.textProperty().addListener((a, b, c) -> calculateTotalCostForUpdates());
+
+        //Autoload material details when enter the ID in material usage side
+        materialIdField.textProperty().addListener((a, b, c) -> loadMaterialDetails());
+
+        //Autoload qty decreasing when enter the need qty in material usage side
+        orderQtyField.textProperty().addListener((a, b, c) -> loadDecreasingQty());
 
         //in here set up the how each column in the tree table view get the data
         colOrderID.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getOrder_id()));
@@ -130,7 +144,7 @@ public class OrderPopupController implements Initializable {
             String productId = productSearchField.getText();
 
             //check validity
-            if(!id.matches(ORDER_ID_REGEX)) {
+            if (!id.matches(ORDER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
             } else if (!productId.matches(PRODUCT_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Product ID").show();
@@ -141,7 +155,7 @@ public class OrderPopupController implements Initializable {
                 OderDetailsDTO details = orderDetailsModel.searchProduct(Integer.parseInt(productId));
 
                 // orderDTO is not null then assign their values into the text fields
-                if(orderDto!= null) {
+                if (orderDto != null) {
                     orderIdField1.setText(String.valueOf(orderDto.getId()));
                     idField1.setText(String.valueOf(orderDto.getCustomer_id()));
                     orderDateField1.setText(orderDto.getOrder_date());
@@ -186,22 +200,22 @@ public class OrderPopupController implements Initializable {
             String unitPrice = unitPriceField.getText().trim();
 
             // check they are valid or not
-            if(!id.matches(CUSTOMER_ID_REGEX)) {
+            if (!id.matches(CUSTOMER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid customer ID").show();
-            } else if(!isValidDate(orderDate)) {
+            } else if (!isValidDate(orderDate)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order Date").show();
-            } else if(!isValidDate(deadline)) {
+            } else if (!isValidDate(deadline)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Deadline Date").show();
-            } else if(!cost.matches(ORDER_COST_REGEX)) {
+            } else if (!cost.matches(ORDER_COST_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Cost Input").show();
-            }  else if(!productId.matches(PRODUCT_ID_REGEX)) {
-            new Alert(Alert.AlertType.ERROR, "Invalid Product ID").show();
-            } else if(!qty.matches(QTY_REGEX)) {
+            } else if (!productId.matches(PRODUCT_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Product ID").show();
+            } else if (!qty.matches(QTY_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Quantity Input").show();
             } else {
 
                 // if valid then create a orderDTO object including that details
-                OrderDTO orderDto = new OrderDTO(Integer.parseInt(id),orderDate,deadline,status,Double.parseDouble(cost));
+                OrderDTO orderDto = new OrderDTO(Integer.parseInt(id), orderDate, deadline, status, Double.parseDouble(cost));
 
                 // after that pass that to the orderModel class for connect with database and get order id
                 int orderID = orderModel.saveOrderAndOrderID(orderDto);
@@ -209,7 +223,7 @@ public class OrderPopupController implements Initializable {
                 OderDetailsDTO orderDetailsDTO = new OderDetailsDTO(orderID, Integer.parseInt(productId), Integer.parseInt(qty), Double.parseDouble(unitPrice));
                 boolean result = orderDetailsModel.saveOrderDetails(orderDetailsDTO);
 
-                if(result) {
+                if (result) {
                     new Alert(Alert.AlertType.INFORMATION, "Order Added Successfully!").show();
                     clearFieldSaved();
                 } else {
@@ -243,28 +257,28 @@ public class OrderPopupController implements Initializable {
 
 
             // check they are valid or not
-            if(!orderId.matches(ORDER_ID_REGEX)) {
+            if (!orderId.matches(ORDER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
-            } else if(!id.matches(CUSTOMER_ID_REGEX)) {
+            } else if (!id.matches(CUSTOMER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid customer ID").show();
-            } else if(!isValidDate(orderDate)) {
+            } else if (!isValidDate(orderDate)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order Date").show();
-            } else if(!isValidDate(deadline)) {
+            } else if (!isValidDate(deadline)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Deadline Date").show();
-            } else if(!productID.matches(PRODUCT_ID_REGEX)) {
+            } else if (!productID.matches(PRODUCT_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Product ID").show();
-            } else if(!qty.matches(QTY_REGEX)) {
+            } else if (!qty.matches(QTY_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Product Quantity").show();
-            }else {
+            } else {
 
                 // if valid then create a orderDTO object including that details
-                OrderDTO orderDto = new OrderDTO(Integer.parseInt(orderId),Integer.parseInt(id),orderDate,deadline,status,Double.parseDouble(cost));
+                OrderDTO orderDto = new OrderDTO(Integer.parseInt(orderId), Integer.parseInt(id), orderDate, deadline, status, Double.parseDouble(cost));
 
                 OderDetailsDTO details = new OderDetailsDTO(Integer.parseInt(orderId), Integer.parseInt(productID), Integer.parseInt(qty), Double.parseDouble(price));
                 // after that pass that to the orderModel class for connect with database
                 boolean result = orderModel.updateOrder(orderDto);
                 boolean result1 = orderDetailsModel.updateOrderDetails(details);
-                if(result && result1) {
+                if (result && result1) {
                     new Alert(Alert.AlertType.INFORMATION, "Order Details Updated Successfully!").show();
                     clearFields();
                 } else {
@@ -287,7 +301,7 @@ public class OrderPopupController implements Initializable {
             String productId = productSearchField.getText();
 
             //check validity
-            if(!id.matches(ORDER_ID_REGEX)) {
+            if (!id.matches(ORDER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
             } else if (!productId.matches(PRODUCT_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Product ID").show();
@@ -298,7 +312,7 @@ public class OrderPopupController implements Initializable {
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm Delete");
             confirmAlert.setHeaderText("Are you sure to delete this Order?");
-            confirmAlert.setContentText("Order ID: "+id);
+            confirmAlert.setContentText("Order ID: " + id);
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
@@ -308,7 +322,7 @@ public class OrderPopupController implements Initializable {
                 boolean result2 = orderModel.deleteOrder(Integer.parseInt(id));
 
                 // result is true that mean it is deleted
-                if(result2 && result1) {
+                if (result2 && result1) {
                     new Alert(Alert.AlertType.INFORMATION, "Order Deleted Successfully!").show();
                     clearFields();
                 } else {
@@ -390,7 +404,7 @@ public class OrderPopupController implements Initializable {
                 unitPriceField.setText("");
             }
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -418,7 +432,7 @@ public class OrderPopupController implements Initializable {
             // then set to the totalCost field
             costField.setText(String.valueOf(total));
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -448,7 +462,7 @@ public class OrderPopupController implements Initializable {
                 unitPriceField1.setText("");
             }
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -476,7 +490,7 @@ public class OrderPopupController implements Initializable {
             // then set to the totalCost field
             costField1.setText(String.valueOf(total));
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -506,7 +520,7 @@ public class OrderPopupController implements Initializable {
 
                 if (orderNode == null) {
                     // create parent node for this order id
-                    MaterialUsedTM parentTM = new MaterialUsedTM(usedDTO.getOrder_id(),null,null,"","");
+                    MaterialUsedTM parentTM = new MaterialUsedTM(usedDTO.getOrder_id(), null, null, "", "");
 
                     orderNode = new TreeItem<>(parentTM);
 
@@ -537,5 +551,68 @@ public class OrderPopupController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    private void loadMaterialDetails() {
+        try {
+
+            //in here get the material id and check validity
+            String materialId = materialIdField.getText().trim();
+
+            if (!materialId.matches(MATERIAL_ID_REGEX)) {
+                materialNameField.setText("");
+                availableQtyField.setText("");
+                return;
+            }
+
+            MaterialDTO materialDTO = materialModel.searchMaterial(Integer.parseInt(materialId));
+
+            // after that get name and available qty according to the material id
+            // set to the name and qty fields
+            if (materialDTO != null) {
+                materialNameField.setText(materialDTO.getMaterial_name());
+                availableQtyField.setText(String.valueOf(materialDTO.getQtyAvailable()));
+            } else {
+                materialNameField.setText("Not Found");
+                availableQtyField.setText("");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadDecreasingQty() {
+        try {
+
+            //in here get the material id and qty input by user and check validity
+            String materialId = materialIdField.getText().trim();
+            String useQty = orderQtyField.getText().trim();
+
+            if (!materialId.matches(MATERIAL_ID_REGEX)) {
+                materialNameField.setText("");
+                availableQtyField.setText("");
+                return;
+            }
+            if (!useQty.matches(QTY_REGEX)) {
+                availableQtyField.setText("Invalid qty entered");
+            } else {
+                MaterialDTO materialDTO = materialModel.searchMaterial(Integer.parseInt(materialId));
+
+                // after that get available qty according to the material id
+                if (materialDTO != null) {
+                    if (Double.parseDouble(useQty) > materialDTO.getQtyAvailable()) {
+                        availableQtyField.setText("Material Qty insufficient");
+                    } else {
+                        double newQTY = materialDTO.getQtyAvailable() - Double.parseDouble(useQty);
+                        availableQtyField.setText(String.valueOf(newQTY));
+                    }
+                } else {
+                    availableQtyField.setText("");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
