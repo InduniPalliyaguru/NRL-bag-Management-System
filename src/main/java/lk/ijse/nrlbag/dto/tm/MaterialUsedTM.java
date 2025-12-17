@@ -4,14 +4,14 @@ public class MaterialUsedTM {
 
     private int order_id;
     private Integer material_id;
-    private Integer qty_used;
+    private Double qty_used;
     private String material_name;
     private String unit;
 
     public MaterialUsedTM() {
     }
 
-    public MaterialUsedTM(int order_id, Integer material_id, Integer qty_used, String material_name, String unit) {
+    public MaterialUsedTM(int order_id, Integer material_id, Double qty_used, String material_name, String unit) {
         this.order_id = order_id;
         this.material_id = material_id;
         this.qty_used = qty_used;
@@ -35,11 +35,11 @@ public class MaterialUsedTM {
         this.material_id = material_id;
     }
 
-    public Integer getQty_used() {
+    public Double getQty_used() {
         return qty_used;
     }
 
-    public void setQty_used(Integer qty_used) {
+    public void setQty_used(Double qty_used) {
         this.qty_used = qty_used;
     }
 

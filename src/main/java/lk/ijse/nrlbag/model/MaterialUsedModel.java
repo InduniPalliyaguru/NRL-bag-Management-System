@@ -74,4 +74,25 @@ public class MaterialUsedModel {
 
     }
 
+    public MaterialUsedDTO searchMaterialUsage(int materialID) throws SQLException {
+
+        ResultSet rs = CrudUtil.execute("SELECT * FROM Material_Used WHERE material_id=?", materialID);
+
+        if (rs.next()) {
+            return new MaterialUsedDTO(
+                    rs.getInt("orders_id"),
+                    rs.getInt("material_id"),
+                    rs.getDouble("used_qty")
+            );
+        }
+        return null;
+    }
+
+    public boolean searchMaterialUsageByOrderID(int orderID) throws SQLException {
+
+        ResultSet rs = CrudUtil.execute("SELECT * FROM Material_Used WHERE orders_id=?", orderID);
+
+        return rs.next();
+    }
+
 }

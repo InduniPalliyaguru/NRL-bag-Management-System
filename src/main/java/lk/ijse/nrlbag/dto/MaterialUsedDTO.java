@@ -4,20 +4,20 @@ public class MaterialUsedDTO {
 
     private int order_id;
     private int material_id;
-    private int qty_used;
+    private double qty_used;
     private String material_name;
     private String unit;
 
     public MaterialUsedDTO() {
     }
 
-    public MaterialUsedDTO(int order_id, int material_id, int qty_used) {
+    public MaterialUsedDTO(int order_id, int material_id, double qty_used) {
         this.order_id = order_id;
         this.material_id = material_id;
         this.qty_used = qty_used;
     }
 
-    public MaterialUsedDTO(int order_id, int material_id, int qty_used, String material_name, String unit) {
+    public MaterialUsedDTO(int order_id, int material_id, double qty_used, String material_name, String unit) {
         this.order_id = order_id;
         this.material_id = material_id;
         this.qty_used = qty_used;
@@ -41,11 +41,11 @@ public class MaterialUsedDTO {
         this.material_id = material_id;
     }
 
-    public int getQty_used() {
+    public double getQty_used() {
         return qty_used;
     }
 
-    public void setQty_used(int qty_used) {
+    public void setQty_used(double qty_used) {
         this.qty_used = qty_used;
     }
 

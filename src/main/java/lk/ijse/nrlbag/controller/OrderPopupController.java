@@ -64,7 +64,7 @@ public class OrderPopupController implements Initializable {
     @FXML
     private TreeTableColumn<MaterialUsedTM, Integer> colOrderID;
     @FXML
-    private TreeTableColumn<MaterialUsedTM, Integer> colQty;
+    private TreeTableColumn<MaterialUsedTM, Double> colQty;
     @FXML
     private TreeTableColumn<MaterialUsedTM, String> colUnit;
     @FXML
@@ -120,11 +120,25 @@ public class OrderPopupController implements Initializable {
         //Autoload qty decreasing when enter the need qty in material usage side
         orderQtyField.textProperty().addListener((a, b, c) -> loadDecreasingQty());
 
+        // in here get the order id and material id when click on the table row
+        tblMaterialUsage.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSel, newSel) -> {
+                    if (newSel == null) return;
+                    MaterialUsedTM selected = newSel.getValue();
+                    // avoid the parent row click
+                    if (newSel.getParent() == tblMaterialUsage.getRoot()) return;
+                    // get the order id from the selected row
+                    int orderID = selected.getOrder_id();
+                    int materialID = selected.getMaterial_id();
+                    handleSearchMaterialUsage(orderID, materialID);
+                }
+        );
+
         //in here set up how each column in the tree table view get the data
         colOrderID.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getOrder_id()));
         colMaterialID.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getMaterial_id()));
         colName.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMaterial_name()));
-        colQty.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getQty_used()));
+        colQty.setCellValueFactory(param -> new ReadOnlyObjectWrapper<Double>(param.getValue().getValue().getQty_used()));
         colUnit.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getUnit()));
 
         tblMaterialUsage.setShowRoot(false);
@@ -366,6 +380,7 @@ public class OrderPopupController implements Initializable {
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.INFORMATION, "Material Usage Added Successfully!").show();
+                    clearMaterialUsageFields();
                     loadMaterialUsageTreeTable();
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
@@ -375,6 +390,60 @@ public class OrderPopupController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+        }
+    }
+
+    @FXML
+    private void handleSearchMaterialUsage(int orderID, int materialID) {
+
+        try {
+            if (orderID == 0 || materialID == 0) {
+                new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+            } else {
+
+                // get value from the materialUsedDTO
+                MaterialUsedDTO materialUsedDTO = materialUsedModel.searchMaterialUsage(materialID);
+
+                if (materialUsedDTO != null) {
+                    MaterialDTO materialDTO = materialModel.searchMaterial(materialID);
+                    if (materialDTO != null) {
+                        orderIdField.setText(String.valueOf(materialUsedDTO.getOrder_id()));
+                        materialIdField.setText(String.valueOf(materialDTO.getMaterial_id()));
+                        orderQtyField.setText(String.valueOf(materialUsedDTO.getQty_used()));
+                        materialNameField.setText(materialDTO.getMaterial_name());
+                        availableQtyField.setText(String.valueOf(materialDTO.getQtyAvailable()));
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Material details not found!").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Material usage details not found!").show();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleClearMaterialUsageFields() {
+        clearMaterialUsageFields();
+    }
+
+    @FXML
+    private void handleMaterialUsageSearchButton() {
+
+        try {
+            String orderID = searchOrderIdField.getText().trim();
+            boolean isHave = materialUsedModel.searchMaterialUsageByOrderID(Integer.parseInt(orderID));
+
+            if (isHave) {
+                highlightSearchOrderMaterialUsage(Integer.parseInt(orderID));
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Order ID not found!").show();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
         }
     }
 
@@ -636,7 +705,7 @@ public class OrderPopupController implements Initializable {
 
                 // after that get available qty according to the material id
                 if (materialDTO != null) {
-                    if (Double.parseDouble(useQty) > materialDTO.getQtyAvailable()) {
+                    if (Double.parseDouble(useQty) >= materialDTO.getQtyAvailable()) {
                         availableQtyField.setText("Material Qty insufficient");
                     } else {
                         double newQTY = materialDTO.getQtyAvailable() - Double.parseDouble(useQty);
@@ -649,5 +718,44 @@ public class OrderPopupController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void clearMaterialUsageFields() {
+        searchOrderIdField.setText("");
+        orderIdField.setText("");
+        materialIdField.setText("");
+        orderQtyField.setText("");
+        materialNameField.setText("");
+        availableQtyField.setText("");
+    }
+
+    private void highlightSearchOrderMaterialUsage(int id) {
+
+        //row factory allows us to define how each row look
+        tblMaterialUsage.setRowFactory( tv -> new TreeTableRow<MaterialUsedTM>() {
+            @Override
+            // this method is called for every row in the table
+            protected  void updateItem(MaterialUsedTM item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // check row is empty or item is null
+                if(empty || item == null) {
+                    setStyle("");
+                    return;
+                }
+
+                // search rows id number matches to the searching order id
+                if(item.getOrder_id() == id) {
+                    // here set the colour for the search supplier row
+                    setStyle("-fx-background-color: #e2baf7;");
+                } else {
+                    // if it does not match that keep default style
+                    setStyle("");
+                }
+            }
+        });
+        // after set the colour refresh table for show colour on the table
+        tblMaterialUsage.refresh();
+
     }
 }

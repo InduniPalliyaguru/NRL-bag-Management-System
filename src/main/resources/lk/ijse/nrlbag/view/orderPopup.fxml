@@ -572,7 +572,7 @@
                                        <children>
                                           <Pane prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #002966;">
                                              <children>
-                                                <TextField fx:id="searchOrderIdField" layoutX="4.0" layoutY="5.0" prefHeight="33.0" prefWidth="220.0" promptText="Enter ID Number" style="-fx-background-color: white;">
+                                                <TextField fx:id="searchOrderIdField" layoutX="4.0" layoutY="5.0" prefHeight="33.0" prefWidth="220.0" promptText="Enter Order ID Number" style="-fx-background-color: white;">
                                                    <font>
                                                       <Font name="Roboto" size="14.0" />
                                                    </font>
@@ -589,7 +589,7 @@
                                                       <Image url="@../images/search_96px.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Button ellipsisString="" layoutX="223.0" layoutY="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="32.0">
+                                                <Button ellipsisString="" layoutX="223.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleMaterialUsageSearchButton" prefHeight="36.0" prefWidth="32.0">
                                                    <font>
                                                       <Font name="Segoe UI Semibold" size="14.0" />
                                                    </font>
@@ -756,7 +756,7 @@
                                                 </DropShadow>
                                              </effect>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Clear">
+                                          <Button mnemonicParsing="false" onAction="#handleClearMaterialUsageFields" prefHeight="30.0" prefWidth="250.0" text="Clear">
                                              <styleClass>
                                                 <String fx:value="clear-btn" />
                                                 <String fx:value="clear-btn:hover" />
