@@ -89,6 +89,9 @@ public class OrderPopupController implements Initializable {
     private final String QTY_REGEX = "^[0-9]+(\\.[0-9]+)?$";
     private final String MATERIAL_ID_REGEX = "^[0-9]+$";
 
+    private double oldUsedQty = 0;
+    private boolean isUpdateMode = false;
+
     private final OrderModel orderModel = new OrderModel();
     private final ProductModel productModel = new ProductModel();
     private final OrderDetailsModel orderDetailsModel = new OrderDetailsModel();
@@ -143,7 +146,36 @@ public class OrderPopupController implements Initializable {
 
         tblMaterialUsage.setShowRoot(false);
         loadMaterialUsageTreeTable();
+        setupMaterialUsageSelection();
 
+    }
+
+    private void onMaterialUsageRowSelect(MaterialUsedTM tm) {
+
+        orderIdField.setText(String.valueOf(tm.getOrder_id()));
+        materialIdField.setText(String.valueOf(tm.getMaterial_id()));
+        orderQtyField.setText(String.valueOf(tm.getQty_used()));
+
+        oldUsedQty = tm.getQty_used();
+        isUpdateMode = true;
+
+        loadMaterialDetails();
+        loadDecreasingQty();
+    }
+
+    private void setupMaterialUsageSelection() {
+
+        tblMaterialUsage.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, oldSel, newSel) -> {
+
+                    if (newSel == null) return;
+
+                    // Ignore parent (Order) rows
+                    if (newSel.getParent() == tblMaterialUsage.getRoot()) return;
+
+                    onMaterialUsageRowSelect(newSel.getValue());
+                });
     }
 
     @FXML
@@ -737,22 +769,26 @@ public class OrderPopupController implements Initializable {
                 availableQtyField.setText("");
                 return;
             }
-            if (!useQty.matches(QTY_REGEX)) {
-                availableQtyField.setText("Invalid qty entered");
-            } else {
+                double newUsedQty = Double.parseDouble(useQty);
                 MaterialDTO materialDTO = materialModel.searchMaterial(Integer.parseInt(materialId));
 
-                // after that get available qty according to the material id
-                if (materialDTO != null) {
-                    if (Double.parseDouble(useQty) >= materialDTO.getQtyAvailable()) {
-                        availableQtyField.setText("Material Qty insufficient");
-                    } else {
-                        double newQTY = materialDTO.getQtyAvailable() - Double.parseDouble(useQty);
-                        availableQtyField.setText(String.valueOf(newQTY));
-                    }
-                } else {
-                    availableQtyField.setText("");
-                }
+            double currentStock = materialDTO.getQtyAvailable();
+
+            double previewStock;
+
+            if (isUpdateMode) {
+
+                double difference = newUsedQty - oldUsedQty;
+                previewStock = currentStock - difference;
+            } else {
+
+                previewStock = currentStock - newUsedQty;
+            }
+
+            if (previewStock < 0) {
+                availableQtyField.setText("Material Qty insufficient");
+            } else {
+                availableQtyField.setText(String.valueOf(previewStock));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -766,6 +802,9 @@ public class OrderPopupController implements Initializable {
         orderQtyField.setText("");
         materialNameField.setText("");
         availableQtyField.setText("");
+
+        oldUsedQty = 0;
+        isUpdateMode = false;
     }
 
     private void highlightSearchOrderMaterialUsage(int id) {
