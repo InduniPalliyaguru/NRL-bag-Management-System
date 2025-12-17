@@ -3,6 +3,7 @@ package lk.ijse.nrlbag.model;
 import lk.ijse.nrlbag.dto.MaterialDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -89,8 +90,10 @@ public class MaterialModel {
         return materialList;
     }
 
-    public boolean updateMaterialQtyAvailable(double newQty, int materialID) throws SQLException {
-        boolean result = CrudUtil.execute("UPDATE Material SET qty_available=? WHERE material_id=? ",
+    public boolean updateMaterialQtyAvailable(Connection conn, double newQty, int materialID) throws SQLException {
+        boolean result = CrudUtil.execute(
+                conn,
+                "UPDATE Material SET qty_available=? WHERE material_id=? ",
                 newQty,
                 materialID
         );

@@ -447,6 +447,45 @@ public class OrderPopupController implements Initializable {
         }
     }
 
+    @FXML
+    private void handleUpdateMaterialUsage() {
+        try {
+            String orderId = orderIdField.getText().trim();
+            String materialId = materialIdField.getText().trim();
+            String orderQty = orderQtyField.getText().trim();
+            String availableQty = availableQtyField.getText().trim();
+
+            if (!orderId.matches(ORDER_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
+            } else if (!materialId.matches(MATERIAL_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Material ID").show();
+            } else if (!orderQty.matches(QTY_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order Quantity").show();
+            } else if (!availableQty.matches(QTY_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order Quantity").show();
+            } else {
+
+                // in here set the details into the materialUsedDTO
+                MaterialUsedDTO materialUsedDTO = new MaterialUsedDTO(Integer.parseInt(orderId), Integer.parseInt(materialId), Integer.parseInt(orderQty));
+
+                // pass to the model class to insert into the database
+                boolean isUpdated = materialUsedModel.updateMaterialUsage(materialUsedDTO);
+
+                if (isUpdated) {
+                    new Alert(Alert.AlertType.INFORMATION, "Material Usage Updated Successfully!").show();
+                    clearMaterialUsageFields();
+                    loadMaterialUsageTreeTable();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+        }
+    }
+
     private boolean isValidDate(String input) {
         try {
             LocalDate.parse(input);

@@ -1,6 +1,7 @@
 package lk.ijse.nrlbag.model;
 
 import lk.ijse.nrlbag.db.DBConnection;
+import lk.ijse.nrlbag.dto.MaterialDTO;
 import lk.ijse.nrlbag.dto.MaterialUsedDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
 
@@ -56,7 +57,7 @@ public class MaterialUsedModel {
                 return false;
             }
             // in here send qty available for database update
-            boolean isUpdated = materialModel.updateMaterialQtyAvailable(newAvailableQty, materialUsedDTO.getMaterial_id());
+            boolean isUpdated = materialModel.updateMaterialQtyAvailable(conn, newAvailableQty, materialUsedDTO.getMaterial_id());
 
             if (!isUpdated) {
                 conn.rollback();
@@ -95,4 +96,70 @@ public class MaterialUsedModel {
         return rs.next();
     }
 
+    public boolean updateMaterialUsage(MaterialUsedDTO dto) throws SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        try {
+            conn.setAutoCommit(false);
+
+            // get the old used qty
+            double oldUsedQty = getOldUsedQty(dto.getOrder_id(), dto.getMaterial_id());
+
+            // get the current stock
+            MaterialDTO materialDTO = materialModel.searchMaterial(dto.getMaterial_id());
+
+            if (materialDTO == null) {
+                conn.rollback();
+                return false;
+            }
+
+            double currentStock = materialDTO.getQtyAvailable();
+
+            // calculate the differences
+            double differences = dto.getQty_used() - oldUsedQty;
+            double newStock = currentStock - differences;
+
+            // then update the material used
+            boolean isUpdated = CrudUtil.execute(
+                    conn,
+                    "UPDATE Material_Used SET used_qty=? WHERE orders_id=? AND material_id=?",
+                    dto.getQty_used(),
+                    dto.getOrder_id(),
+                    dto.getMaterial_id()
+            );
+            if (!isUpdated) {
+                conn.rollback();
+                return false;
+            }
+
+            boolean isStockUpdated = materialModel.updateMaterialQtyAvailable(
+                    conn,
+                    newStock,
+                    dto.getMaterial_id()
+            );
+            if (!isStockUpdated) {
+                conn.rollback();
+                return false;
+            }
+
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.setAutoCommit(true);
+        }
+    }
+
+    public double getOldUsedQty(int orderID, int materialID) throws SQLException {
+        ResultSet rs = CrudUtil.execute(
+                "SELECT used_qty FROM Material_Used WHERE orders_id=? AND material_id=?",
+                orderID, materialID
+        );
+        if (rs.next()) {
+            return rs.getDouble("used_qty");
+        }
+        return 0;
+    }
 }

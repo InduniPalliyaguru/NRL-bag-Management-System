@@ -736,7 +736,7 @@
                                                 </DropShadow>
                                              </effect>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Update">
+                                          <Button mnemonicParsing="false" onAction="#handleUpdateMaterialUsage" prefHeight="30.0" prefWidth="250.0" text="Update">
                                              <styleClass>
                                                 <String fx:value="update-btn" />
                                                 <String fx:value="update-btn:hover" />
