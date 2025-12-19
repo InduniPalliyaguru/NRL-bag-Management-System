@@ -60,6 +60,7 @@ public class StockController implements Initializable {
         colSupId.setCellValueFactory(new PropertyValueFactory<>("supplier_id"));
 
         loadMaterialTable();
+        highLightLowStockMaterials();
     }
 
     @FXML
@@ -195,6 +196,34 @@ public class StockController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void highLightLowStockMaterials() {
+        //row factory allows us to define how each row look
+        tblMaterial.setRowFactory( tv -> new TableRow<MaterialDTO>() {
+            @Override
+            // this method is called for every row in the table
+            protected  void updateItem(MaterialDTO item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // check row is empty or item is null
+                if(empty || item == null) {
+                    setStyle("");
+                    return;
+                }
+
+                // search rows contact number matches to the searching material id
+                if(item.getQtyAvailable() <10) {
+                    // here set the colour for the search material row
+                    setStyle("-fx-background-color: #f1060a; -fx-control-inner-background: #f1060a; -fx-text-fill: white;");
+                } else {
+                    // if it does not match that keep default style
+                    setStyle("");
+                }
+            }
+        });
+        // after set the colour refresh table for show colour on the table
+        tblMaterial.refresh();
     }
 
 }
