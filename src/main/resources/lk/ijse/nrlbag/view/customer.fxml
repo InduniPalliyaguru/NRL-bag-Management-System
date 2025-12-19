@@ -60,7 +60,7 @@
                <children>
                   <Pane prefHeight="44.0" prefWidth="339.0" style="-fx-background-color: #002966;">
                      <children>
-                        <TextField fx:id="searchField" layoutX="4.0" layoutY="6.0" prefHeight="33.0" prefWidth="285.0" promptText="Enter Contact Number" style="-fx-background-color: white;">
+                        <TextField fx:id="searchField" layoutX="4.0" layoutY="7.0" prefHeight="33.0" prefWidth="285.0" promptText="Enter Contact Number" style="-fx-background-color: white;">
                            <font>
                               <Font name="Roboto" size="14.0" />
                            </font>
@@ -104,10 +104,15 @@
                               <String fx:value="manage-btn:pressed" />
                            </styleClass>
                            <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView accessibleRole="BUTTON" fitHeight="22.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/natural_user_interface_2_96px.png" />
+                                    <Image url="@../images/natural_user_interface_2_208px.png" />
                                  </image>
+                                 <styleClass>
+                                    <String fx:value="manage-btn" />
+                                    <String fx:value="manage-btn:hover" />
+                                    <String fx:value="manage-btn:pressed" />
+                                 </styleClass>
                               </ImageView>
                            </graphic>
                         </Button>
