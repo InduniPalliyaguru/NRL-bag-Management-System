@@ -776,7 +776,7 @@
                                                 </DropShadow>
                                              </effect>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Delete">
+                                          <Button mnemonicParsing="false" onAction="#handleDeleteMaterialUsage" prefHeight="30.0" prefWidth="250.0" text="Delete">
                                              <styleClass>
                                                 <String fx:value="delete-btn" />
                                                 <String fx:value="delete-btn:hover" />

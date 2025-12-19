@@ -518,6 +518,47 @@ public class OrderPopupController implements Initializable {
         }
     }
 
+    @FXML
+    private void handleDeleteMaterialUsage() {
+        try {
+
+            String orderID = orderIdField.getText().trim();
+            String materialID = materialIdField.getText().trim();
+
+            if (!orderID.matches(ORDER_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
+            } else if (!materialID.matches(MATERIAL_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Material ID").show();
+            } else {
+
+                // here show confirm alert before delete
+                Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmAlert.setTitle("Confirm Delete");
+                confirmAlert.setHeaderText("Are you sure to delete this Order Material Usage detail?");
+                confirmAlert.setContentText("Order ID: " + orderID + "\n Material ID: " + materialID);
+
+                Optional<ButtonType> result = confirmAlert.showAndWait();
+
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    //when deleting the material usage of the order that material qty add to the stock again.
+                    boolean isDeleted = materialUsedModel.deleteMaterialUsage(Integer.parseInt(orderID), Integer.parseInt(materialID));
+
+                    if (isDeleted) {
+                        new Alert(Alert.AlertType.INFORMATION, "Order Material Usage detail delete Successfully!").show();
+                        clearMaterialUsageFields();
+                        loadMaterialUsageTreeTable();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Material Usage detail Not Found!").show();
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        }
+    }
+
     private boolean isValidDate(String input) {
         try {
             LocalDate.parse(input);

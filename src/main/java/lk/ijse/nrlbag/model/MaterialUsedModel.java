@@ -152,6 +152,60 @@ public class MaterialUsedModel {
         }
     }
 
+    public boolean deleteMaterialUsage(int orderID, int materialID) throws SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        try {
+            conn.setAutoCommit(false);
+
+            // get the old used qty
+            double oldUsedQty = getOldUsedQty(orderID, materialID);
+
+            // get the current stock
+            MaterialDTO materialDTO = materialModel.searchMaterial(materialID);
+
+            if (materialDTO == null) {
+                conn.rollback();
+                return false;
+            }
+
+            double currentStock = materialDTO.getQtyAvailable();
+
+            // when deleting the material usage of the order that material qty add to the stock again.
+            double newStock = currentStock + oldUsedQty;
+
+            // then update the material used
+            boolean isDeleted = CrudUtil.execute(
+                    conn,
+                    "DELETE FROM Material_Used WHERE orders_id=? AND material_id=?",
+                    orderID,
+                    materialID
+            );
+            if (!isDeleted) {
+                conn.rollback();
+                return false;
+            }
+
+            boolean isStockUpdated = materialModel.updateMaterialQtyAvailable(
+                    conn,
+                    newStock,
+                    materialID
+            );
+            if (!isStockUpdated) {
+                conn.rollback();
+                return false;
+            }
+
+            conn.commit();
+            return true;
+        } catch (Exception e) {
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.setAutoCommit(true);
+        }
+    }
+
     public double getOldUsedQty(int orderID, int materialID) throws SQLException {
         ResultSet rs = CrudUtil.execute(
                 "SELECT used_qty FROM Material_Used WHERE orders_id=? AND material_id=?",
