@@ -1,0 +1,30 @@
+
+.progress-bar {
+    -fx-pref-height: 20px;
+    -fx-background-radius: 10;
+}
+
+
+.progress-bar .track {
+    -fx-background-color: #E6EEFF;
+    -fx-background-radius: 10;
+}
+
+
+.progress-bar .bar {
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-background-color: linear-gradient(
+        to right,
+        #CCE0FF 0%,
+        #99C2FF 10%,
+        #66A3FF 20%,
+        #3385FF 35%,
+        #0066FF 50%,
+        #0052CC 65%,
+        #003D99 75%,
+        #002966 85%,
+        #001433 95%,
+        #000E24 100%
+    );
+}
