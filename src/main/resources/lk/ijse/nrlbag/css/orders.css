@@ -5,16 +5,6 @@
 }
 
 
-.form-grid {
-    -fx-padding: 25;
-    -fx-hgap: 25;
-    -fx-vgap: 18;
-    -fx-background-color: #FDFEFF;
-    -fx-border-color: #D7DAE0;
-    -fx-border-radius: 12;
-    -fx-background-radius: 12;
-}
-
 .text-field{
     -fx-background-radius: 8;
     -fx-padding: 8 12;
@@ -60,21 +50,20 @@
 
 
 .btn-reset {
-    -fx-background-color: #99C2FF; 
-    -fx-font-family: "Segoe UI";
-    -fx-font-weight: bold;
+    -fx-background-color: #003D99;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 14px;
-    -fx-background-radius: 8px;
-    -fx-cursor: hand;
-    -fx-padding: 8 20;
+    -fx-background-radius: 0;
+    -fx-padding: 6 24;
 }
 
 .btn-reset:hover {
-    -fx-background-color: #CCE0FF;
+    -fx-background-color: #0052CC;
 }
 
 .btn-reset:pressed {
-    -fx-background-color: #99C2FF;
+    -fx-background-color: #003D99;
 }
 
 

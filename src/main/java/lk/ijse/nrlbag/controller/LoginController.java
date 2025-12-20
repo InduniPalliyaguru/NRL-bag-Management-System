@@ -31,7 +31,7 @@ public class LoginController {
             if(user != null) {
                 if(user.getUserPassword().equals(password)) {
                     System.out.println("Successfully login!");
-                    App.setRoot("dashBoard");
+                    App.setRoot("loadingPage");
                 } else {
                     System.out.println("Invalid Password");
                     new Alert(Alert.AlertType.ERROR , "Invalid Password Try Again!").show();

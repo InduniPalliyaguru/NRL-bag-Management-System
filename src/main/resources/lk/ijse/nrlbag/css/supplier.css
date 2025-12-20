@@ -32,20 +32,20 @@
 
 
 .btn-clear {
-    -fx-background-color: #99C2FF;
-    -fx-text-fill: black;
+    -fx-background-color: #003D99;
+    -fx-text-fill: #ffffff;
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 14px;
-    -fx-background-radius: 5;
-    -fx-padding: 8 28;
+    -fx-background-radius: 0;
+    -fx-padding: 6 24;
 }
 
 .btn-clear:hover {
-    -fx-background-color: #CCE0FF;
+    -fx-background-color: #0052CC;
 }
 
 .btn-clear:pressed {
-    -fx-background-color: #99C2FF;
+    -fx-background-color: #003D99;
 }
 
 .search-field {

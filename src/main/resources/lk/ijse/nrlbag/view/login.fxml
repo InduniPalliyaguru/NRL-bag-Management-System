@@ -47,7 +47,7 @@
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </Text>
-                  <VBox prefHeight="143.0" prefWidth="320.0">
+                  <VBox prefHeight="153.0" prefWidth="280.0">
                      <children>
                         <Label cache="true" prefHeight="31.0" prefWidth="184.0" style="-fx-text-fill: linear-gradient(to right, #002966, #001433);;" text="Username">
                            <font>
@@ -70,10 +70,10 @@
                               </LinearGradient>
                            </textFill>
                            <VBox.margin>
-                              <Insets top="85.0" />
+                              <Insets top="50.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="usernameField" alignment="CENTER" prefHeight="50.0" prefWidth="320.0" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: linear-gradient(to right, #003D99, #001433); -fx-background-color: transparent; -fx-border-width: 0 0 2 0;">
+                        <TextField fx:id="usernameField" alignment="BOTTOM_CENTER" prefHeight="38.0" prefWidth="280.0" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: linear-gradient(to right, #003D99, #001433); -fx-background-color: transparent; -fx-border-width: 0 0 2 0;">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -88,6 +88,11 @@
                               </DropShadow>
                            </effect>
                         </TextField>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" translateY="-32.0">
+                           <image>
+                              <Image url="@../images/user_144px.png" />
+                           </image>
+                        </ImageView>
                      </children>
                      <VBox.margin>
                         <Insets left="120.0" right="120.0" />
@@ -116,10 +121,10 @@
                               </LinearGradient>
                            </textFill>
                            <VBox.margin>
-                              <Insets top="11.0" />
+                              <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <PasswordField fx:id="passwordField" alignment="CENTER" prefHeight="50.0" prefWidth="320.0" style="-fx-background-radius: 4; -fx-border-color: linear-gradient(to right, #003D99, #001433); -fx-border-radius: 4; -fx-background-color: transparent; -fx-border-width: 0 0 2 0;">
+                        <PasswordField fx:id="passwordField" alignment="CENTER" prefHeight="38.0" prefWidth="280.0" style="-fx-background-radius: 4; -fx-border-color: linear-gradient(to right, #003D99, #001433); -fx-border-radius: 4; -fx-background-color: transparent; -fx-border-width: 0 0 2 0;">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -134,12 +139,17 @@
                               </DropShadow>
                            </effect>
                         </PasswordField>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" translateY="-32.0">
+                           <image>
+                              <Image url="@../images/password_96px.png" />
+                           </image>
+                        </ImageView>
                      </children>
                      <VBox.margin>
                         <Insets left="120.0" right="120.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <Button alignment="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="125.0" text="Login " textFill="#f8f5f5">
+                  <Button alignment="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="126.0" text="Login " textFill="#f8f5f5">
                      <font>
                         <Font name="Segoe UI Bold" size="20.0" />
                      </font>
@@ -150,7 +160,7 @@
                         <Glow />
                      </effect>
                      <VBox.margin>
-                        <Insets top="50.0" />
+                        <Insets top="25.0" />
                      </VBox.margin>
                   </Button>
                </children>

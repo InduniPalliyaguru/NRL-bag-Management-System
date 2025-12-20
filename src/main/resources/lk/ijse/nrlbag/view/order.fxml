@@ -74,7 +74,6 @@
                         <String fx:value="main-btn" />
                         <String fx:value="main-btn:hover" />
                         <String fx:value="main-btn:pressed" />
-                        <String fx:value="main-btn:disabled" />
                      </styleClass>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#handleSearchOrderByCustomerID" prefHeight="36.0" prefWidth="90.0" text="Cus. ID">
@@ -82,7 +81,6 @@
                         <String fx:value="main-btn" />
                         <String fx:value="main-btn:hover" />
                         <String fx:value="main-btn:pressed" />
-                        <String fx:value="main-btn:disabled" />
                      </styleClass>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#btnAddOnActionOrder" prefHeight="25.0" prefWidth="223.0" text="Manage Orders ">
@@ -104,7 +102,7 @@
                   </Button>
                </children>
             </HBox>
-            <GridPane hgap="25.0" prefHeight="228.0" prefWidth="979.0" styleClass="form-grid" vgap="18.0">
+            <GridPane alignment="CENTER" hgap="70.0" prefHeight="228.0" prefWidth="1059.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -117,7 +115,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="idField" promptText="Customer ID" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" styleClass="text-field:focused" />
+                  <TextField fx:id="idField" prefHeight="33.0" prefWidth="427.0" promptText="Customer ID" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" styleClass="text-field:focused" />
                   <TextField fx:id="nameField" promptText="Customer Name" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1">
                      <styleClass>
                         <String fx:value="text-field:focused" />
@@ -161,7 +159,10 @@
                         <String fx:value="text-field:disabled" />
                      </styleClass>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#handleClearFields" prefHeight="36.0" prefWidth="105.0" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button mnemonicParsing="false" onAction="#handleClearFields" prefWidth="100.0" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                      <styleClass>
                         <String fx:value="btn-reset" />
                         <String fx:value="btn-reset:hover" />
@@ -169,6 +170,9 @@
                      </styleClass>
                   </Button>
                </children>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
             </GridPane>
          </children>
          <padding>

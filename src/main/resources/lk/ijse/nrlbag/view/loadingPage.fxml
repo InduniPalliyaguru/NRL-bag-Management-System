@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/loading.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.LoadingPageController">
+   <children>
+      <BorderPane layoutX="104.0" layoutY="126.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <ProgressBar fx:id="progressBar" prefHeight="45.0" prefWidth="400.0" progress="0.0">
+                     <styleClass>
+                        <String fx:value="progress-bar" />
+                        <String fx:value="progress-bar .track" />
+                        <String fx:value="progress-bar .bar" />
+                     </styleClass>
+                  </ProgressBar>
+                  <Label fx:id="lblPercent" alignment="CENTER" prefHeight="33.0" prefWidth="69.0" text="\% lbl">
+                     <font>
+                        <Font name="Alfredo Heavy" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </bottom>
+         <center>
+            <Pane prefHeight="629.0" prefWidth="1366.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="612.0" fitWidth="911.0" layoutX="382.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/AI%20Eraser_image%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="584.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right, #003D99, #001433);" text="Loading..." wrappingWidth="177.87007331848145">
+                     <font>
+                        <Font name="Alfredo Heavy" size="34.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
