@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -25,7 +26,7 @@
 
 <AnchorPane prefHeight="769.0" prefWidth="1096.0" stylesheets="@../css/stock.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.StockController">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="1096.0" spacing="12.0" style="-fx-background-color: #F3F3F3;" stylesheets="@../css/customer.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="1096.0" spacing="12.0" style="-fx-background-color: #F3F3F3;" stylesheets="@../css/customer.css" AnchorPane.bottomAnchor="398.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #e5f2ff, #ffffff);; -fx-padding: 20 35 15 35; -fx-border-width: 2 2 2 2; -fx-background-radius: 10 0 10 0;">
                <padding>
@@ -44,9 +45,10 @@
                         <Font name="Segoe UI Semibold" size="24.0" />
                      </font>
                   </Label>
+                  <Region HBox.hgrow="ALWAYS" />
                   <ImageView fitHeight="53.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" scaleX="1.5" scaleY="1.5">
                      <HBox.margin>
-                        <Insets left="720.0" />
+                        <Insets />
                      </HBox.margin>
                      <image>
                         <Image url="@../images/available.gif" />
@@ -188,14 +190,10 @@
       </VBox>
       <VBox prefHeight="299.0" prefWidth="1096.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <ImageView fitHeight="299.0" fitWidth="1096.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
-               </image>
-            </ImageView>
+            <Pane prefHeight="305.0" prefWidth="1096.0" />
          </children>
       </VBox>
-      <VBox layoutX="2.0" layoutY="143.0" prefHeight="398.0" prefWidth="1096.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox layoutX="2.0" layoutY="143.0" prefHeight="398.0" prefWidth="1096.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="371.0">
          <children>
             <StackPane prefHeight="265.0" prefWidth="980.0" style="-fx-background-color: transparent; -fx-background-radius: 12; -fx-padding: 8;" VBox.vgrow="ALWAYS">
                <children>
@@ -224,6 +222,9 @@
                         <String fx:value="table-view .table-cell" />
                         <String fx:value="table-view .column-header .label" />
                      </styleClass>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                </children>
                <effect>

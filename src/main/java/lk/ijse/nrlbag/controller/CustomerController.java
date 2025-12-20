@@ -58,7 +58,7 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        setBackground();
+
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -184,37 +184,6 @@ public class CustomerController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public void setBackground() {
-        // 1. Load the image from resources (Portable path)
-        // This looks inside 'src/main/resources' for the path
-        String imagePath = "/lk/ijse/nrlbag/images/Blue-Abstract-Design-PNG-Cutout-300x225.png";
-        URL imageUrl = getClass().getResource(imagePath);
-
-        // Safety check to prevent crashing if path is wrong
-        if (imageUrl == null) {
-            System.out.println("Error: Image not found at " + imagePath);
-            return;
-        }
-
-        Image image = new Image(imageUrl.toExternalForm());
-
-        // 2. Define the "Cover" behavior
-        // Width=1.0, Height=1.0, AsPercentage=true, Contain=false, Cover=true
-        BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
-
-        // 3. Create the BackgroundImage
-        BackgroundImage bgImage = new BackgroundImage(
-                image,
-                BackgroundRepeat.NO_REPEAT,  // Don't repeat horizontally
-                BackgroundRepeat.NO_REPEAT,  // Don't repeat vertically
-                BackgroundPosition.CENTER,   // Center the image
-                backgroundSize
-        );
-
-        // 4. Apply it to your pane (e.g., anchorPane, stackPane)
-        rootPane.setBackground(new Background(bgImage));
     }
 
 }

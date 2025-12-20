@@ -8,11 +8,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import lk.ijse.nrlbag.App;
 import lk.ijse.nrlbag.model.CustomerModel;
 import lk.ijse.nrlbag.model.MaterialModel;
 import lk.ijse.nrlbag.model.OrderModel;
 import lk.ijse.nrlbag.model.PaymentModel;
+import lk.ijse.nrlbag.util.SetBackground;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -23,7 +26,7 @@ import java.time.LocalDate;
 public class DashBoardController {
 
     @FXML
-    private AnchorPane mainContent;
+    private StackPane mainContent;
     @FXML
     private BorderPane dashBoardContent;
     @FXML
@@ -49,7 +52,15 @@ public class DashBoardController {
     @FXML
     private NumberAxis incomeYAxis;
 
+    @FXML
+    private Pane rootPane;
+
+
+
     public void initialize() throws SQLException {
+
+        SetBackground.setBackground(rootPane);
+
         lblDate.setText(LocalDate.now().toString());
 
         /* here get the total customer count from the CustomerModel class, it assigns into the
@@ -74,60 +85,6 @@ public class DashBoardController {
         loadMonthlyIncome();
     }
 
-    @FXML
-    public void clickDashboardNav() throws IOException {
-        Parent customerFXML = App.loadFXML("dashBoard");
-        dashBoardContent.getChildren().setAll(customerFXML);
-    }
-
-    @FXML
-    public void clickCustomerNav() throws IOException {
-        Parent customerFXML = App.loadFXML("customer");
-        mainContent.getChildren().setAll(customerFXML);
-    }
-
-    @FXML
-    public void clickOrderNav() throws IOException {
-        Parent customerFXML = App.loadFXML("order");
-        mainContent.getChildren().setAll(customerFXML);
-    }
-
-    @FXML
-    public void clickSupplierNav() throws IOException {
-        Parent customerFXML = App.loadFXML("supplier");
-        mainContent.getChildren().setAll(customerFXML);
-    }
-
-    @FXML
-    public void clickStockNav() throws IOException {
-        Parent customerFXML = App.loadFXML("stock");
-        mainContent.getChildren().setAll(customerFXML);
-    }
-
-    @FXML
-    public void clickPaymentNav() throws IOException {
-        Parent customerFXML = App.loadFXML("payment");
-        mainContent.getChildren().setAll(customerFXML);
-    }
-
-    @FXML
-    public void clickLogOutNav() throws IOException {
-
-        // here show confirm alert before delete
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Confirm Log Out");
-        confirmAlert.setHeaderText("Are you sure to Log Out?");
-
-        Optional<ButtonType> result = confirmAlert.showAndWait();
-
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-
-            Parent customerFXML = App.loadFXML("login");
-            dashBoardContent.getChildren().setAll(customerFXML);
-
-        }
-
-    }
 
     private void loadMonthlyOrders() {
 

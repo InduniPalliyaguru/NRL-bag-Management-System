@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class LoginController {
 
+    private final LayoutController layoutController = new LayoutController();
+
     private final UserModel userModel = new UserModel();
 
     @FXML
@@ -31,7 +33,24 @@ public class LoginController {
             if(user != null) {
                 if(user.getUserPassword().equals(password)) {
                     System.out.println("Successfully login!");
-                    App.setRoot("loadingPage");
+                    //App.setRoot("dashBoard");
+
+                    try {
+
+
+                        App.setupPrimaryStageScene("layout"); // Load the main layout scene after successful login using the method from App class
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("Error loading main layout: " + e.getMessage());
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Loading Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText("An error occurred while loading the main layout. Please try again later.");
+                        alert.showAndWait();
+                    }
+
                 } else {
                     System.out.println("Invalid Password");
                     new Alert(Alert.AlertType.ERROR , "Invalid Password Try Again!").show();

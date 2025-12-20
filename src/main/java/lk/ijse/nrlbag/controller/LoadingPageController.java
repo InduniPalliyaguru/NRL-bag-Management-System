@@ -15,6 +15,7 @@ public class LoadingPageController {
     @FXML
     private ProgressBar progressBar;
 
+
     public void initialize() {
         startLoading();
     }

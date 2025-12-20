@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="dashBoardContent" prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/button.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.LayoutController">
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to bottom,  #003D99, #001433);;" BorderPane.alignment="CENTER">
+            <children>
+                <Pane prefHeight="138.0" prefWidth="350.0" style="-fx-background-color: CCE0FF;">
+                    <children>
+                        <VBox prefHeight="122.0" prefWidth="351.0">
+                            <children>
+                                <ImageView blendMode="DARKEN" fitHeight="278.0" fitWidth="305.0" opacity="0.12" pickOnBounds="true" translateY="-45.0" VBox.vgrow="ALWAYS">
+                                    <image>
+                                        <Image url="@../images/NRL%20logo.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </VBox>
+                        <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="1.0" prefHeight="98.0" prefWidth="277.0">
+                            <children>
+                                <Text stroke="#89bdee" strokeType="OUTSIDE" strokeWidth="0.0" text="NRL Bag Management System" textAlignment="CENTER" wrappingWidth="247.38254117965698">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="24.0" />
+                                    </font>
+                                    <effect>
+                                        <Blend mode="OVERLAY" />
+                                    </effect>
+                                    <fill>
+                                        <LinearGradient endX="1.0" endY="1.0" startX="0.5303030077255133">
+                                            <stops>
+                                                <Stop>
+                                                    <color>
+                                                        <Color />
+                                                    </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                    <color>
+                                                        <Color />
+                                                    </color>
+                                                </Stop>
+                                            </stops>
+                                        </LinearGradient>
+                                    </fill>
+                                    <HBox.margin>
+                                        <Insets top="10.0" />
+                                    </HBox.margin>
+                                </Text>
+                            </children>
+                            <padding>
+                                <Insets top="15.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" layoutX="4.0" layoutY="72.0" prefHeight="58.0" prefWidth="268.0">
+                            <children>
+                                <Text fill="#222426" opacity="0.43" strokeType="OUTSIDE" strokeWidth="0.0" text="Efficiently managing orders, materials, and customers for NRL Enterprises" textAlignment="CENTER" wrappingWidth="243.05838012695312">
+                                    <font>
+                                        <Font name="Segoe UI Bold Italic" size="13.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="18.0" />
+                                    </HBox.margin>
+                                </Text>
+                            </children>
+                            <padding>
+                                <Insets top="5.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </Pane>
+                <VBox alignment="TOP_CENTER" prefHeight="466.0" prefWidth="330.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#clickDashboardNav" prefHeight="25.0" prefWidth="150.0" text="Home" textAlignment="CENTER">
+                            <styleClass>
+                                <String fx:value="menu-btn" />
+                                <String fx:value="menu-btn:hover" />
+                                <String fx:value="menu-btn:pressed" />
+                                <String fx:value="menu-btn-active" />
+                            </styleClass>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/home_480px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clickCustomerNav" prefHeight="25.0" prefWidth="150.0" text="Customer" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <styleClass>
+                                <String fx:value="menu-btn" />
+                                <String fx:value="menu-btn:hover" />
+                                <String fx:value="menu-btn:pressed" />
+                                <String fx:value="menu-btn-active" />
+                            </styleClass>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/search_client_96px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clickOrderNav" prefHeight="25.0" prefWidth="150.0" text="Orders" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <styleClass>
+                                <String fx:value="menu-btn" />
+                                <String fx:value="menu-btn:hover" />
+                                <String fx:value="menu-btn:pressed" />
+                                <String fx:value="menu-btn-active" />
+                            </styleClass>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/shopping_cart_96px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clickSupplierNav" prefHeight="25.0" prefWidth="150.0" text="Suppliers" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <styleClass>
+                                <String fx:value="menu-btn" />
+                                <String fx:value="menu-btn:hover" />
+                                <String fx:value="menu-btn:pressed" />
+                                <String fx:value="menu-btn-active" />
+                            </styleClass>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/supplier_px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clickStockNav" prefHeight="25.0" prefWidth="150.0" text="Stock" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <styleClass>
+                                <String fx:value="menu-btn" />
+                                <String fx:value="menu-btn:hover" />
+                                <String fx:value="menu-btn:pressed" />
+                                <String fx:value="menu-btn-active" />
+                            </styleClass>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/scan_stock_480px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clickPaymentNav" prefHeight="25.0" prefWidth="150.0" text="Payment" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <styleClass>
+                                <String fx:value="menu-btn" />
+                                <String fx:value="menu-btn:hover" />
+                                <String fx:value="menu-btn:pressed" />
+                                <String fx:value="menu-btn-active" />
+                            </styleClass>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/Dollar%20Coin_480px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Reports" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <styleClass>
+                                <String fx:value="menu-btn" />
+                                <String fx:value="menu-btn:hover" />
+                                <String fx:value="menu-btn:pressed" />
+                                <String fx:value="menu-btn-active" />
+                            </styleClass>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/document_480px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets top="45.0" />
+                    </padding>
+                </VBox>
+                <Pane prefHeight="92.0" prefWidth="270.0" VBox.vgrow="ALWAYS" />
+                <VBox prefHeight="1.0" prefWidth="350.0" />
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickLogOutNav" prefHeight="53.0" prefWidth="150.0" text="Log Out" textAlignment="CENTER">
+                    <styleClass>
+                        <String fx:value="menu-btn" />
+                        <String fx:value="menu-btn:hover" />
+                        <String fx:value="menu-btn:pressed" />
+                        <String fx:value="menu-btn-active" />
+                    </styleClass>
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/logout_rounded_left_480px.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="BOTTOM_CENTER" StackPane.alignment="BOTTOM_CENTER">
+                    <children>
+                        <Region VBox.vgrow="ALWAYS" />
+                  <Pane fx:id="rootPane" prefHeight="345.0" prefWidth="1096.0" />
+                    </children>
+                </VBox>
+                <StackPane fx:id="mainContent" />
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>
