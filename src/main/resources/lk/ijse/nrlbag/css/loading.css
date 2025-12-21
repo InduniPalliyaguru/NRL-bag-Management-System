@@ -27,4 +27,15 @@
         #001433 95%,
         #000E24 100%
     );
+
+}
+
+.brand-title {
+    -fx-font-family: "Segoe UI";
+	-fx-font-size: 32px;
+    -fx-fill: linear-gradient(
+        from 0% 0% to 100% 0%,
+        #003D99 0%,
+        #001433 100%
+    );
 }

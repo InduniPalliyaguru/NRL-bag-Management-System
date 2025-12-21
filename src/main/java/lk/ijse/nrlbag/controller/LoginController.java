@@ -38,7 +38,7 @@ public class LoginController {
                     try {
 
 
-                        App.setupPrimaryStageScene("layout"); // Load the main layout scene after successful login using the method from App class
+                        App.setRoot("layout"); // Load the main layout scene after successful login using the method from App class
 
 
                     } catch (Exception e) {

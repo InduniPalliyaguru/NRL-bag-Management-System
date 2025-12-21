@@ -66,7 +66,7 @@
                               <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="productIdField" disable="true" layoutY="18.0" opacity="0.74" prefHeight="35.0" prefWidth="270.0" promptText="Product ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                        <TextField fx:id="productIdField" editable="false" layoutY="18.0" opacity="0.85" prefHeight="35.0" prefWidth="270.0" promptText="Product ID" style="-fx-background-color: white; -fx-background-radius: 10;">
                            <effect>
                               <DropShadow>
                                  <color>
@@ -106,7 +106,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                      <children>
-                        <ComboBox fx:id="comboSize" layoutY="20.0" prefHeight="35.0" prefWidth="130.0" promptText="Size" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff);; -fx-background-radius: 10;" />
+                        <ComboBox fx:id="comboSize" layoutY="20.0" prefHeight="35.0" prefWidth="130.0" promptText="Size" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-background-radius: 10;" />
                         <Label text="Size" textFill="#f7f7f7">
                            <font>
                               <Font name="Segoe UI" size="14.0" />

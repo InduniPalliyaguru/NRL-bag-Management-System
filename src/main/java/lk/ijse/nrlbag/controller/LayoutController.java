@@ -134,7 +134,7 @@ public class LayoutController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
 
             // use login scene from App class to load login fxml
-            App.setLoginScene("login");
+            App.setRoot("login");
 
         }
         } catch (IOException e) {

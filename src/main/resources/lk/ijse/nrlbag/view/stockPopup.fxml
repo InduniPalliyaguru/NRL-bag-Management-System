@@ -76,7 +76,7 @@
                               </Pane>
                               <Pane>
                                  <children>
-                                    <ComboBox fx:id="comboUnit" prefHeight="35.0" prefWidth="130.0" promptText="Unit" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-background-radius: 10;" />
+                                    <ComboBox fx:id="comboUnit" prefHeight="35.0" prefWidth="130.0" promptText="Unit" style="-fx-background-color: none; -fx-border-width: 0 0 1 0; -fx-border-color: #0052CC;" />
                                  </children>
                               </Pane>
                               <Pane>
@@ -179,7 +179,7 @@
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="materialIdField1" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Material ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                    <TextField fx:id="materialIdField1" editable="false" layoutY="18.0" opacity="0.9" prefHeight="35.0" prefWidth="390.0" promptText="Material ID" style="-fx-background-color: white; -fx-background-radius: 10;">
                                        <effect>
                                           <DropShadow>
                                              <color>
@@ -230,7 +230,7 @@
                                           </DropShadow>
                                        </effect>
                                     </TextField>
-                                    <ComboBox fx:id="comboUnit1" layoutX="206.0" layoutY="19.0" prefHeight="35.0" prefWidth="130.0" promptText="Unit" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-background-radius: 10;" />
+                                    <ComboBox fx:id="comboUnit1" layoutX="206.0" layoutY="19.0" prefHeight="35.0" prefWidth="130.0" promptText="Unit" style="-fx-background-color: none; -fx-border-width: 0 0 1 0; -fx-border-color: #0052CC;" />
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" />

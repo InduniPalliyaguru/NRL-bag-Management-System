@@ -157,7 +157,7 @@
                                                 <Font name="Segoe UI" size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="productNameField" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" style="-fx-background-color: none; -fx-background-radius: 10;">
+                                          <TextField fx:id="productNameField" editable="false" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" style="-fx-background-color: none; -fx-background-radius: 10;">
                                              <effect>
                                                 <DropShadow>
                                                    <color>
@@ -182,7 +182,7 @@
                                                 <Font name="Segoe UI" size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="unitPriceField" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" style="-fx-background-color: none; -fx-background-radius: 10;">
+                                          <TextField fx:id="unitPriceField" editable="false" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" style="-fx-background-color: none; -fx-background-radius: 10;">
                                              <effect>
                                                 <DropShadow>
                                                    <color>
@@ -200,7 +200,7 @@
                                                 <Font name="Segoe UI" size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="costField" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" style="-fx-background-color: none; -fx-background-radius: 10;">
+                                          <TextField fx:id="costField" editable="false" layoutY="18.0" prefHeight="35.0" prefWidth="345.0" style="-fx-background-color: none; -fx-background-radius: 10;">
                                              <effect>
                                                 <DropShadow>
                                                    <color>
@@ -444,7 +444,7 @@
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="unitPriceField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: none; -fx-background-radius: 10;">
+                                    <TextField fx:id="unitPriceField1" editable="false" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: none; -fx-background-radius: 10;">
                                        <effect>
                                           <DropShadow>
                                              <color>
@@ -511,7 +511,7 @@
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="productNameField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: none; -fx-background-radius: 10;">
+                                    <TextField fx:id="productNameField1" editable="false" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: none; -fx-background-radius: 10;">
                                        <effect>
                                           <DropShadow>
                                              <color>
@@ -529,7 +529,7 @@
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="costField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: none; -fx-background-radius: 10;">
+                                    <TextField fx:id="costField1" editable="false" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: none; -fx-background-radius: 10;">
                                        <effect>
                                           <DropShadow>
                                              <color>
@@ -674,7 +674,7 @@
                                                       <Font name="Segoe UI" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="materialNameField" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                <TextField fx:id="materialNameField" editable="false" layoutY="18.0" opacity="0.85" prefHeight="35.0" prefWidth="270.0" promptText="Material Name" style="-fx-background-color: white; -fx-background-radius: 10;">
                                                    <effect>
                                                       <DropShadow>
                                                          <color>
@@ -695,7 +695,7 @@
                                                       <Font name="Segoe UI" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="availableQtyField" disable="true" layoutY="18.0" opacity="0.7" prefHeight="35.0" prefWidth="270.0" promptText="Available Qty" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                                <TextField fx:id="availableQtyField" editable="false" layoutY="18.0" opacity="0.85" prefHeight="35.0" prefWidth="270.0" promptText="Available Qty" style="-fx-background-color: white; -fx-background-radius: 10;">
                                                    <effect>
                                                       <DropShadow>
                                                          <color>

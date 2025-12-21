@@ -139,7 +139,7 @@
                         <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                     </padding>
                     <children>
-                        <TextField fx:id="idField" disable="true" prefHeight="38.0" prefWidth="456.0" promptText="Customer ID">
+                        <TextField fx:id="idField" editable="false" opacity="0.9" prefHeight="38.0" prefWidth="456.0" promptText="Customer ID">
                             <styleClass>
                                 <String fx:value="form-pane" />
                                 <String fx:value="form-label" />
@@ -149,7 +149,7 @@
                                 <String fx:value="form-field:disabled" />
                             </styleClass>
                         </TextField>
-                        <TextField fx:id="nameField" disable="true" prefHeight="38.0" promptText="Name" GridPane.columnIndex="1">
+                        <TextField fx:id="nameField" editable="false" opacity="0.9" prefHeight="38.0" promptText="Name" GridPane.columnIndex="1">
                             <styleClass>
                                 <String fx:value="form-pane" />
                                 <String fx:value="form-label" />
@@ -158,7 +158,7 @@
                                 <String fx:value="form-field .prompt-text" />
                             </styleClass>
                         </TextField>
-                        <TextField fx:id="addressField" disable="true" prefHeight="38.0" promptText="Address" GridPane.rowIndex="1">
+                        <TextField fx:id="addressField" editable="false" opacity="0.9" prefHeight="38.0" promptText="Address" GridPane.rowIndex="1">
                             <styleClass>
                                 <String fx:value="form-pane" />
                                 <String fx:value="form-label" />
@@ -167,7 +167,7 @@
                                 <String fx:value="form-field .prompt-text" />
                             </styleClass>
                         </TextField>
-                        <TextField fx:id="contactField" disable="true" prefHeight="38.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="contactField" editable="false" opacity="0.9" prefHeight="38.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <styleClass>
                                 <String fx:value="form-pane" />
                                 <String fx:value="form-label" />
@@ -176,7 +176,7 @@
                                 <String fx:value="form-field .prompt-text" />
                             </styleClass>
                         </TextField>
-                        <TextField fx:id="createDateField" disable="true" prefHeight="38.0" promptText="Create Date" GridPane.rowIndex="2">
+                        <TextField fx:id="createDateField" editable="false" opacity="0.9" prefHeight="38.0" promptText="Create Date" GridPane.rowIndex="2">
                             <styleClass>
                                 <String fx:value="form-pane" />
                                 <String fx:value="form-label" />

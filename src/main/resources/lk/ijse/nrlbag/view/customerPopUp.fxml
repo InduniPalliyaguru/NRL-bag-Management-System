@@ -173,7 +173,7 @@
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="idField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="ID" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                    <TextField fx:id="idField1" editable="false" layoutY="18.0" opacity="0.9" prefHeight="35.0" prefWidth="390.0" promptText="ID" style="-fx-background-color: white; -fx-background-radius: 10;">
                                        <effect>
                                           <DropShadow>
                                              <color>
@@ -257,7 +257,7 @@
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="createDateField1" disable="true" layoutY="18.0" prefHeight="35.0" prefWidth="390.0" promptText="Create Date" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                    <TextField fx:id="createDateField1" editable="false" layoutY="18.0" opacity="0.85" prefHeight="35.0" prefWidth="390.0" promptText="Create Date" style="-fx-background-color: white; -fx-background-radius: 10;">
                                        <effect>
                                           <DropShadow>
                                              <color>

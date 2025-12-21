@@ -146,25 +146,25 @@
                   <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                </padding>
                <children>
-                  <TextField fx:id="idField" prefHeight="38.0" prefWidth="455.0" promptText="Material ID">
+                  <TextField fx:id="idField" editable="false" opacity="0.9" prefHeight="38.0" prefWidth="455.0" promptText="Material ID">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="nameField" prefHeight="38.0" promptText="Material Name" GridPane.columnIndex="1">
+                  <TextField fx:id="nameField" editable="false" opacity="0.9" prefHeight="38.0" promptText="Material Name" GridPane.columnIndex="1">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="qtyField" prefHeight="38.0" promptText="Qty Available" GridPane.rowIndex="1">
+                  <TextField fx:id="qtyField" editable="false" opacity="0.9" prefHeight="38.0" promptText="Qty Available" GridPane.rowIndex="1">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="supplierIdField" prefHeight="38.0" promptText="Supplier ID" GridPane.rowIndex="2">
+                  <TextField fx:id="supplierIdField" editable="false" opacity="0.9" prefHeight="38.0" promptText="Supplier ID" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
@@ -180,7 +180,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ComboBox fx:id="comboUnit" prefHeight="35.0" prefWidth="130.0" promptText="Unit" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboUnit" prefHeight="35.0" prefWidth="130.0" promptText="Unit" style="-fx-background-color: none; -fx-border-color: #0052CC; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

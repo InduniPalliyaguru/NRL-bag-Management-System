@@ -12,12 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/loading.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.nrlbag.controller.LoadingPageController">
    <children>
       <BorderPane layoutX="104.0" layoutY="126.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: transaparent;" BorderPane.alignment="CENTER">
                <children>
                   <ProgressBar fx:id="progressBar" prefHeight="45.0" prefWidth="400.0" progress="0.0">
                      <styleClass>
@@ -35,18 +34,18 @@
             </VBox>
          </bottom>
          <center>
-            <Pane prefHeight="629.0" prefWidth="1366.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="629.0" prefWidth="1366.0" style="-fx-background-color: transaparent;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="612.0" fitWidth="911.0" layoutX="382.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/AI%20Eraser_image%20(1).png" />
-                     </image>
-                  </ImageView>
-                  <Text layoutX="584.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(to right, #003D99, #001433);" text="Loading..." wrappingWidth="177.87007331848145">
-                     <font>
-                        <Font name="Alfredo Heavy" size="34.0" />
-                     </font>
-                  </Text>
+                  <VBox alignment="CENTER" prefHeight="570.0" prefWidth="1369.0">
+                     <children>
+                        <ImageView fitHeight="489.0" fitWidth="519.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/loadingImage.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="brand-title" text="Loading..." wrappingWidth="177.87007331848145" />
+                     </children>
+                  </VBox>
                </children>
             </Pane>
          </center>

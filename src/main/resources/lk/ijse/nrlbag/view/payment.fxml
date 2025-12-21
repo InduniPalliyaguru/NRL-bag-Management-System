@@ -125,33 +125,33 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="payIdField" promptText="Payment ID">
+                  <TextField fx:id="payIdField" editable="false" opacity="0.9" promptText="Payment ID">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="orderIdField" promptText="Order ID" GridPane.columnIndex="1">
+                  <TextField fx:id="orderIdField" editable="false" opacity="0.9" promptText="Order ID" GridPane.columnIndex="1">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="amountField" promptText="Amount" GridPane.rowIndex="2">
+                  <TextField fx:id="amountField" editable="false" opacity="0.9" promptText="Amount" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="dateField" promptText="Payment Date" GridPane.rowIndex="1">
+                  <TextField fx:id="dateField" editable="false" opacity="0.9" promptText="Payment Date" GridPane.rowIndex="1">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <ComboBox fx:id="comboType" prefWidth="150.0" promptText="Type" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-border-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-background-radius: 10; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="comboStatus" prefWidth="150.0" promptText="Status" style="-fx-background-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-border-color: linear-gradient(to right, #cfe7ff, #dff3ff); -fx-background-radius: 10; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#handleClearFields" prefHeight="36.0" prefWidth="105.0" text="Clear" translateX="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <ComboBox fx:id="comboType" prefWidth="150.0" promptText="Type" style="-fx-background-color: none; -fx-border-color: #0052CC; -fx-background-radius: 0; -fx-border-radius: 0; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboStatus" prefWidth="150.0" promptText="Status" style="-fx-background-color: none; -fx-border-color: #0052CC; -fx-background-radius: 0; -fx-border-radius: 0; -fx-border-width: 0 0 1 0;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#handleClearFields" prefHeight="36.0" prefWidth="100.0" text="Clear" translateX="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="btn-clear" />
                         <String fx:value="btn-clear:hover" />

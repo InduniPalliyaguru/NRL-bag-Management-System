@@ -69,8 +69,8 @@
 
 .card-box {
     -fx-border-color: #D7DAE0;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 
