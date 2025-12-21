@@ -45,7 +45,7 @@ public class LoadingPageController {
 
     private void openDashBoard() {
         try {
-            App.setRoot("dashBoard");
+            App.setRoot("layout");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
