@@ -40,15 +40,6 @@ public class LayoutController {
 
     }
 
-    public void loadingPage() {
-        try {
-            mainContent.getChildren().clear();
-            mainContent.getChildren().setAll(App.loadFXML("loadingPage"));
-        } catch (Exception e) {
-
-        }
-    }
-
     @FXML
     public void clickDashboardNav() {
 

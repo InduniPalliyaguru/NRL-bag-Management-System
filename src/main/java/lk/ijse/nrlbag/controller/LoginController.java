@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import lk.ijse.nrlbag.App;
 import lk.ijse.nrlbag.dto.UserDTO;
 import lk.ijse.nrlbag.model.UserModel;
@@ -12,7 +13,6 @@ import java.io.IOException;
 
 public class LoginController {
 
-    private final LayoutController layoutController = new LayoutController();
 
     private final UserModel userModel = new UserModel();
 
@@ -21,6 +21,7 @@ public class LoginController {
 
     @FXML
     private PasswordField passwordField;
+
 
     public void login() throws IOException {
 
@@ -40,7 +41,7 @@ public class LoginController {
                         App.setRoot("loadingPage"); // Load the main layout scene after successful login using the method from App class
 
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.out.println(e.getMessage());
                         System.out.println("Error loading main layout: " + e.getMessage());
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Loading Error");

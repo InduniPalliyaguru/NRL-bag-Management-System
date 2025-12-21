@@ -123,25 +123,25 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="supIdField" disable="true" promptText="Supllier ID">
+                  <TextField fx:id="supIdField" editable="false" opacity="0.85" promptText="Supllier ID">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="supNameField" disable="true" promptText="Supplier Name" GridPane.columnIndex="1">
+                  <TextField fx:id="supNameField" editable="false" opacity="0.85" promptText="Supplier Name" GridPane.columnIndex="1">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="addressField" disable="true" promptText="Address" GridPane.rowIndex="1">
+                  <TextField fx:id="addressField" editable="false" opacity="0.85" promptText="Address" GridPane.rowIndex="1">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="contactField" disable="true" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="contactField" editable="false" opacity="0.85" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <styleClass>
                         <String fx:value="input-field" />
                         <String fx:value="input-field:focused" />

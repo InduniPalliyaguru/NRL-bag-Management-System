@@ -181,10 +181,7 @@
       </VBox>
       <VBox layoutX="17.0" layoutY="500.0" prefHeight="297.0" prefWidth="1096.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <ImageView fitHeight="341.0" fitWidth="1095.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/Blue-Abstract-Design-PNG-Cutout-300x225.png" />
-               </image></ImageView>
+            <ImageView fitHeight="341.0" fitWidth="1095.0" pickOnBounds="true" />
          </children>
       </VBox>
       <VBox prefHeight="350.0" prefWidth="1096.0" spacing="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
