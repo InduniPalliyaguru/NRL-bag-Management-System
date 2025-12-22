@@ -113,27 +113,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickThemeNav" prefHeight="25.0" prefWidth="170.0" style="-fx-font-size: 15;" text="Theme" textAlignment="CENTER">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="menu-btn" />
-                        <String fx:value="menu-btn:hover" />
-                        <String fx:value="menu-btn:pressed" />
-                        <String fx:value="menu-btn-active" />
-                     </styleClass>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/theme.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Button mnemonicParsing="false" onAction="#clickAboutNav" prefHeight="25.0" prefWidth="170.0" style="-fx-font-size: 15;" text="About" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />

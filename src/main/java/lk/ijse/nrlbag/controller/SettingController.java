@@ -50,16 +50,6 @@ public class SettingController {
     }
 
     @FXML
-    public void clickThemeNav() {
-        try {
-            mainContent.getChildren().clear();
-            mainContent.getChildren().setAll(App.loadFXML("theme"));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @FXML
     public void clickAboutNav() {
         try {
             mainContent.getChildren().clear();
