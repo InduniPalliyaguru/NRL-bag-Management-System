@@ -21,4 +21,30 @@ public class UserModel {
         return null;
     }
 
+    public UserDTO getUserDetails() throws SQLException{
+        ResultSet rs = CrudUtil.execute("SELECT * FROM User");
+
+        if (rs.next()) {
+            //userName, user_password, email, name, role
+            return new UserDTO(
+                    rs.getString("userName"),
+                    rs.getString("user_password"),
+                    rs.getString("name"),
+                    rs.getString("role"),
+                    rs.getString("email")
+            );
+        }
+        return null;
+    }
+
+    public boolean updateUserDetails(UserDTO userDTO) throws SQLException{
+        boolean result = CrudUtil.execute("UPDATE User SET email=?, name=?, role=? WHERE userName=?",
+                userDTO.getEmail(),
+                userDTO.getName(),
+                userDTO.getRole(),
+                userDTO.getUserName());
+
+        return result;
+    }
+
 }

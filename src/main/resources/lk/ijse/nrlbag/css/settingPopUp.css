@@ -1,0 +1,63 @@
+
+
+.profile-label {
+    -fx-text-fill: #001433;
+    -fx-font-size: 15px;
+	-fx-font-weight: bold;
+}
+
+.profile-field {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: #001433;
+    -fx-prompt-text-fill: #8A8A8A;
+    -fx-border-color: rgba(255, 255, 255, 0.25);
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8 12;
+}
+
+.profile-field:focused {
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+.profile-field:disabled {
+    -fx-opacity: 1;
+    -fx-background-color: rgba(255, 255, 255, 0.04);
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: #9A9A9A;
+}
+
+.clear-btn {
+    -fx-background-color: linear-gradient(to bottom, #F7D36A, #F5B841);
+    -fx-text-fill: white;
+}
+.clear-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #F9DD84, #F7C558);
+}
+.clear-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #DFAE38, #C99528);
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    -fx-background-color: linear-gradient(to bottom, #E44A4A, #C73535);
+    -fx-text-fill: white;
+}
+.delete-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #EF5959, #D64242);
+}
+.delete-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #B92C2C, #9F2323);
+}
+
+.update-btn {
+    -fx-background-color: linear-gradient(to bottom, #4A6CF7, #3554E0);
+    -fx-text-fill: white;
+}
+.update-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #5A7BFF, #4966F0);
+}
+.update-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #2F46C4, #2538A3);
+}

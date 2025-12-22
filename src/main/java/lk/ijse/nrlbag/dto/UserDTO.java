@@ -7,6 +7,7 @@ public class UserDTO {
     private String userPassword;
     private String name;
     private String role;
+    private String email;
 
     public UserDTO() {
     }
@@ -16,20 +17,29 @@ public class UserDTO {
         this.userPassword = userPassword;
     }
 
-    public UserDTO(String userName, String userPassword, String name, String role) {
+    public UserDTO(String userName, String name, String role, String email) {
+        this.userName = userName;
+        this.name = name;
+        this.role = role;
+        this.email = email;
+    }
+
+    public UserDTO(int id, String userName, String userPassword, String name, String role, String email) {
+        this.id = id;
         this.userName = userName;
         this.userPassword = userPassword;
         this.name = name;
         this.role = role;
+        this.email = email;
     }
 
-    public UserDTO(String userName, String name, String role) {
+    public UserDTO(String userName, String userPassword, String name, String role, String email) {
         this.userName = userName;
+        this.userPassword = userPassword;
         this.name = name;
         this.role = role;
+        this.email = email;
     }
-
-
 
     public String getUserName() {
         return userName;
@@ -59,13 +69,31 @@ public class UserDTO {
         this.userPassword = userPassword;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
-                "userName='" + userName + '\'' +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", name='" + name + '\'' +
                 ", role='" + role + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
