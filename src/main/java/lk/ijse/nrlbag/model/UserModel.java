@@ -38,11 +38,18 @@ public class UserModel {
     }
 
     public boolean updateUserDetails(UserDTO userDTO) throws SQLException{
-        boolean result = CrudUtil.execute("UPDATE User SET email=?, name=?, role=? WHERE userName=?",
+
+        return CrudUtil.execute("UPDATE User SET email=?, name=?, role=? WHERE userName=?",
                 userDTO.getEmail(),
                 userDTO.getName(),
                 userDTO.getRole(),
                 userDTO.getUserName());
+    }
+
+    public boolean updateLoginPassword(String password) throws SQLException{
+        boolean result = CrudUtil.execute("UPDATE User SET user_password=? WHERE userName=?",
+                password,
+                "induni");
 
         return result;
     }
