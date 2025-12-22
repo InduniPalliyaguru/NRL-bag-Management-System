@@ -233,6 +233,24 @@
                                 </ImageView>
                             </graphic>
                         </Button>
+                  <Button mnemonicParsing="false" onAction="#clickSettingNav" prefHeight="25.0" prefWidth="150.0" text="Settings" textAlignment="CENTER">
+                     <styleClass>
+                        <String fx:value="menu-btn" />
+                        <String fx:value="menu-btn:hover" />
+                        <String fx:value="menu-btn:pressed" />
+                        <String fx:value="menu-btn-active" />
+                     </styleClass>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/settings_480px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                     </children>
                     <VBox.margin>
                         <Insets />

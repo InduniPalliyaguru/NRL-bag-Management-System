@@ -2,13 +2,17 @@ package lk.ijse.nrlbag.controller;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import lk.ijse.nrlbag.App;
 import lk.ijse.nrlbag.model.CustomerModel;
 import lk.ijse.nrlbag.model.MaterialModel;
@@ -136,6 +140,26 @@ public class LayoutController {
             alert.showAndWait();
 
             e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void clickSettingNav() {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk/ijse/nrlbag/view/settingLayout.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Setting");
+            stage.initModality(Modality.APPLICATION_MODAL); // Block main window
+            stage.setResizable(false);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
 
     }
