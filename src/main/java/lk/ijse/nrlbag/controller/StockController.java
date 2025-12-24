@@ -213,7 +213,7 @@ public class StockController implements Initializable {
                 }
 
                 // search rows contact number matches to the searching material id
-                if(item.getQtyAvailable() <10) {
+                if(item.getQtyAvailable() <50) {
                     // here set the colour for the search material row
                     setStyle("-fx-background-color: #f1060a; -fx-control-inner-background: #f1060a; -fx-text-fill: white;");
                 } else {

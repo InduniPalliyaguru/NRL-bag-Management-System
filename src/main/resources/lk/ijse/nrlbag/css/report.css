@@ -1,0 +1,65 @@
+
+/* ===== Main Card / Panel ===== */
+.report-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 4);
+    -fx-transition: all 0.2s ease;
+}
+
+.report-card:hover {
+    -fx-background-color: #F5F9FF;
+}
+
+/* ===== Report Title ===== */
+.report-title {
+    -fx-text-fill: #001433;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* ===== Section Labels ===== */
+.form-label {
+    -fx-text-fill: #002966;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* ===== TextFields ===== */
+.text-field {
+    -fx-background-color: #f0f5fc;
+    -fx-border-color: #99C2FF;
+	-fx-border-width: 0 0 1 0;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 6 10;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused {
+    -fx-border-color: #99C2FF;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* ===== Generate Button ===== */
+.link-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #003D99;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-underline: true;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+
+.link-button:hover {
+    -fx-text-fill: #001433;
+	-fx-background-color: transparent;
+}
+
+.link-button:pressed {
+    -fx-text-fill: #0052CC;
+	-fx-background-color: transparent;
+}
+

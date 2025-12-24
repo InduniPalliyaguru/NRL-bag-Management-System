@@ -8,30 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.nrlbag.App;
-import lk.ijse.nrlbag.model.CustomerModel;
-import lk.ijse.nrlbag.model.MaterialModel;
-import lk.ijse.nrlbag.model.OrderModel;
-import lk.ijse.nrlbag.model.PaymentModel;
 import lk.ijse.nrlbag.util.SetBackground;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.time.LocalDate;
 
 public class LayoutController {
-
-    @FXML
-    private BorderPane dashBoardContent;
-
     @FXML
     private StackPane mainContent;
 
@@ -52,7 +39,7 @@ public class LayoutController {
             mainContent.getChildren().clear();
             mainContent.getChildren().setAll(App.loadFXML("dashBoard"));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
 
@@ -66,7 +53,7 @@ public class LayoutController {
         mainContent.getChildren().clear();
         mainContent.getChildren().setAll(customerFXML);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -77,7 +64,7 @@ public class LayoutController {
         mainContent.getChildren().clear();
         mainContent.getChildren().setAll(App.loadFXML("order"));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -88,7 +75,7 @@ public class LayoutController {
         mainContent.getChildren().clear();
         mainContent.getChildren().setAll(App.loadFXML("supplier"));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -99,7 +86,7 @@ public class LayoutController {
         mainContent.getChildren().clear();
         mainContent.getChildren().setAll(App.loadFXML("stock"));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -110,7 +97,7 @@ public class LayoutController {
         mainContent.getChildren().clear();
         mainContent.getChildren().setAll(App.loadFXML("payment"));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -139,7 +126,7 @@ public class LayoutController {
             alert.setContentText("An error occurred while trying to log out. Please try again.");
             alert.showAndWait();
 
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -148,6 +135,7 @@ public class LayoutController {
     void clickSettingNav() {
 
         try {
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk/ijse/nrlbag/view/settingLayout.fxml"));
             Parent root = fxmlLoader.load();
 
@@ -162,6 +150,17 @@ public class LayoutController {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @FXML
+    public void clickReportNav(){
+        try {
+//        Parent customerFXML = App.loadFXML("payment");
+            mainContent.getChildren().clear();
+            mainContent.getChildren().setAll(App.loadFXML("reports"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
