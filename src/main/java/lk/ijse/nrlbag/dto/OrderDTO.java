@@ -1,6 +1,7 @@
 package lk.ijse.nrlbag.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class OrderDTO {
 
@@ -15,6 +16,7 @@ public class OrderDTO {
     private double remaining_payment;
     private int productId;
     private int quantity;
+    private OderDetailsDTO orderDetails;
 
 
     public OrderDTO() {
@@ -61,6 +63,15 @@ public class OrderDTO {
         this.remaining_payment = remaining_payment;
         this.productId = productId;
         this.quantity = quantity;
+    }
+
+    public OrderDTO(int customer_id, String order_date, String deadline, String status, double total_cost, OderDetailsDTO orderDetails) {
+        this.customer_id = customer_id;
+        this.order_date = order_date;
+        this.deadline = deadline;
+        this.status = status;
+        this.total_cost = total_cost;
+        this.orderDetails = orderDetails;
     }
 
     public OrderDTO(int customer_id) {
@@ -155,6 +166,14 @@ public class OrderDTO {
         this.quantity = quantity;
     }
 
+    public OderDetailsDTO getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(OderDetailsDTO orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
     @Override
     public String toString() {
         return "OrderDTO{" +
@@ -169,6 +188,7 @@ public class OrderDTO {
                 ", remaining_payment=" + remaining_payment +
                 ", productId=" + productId +
                 ", quantity=" + quantity +
+                ", orderDetails=" + orderDetails +
                 '}';
     }
 }

@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class OrderDetailsModel {
 
-    public boolean saveOrderDetails(OderDetailsDTO orderDTO) throws SQLException {
+    public boolean saveOrderDetails(OderDetailsDTO orderDTO, int orderID) throws SQLException {
 
         // pass the query for save to the database
         return CrudUtil.execute("INSERT INTO Order_Details (orders_id, product_id, quantity, unit_price) VALUES (?,?,?,?)",
-                orderDTO.getOrder_id(),
+                orderID,
                 orderDTO.getProduct_id(),
                 orderDTO.getQuantity(),
                 orderDTO.getUnit_price()

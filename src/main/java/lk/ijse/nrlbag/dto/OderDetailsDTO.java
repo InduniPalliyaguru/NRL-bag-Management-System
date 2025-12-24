@@ -31,6 +31,12 @@ public class OderDetailsDTO {
         this.quantity = quantity;
     }
 
+    public OderDetailsDTO( int product_id, int quantity, double unit_price) {
+        this.product_id = product_id;
+        this.quantity = quantity;
+        this.unit_price = unit_price;
+    }
+
     public int getOrder_id() {
         return order_id;
     }

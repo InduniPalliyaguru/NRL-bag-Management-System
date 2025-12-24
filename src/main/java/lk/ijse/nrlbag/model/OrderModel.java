@@ -1,15 +1,20 @@
 package lk.ijse.nrlbag.model;
 
+import lk.ijse.nrlbag.db.DBConnection;
 import lk.ijse.nrlbag.dto.OrderDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class OrderModel {
+
+    private final OrderDetailsModel orderDetailsModel = new OrderDetailsModel();
 
     // get the all details in orders table join with customer details also
     public List< OrderDTO> getOrders() throws SQLException {
@@ -68,17 +73,46 @@ public class OrderModel {
 
     }
 
-    public int saveOrderAndOrderID(OrderDTO orderDto) throws SQLException {
+    public boolean saveOrderAndOrderID(OrderDTO orderDto) throws Exception {
+        Connection conn = DBConnection.getInstance().getConnection();
 
-        // pass the query for save to the database
-        int result = CrudUtil.executeAndReturnGeneratedKey("INSERT INTO Orders (customer_id, order_date, deadline, status, total_cost) VALUES (?,?,?,?,?)",
-                orderDto.getCustomer_id(),
-                orderDto.getOrder_date(),
-                orderDto.getDeadline(),
-                orderDto.getStatus(),
-                orderDto.getTotal_cost()
-        );
-        return result;
+        try {
+
+            conn.setAutoCommit(false);
+
+            // pass the query for save to the database
+            int lastOrderId = CrudUtil.executeAndReturnGeneratedKey("INSERT INTO Orders (customer_id, order_date, deadline, status, total_cost) VALUES (?,?,?,?,?)",
+                    orderDto.getCustomer_id(),
+                    orderDto.getOrder_date(),
+                    orderDto.getDeadline(),
+                    orderDto.getStatus(),
+                    orderDto.getTotal_cost()
+            );
+
+            if (lastOrderId != 0) {
+                boolean result = orderDetailsModel.saveOrderDetails(orderDto.getOrderDetails(), lastOrderId);
+
+                if (result) {
+                    // print invoice
+                    printOrderConfirmation(lastOrderId);
+                } else {
+                    throw new Exception("Something went wrong when print document");
+                }
+            } else {
+                throw new Exception("Something went wrong when get order item id");
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.setAutoCommit(true);
+        }
+
 
     }
 
@@ -252,6 +286,23 @@ public class OrderModel {
         );
 
         return orderUpdate;
+
+    }
+
+    public void printOrderConfirmation(int orderID) throws SQLException, JRException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        InputStream reportObj = getClass().getResourceAsStream("/lk/ijse/nrlbag/reports/orderConfirmation.jrxml");
+
+        JasperReport jr = JasperCompileManager.compileReport(reportObj);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("ORDER_ID", orderID);
+
+        JasperPrint jp = JasperFillManager.fillReport(jr, params, conn);
+
+        JasperViewer.viewReport(jp, false);
 
     }
 

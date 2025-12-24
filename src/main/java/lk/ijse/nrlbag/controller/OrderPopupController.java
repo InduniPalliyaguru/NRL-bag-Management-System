@@ -257,14 +257,12 @@ public class OrderPopupController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "Invalid Quantity Input").show();
             } else {
 
-                // if valid then create a orderDTO object including that details
-                OrderDTO orderDto = new OrderDTO(Integer.parseInt(id), orderDate, deadline, status, Double.parseDouble(cost));
 
-                // after that pass that to the orderModel class for connect with database and get order id
-                int orderID = orderModel.saveOrderAndOrderID(orderDto);
                 // and here order details DTO object create and insert data
-                OderDetailsDTO orderDetailsDTO = new OderDetailsDTO(orderID, Integer.parseInt(productId), Integer.parseInt(qty), Double.parseDouble(unitPrice));
-                boolean result = orderDetailsModel.saveOrderDetails(orderDetailsDTO);
+                OderDetailsDTO orderDetailsDTO = new OderDetailsDTO(Integer.parseInt(productId), Integer.parseInt(qty), Double.parseDouble(unitPrice));
+                // if valid then create a orderDTO object including that details
+                OrderDTO orderDto = new OrderDTO(Integer.parseInt(id), orderDate, deadline, status, Double.parseDouble(cost), orderDetailsDTO);
+                boolean result = orderModel.saveOrderAndOrderID(orderDto);
 
                 if (result) {
                     new Alert(Alert.AlertType.INFORMATION, "Order Added Successfully!").show();
