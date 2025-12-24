@@ -81,11 +81,12 @@ public class OrderModel {
             conn.setAutoCommit(false);
 
             // pass the query for save to the database
-            int lastOrderId = CrudUtil.executeAndReturnGeneratedKey("INSERT INTO Orders (customer_id, order_date, deadline, status, total_cost) VALUES (?,?,?,?,?)",
+            int lastOrderId = CrudUtil.executeAndReturnGeneratedKey("INSERT INTO Orders (customer_id, order_date, deadline, status, total_cost, remaining_payment) VALUES (?,?,?,?,?,?)",
                     orderDto.getCustomer_id(),
                     orderDto.getOrder_date(),
                     orderDto.getDeadline(),
                     orderDto.getStatus(),
+                    orderDto.getTotal_cost(),
                     orderDto.getTotal_cost()
             );
 

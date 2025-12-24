@@ -40,7 +40,7 @@ public class ProductController implements Initializable {
     private final ProductModel productModel = new ProductModel();
 
     private final String PRODUCT_ID_REGEX = "^[0-9]+$";
-    private final String PRODUCT_NAME_REGEX = "^[A-Za-z]{3,}$";
+    private final String PRODUCT_NAME_REGEX = "^(?!\\s*$).{3,}$";
     private final String BASIC_COST_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
 
     @Override

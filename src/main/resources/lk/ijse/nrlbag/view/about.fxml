@@ -48,9 +48,9 @@
                <children>
                   <Label styleClass="profile-label" text="System Name  : NRL Bag Management System" />
                   <Label styleClass="profile-label" text="Version            : v1.0.0" />
-                  <Label styleClass="profile-label" text="Developer       : Induni Lakmini" />
+                  <Label styleClass="profile-label" text="Developer       : Induni Palliyaguru" />
                   <Label styleClass="profile-label" text="Institute          : IJSE – Institute of Java and Software Engineering" />
-                  <Label styleClass="profile-label" text="Tech Stack      : JavaFX, Java 21, MySQL, Scene Builder" />
+                  <Label styleClass="profile-label" text="Tech Stack      : JavaFX, Java 21, MySQL, Scene Builder, Jaspersoft" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

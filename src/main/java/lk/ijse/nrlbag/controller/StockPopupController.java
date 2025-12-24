@@ -40,7 +40,7 @@ public class StockPopupController implements Initializable {
 
     private final String MATERIAL_ID_REGEX = "^[0-9]+$";
     private final String SUPPLIER_ID_REGEX = "^[0-9]+$";
-    private final String MATERIAL_NAME_REGEX = "^[A-Za-z]{3,}\\s[A-Za-z0-9]{2,}$";
+    private final String MATERIAL_NAME_REGEX = "^(?!\\s*$).{3,}$";
     private final String QTY_AVAILABLE_REGEX = "^[0-9]+(\\\\.[0-9]+)?$";
 
     @Override

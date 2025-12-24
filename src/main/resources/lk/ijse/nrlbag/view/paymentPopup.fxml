@@ -107,7 +107,7 @@
                               </Pane>
                               <VBox alignment="CENTER" prefHeight="130.0" prefWidth="390.0">
                                  <children>
-                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleSavePayment" prefHeight="30.0" prefWidth="307.0" text="Save">
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleSavePayment" prefHeight="30.0" prefWidth="307.0" text="Save &amp; Print Payment Invoice">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>

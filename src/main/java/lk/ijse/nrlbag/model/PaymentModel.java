@@ -3,12 +3,17 @@ package lk.ijse.nrlbag.model;
 import lk.ijse.nrlbag.db.DBConnection;
 import lk.ijse.nrlbag.dto.PaymentDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PaymentModel {
 
@@ -71,7 +76,7 @@ public class PaymentModel {
     }
 
 
-    public boolean savePaymentWithOrderUpdate(PaymentDTO paymentDTO) throws SQLException {
+    public boolean savePaymentWithOrderUpdate(PaymentDTO paymentDTO) throws SQLException, JRException {
 
         Connection conn = DBConnection.getInstance().getConnection();
 
@@ -89,6 +94,7 @@ public class PaymentModel {
                     paymentDTO.getStatus(),
                     paymentDTO.getOrder_id()
             );
+
             if (!paymentSaved) {
                 conn.rollback();
                 return false;
@@ -129,6 +135,10 @@ public class PaymentModel {
                 conn.rollback();
                 return false;
             }
+
+            // after adding to the database then print the payment receipt
+            printOrderPaymentReceipt(paymentDTO.getOrder_id());
+
             conn.commit();
             return true;
         } catch (Exception e) {
@@ -255,6 +265,23 @@ public class PaymentModel {
         } finally {
             conn.setAutoCommit(true);
         }
+
+    }
+
+    public void printOrderPaymentReceipt(int orderID) throws SQLException, JRException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        InputStream reportObj = getClass().getResourceAsStream("/lk/ijse/nrlbag/reports/orderPaymentReciept.jrxml");
+
+        JasperReport jr = JasperCompileManager.compileReport(reportObj);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("ORDER_ID", orderID);
+
+        JasperPrint jp = JasperFillManager.fillReport(jr, params, conn);
+
+        JasperViewer.viewReport(jp, false);
 
     }
 
