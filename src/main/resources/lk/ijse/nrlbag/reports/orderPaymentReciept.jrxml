@@ -281,7 +281,7 @@ GROUP BY
 			</box>
 		</element>
 		<element kind="staticText" uuid="142da245-aaaf-4972-9f57-3346866d9f9d" x="175" y="112" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
-			<text><![CDATA[Total Advance Paid      :]]></text>
+			<text><![CDATA[Total Paid Amount       :]]></text>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			<box>
 				<pen lineColor="#FFFFFF"/>

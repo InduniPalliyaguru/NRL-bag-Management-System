@@ -1,13 +1,19 @@
 package lk.ijse.nrlbag.model;
 
+import lk.ijse.nrlbag.db.DBConnection;
 import lk.ijse.nrlbag.dto.MaterialDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MaterialModel {
 
@@ -98,6 +104,34 @@ public class MaterialModel {
                 materialID
         );
         return result;
+    }
+
+    public void printMaterialStockReport() throws SQLException, JRException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        InputStream reportObj = getClass().getResourceAsStream("/lk/ijse/nrlbag/reports/materialStockReport.jrxml");
+
+        JasperReport jr = JasperCompileManager.compileReport(reportObj);
+
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+
+        JasperViewer.viewReport(jp, false);
+
+    }
+
+    public void printLowMaterialStockReport() throws SQLException, JRException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        InputStream reportObj = getClass().getResourceAsStream("/lk/ijse/nrlbag/reports/lowStockMaterial.jrxml");
+
+        JasperReport jr = JasperCompileManager.compileReport(reportObj);
+
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+
+        JasperViewer.viewReport(jp, false);
+
     }
 
 }
