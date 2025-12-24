@@ -1,8 +1,13 @@
 package lk.ijse.nrlbag.model;
 
+import lk.ijse.nrlbag.db.DBConnection;
 import lk.ijse.nrlbag.dto.ProductDTO;
 import lk.ijse.nrlbag.util.CrudUtil;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -70,6 +75,18 @@ public class ProductModel {
         return result;
     }
 
+    public void printProductList() throws SQLException, JRException {
 
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        InputStream reportObj = getClass().getResourceAsStream("/lk/ijse/nrlbag/reports/productList.jrxml");
+
+        JasperReport jr = JasperCompileManager.compileReport(reportObj);
+
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+
+        JasperViewer.viewReport(jp, false);
+
+    }
 
 }

@@ -3,9 +3,7 @@ package lk.ijse.nrlbag.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import lk.ijse.nrlbag.model.MaterialModel;
-import lk.ijse.nrlbag.model.OrderModel;
-import lk.ijse.nrlbag.model.PaymentModel;
+import lk.ijse.nrlbag.model.*;
 
 public class ReportsController {
 
@@ -19,10 +17,16 @@ public class ReportsController {
     private final OrderModel orderModel = new OrderModel();
     private final PaymentModel paymentModel = new PaymentModel();
     private final MaterialModel materialModel = new MaterialModel();
+    private final ProductModel productModel = new ProductModel();
+    private final CustomerModel customerModel = new CustomerModel();
 
     @FXML
     private void handleCustomerList() {
-
+        try {
+            customerModel.printCustomerList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -78,7 +82,11 @@ public class ReportsController {
 
     @FXML
     private void handleProductList() {
-
+        try {
+            productModel.printProductList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
