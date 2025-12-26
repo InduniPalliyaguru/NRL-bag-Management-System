@@ -63,7 +63,7 @@ public class MaterialModel {
     public static int totalLowMaterialCount() throws SQLException {
 
         // in here get the number of material below 10 from Material table
-        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_Low_material FROM Material WHERE qty_available<10;");
+        ResultSet result = CrudUtil.execute("SELECT COUNT(*) AS Total_Low_material FROM Material WHERE qty_available<50;");
         int materialCount = 0;
 
         // get the int value from the execution
