@@ -1,5 +1,5 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
-<jasperReport name="orderPaymentReciept" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4309c0d-1a8d-44f4-802c-6d206127a453">
+<jasperReport name="orderPaymentReciept" language="java" columnCount="1" pageWidth="595" pageHeight="542" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4309c0d-1a8d-44f4-802c-6d206127a453">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MYSQL-NRLBAG"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="ORDER_ID" class="java.lang.Integer">
@@ -120,25 +120,26 @@ GROUP BY
 	<variable name="PAYMENT_STATUS" class="java.lang.String">
 		<expression><![CDATA[$V{REMAINING_PAYMENT}.compareTo(new java.math.BigDecimal(0)) == 0 ? "COMPLETED" : "PENDING"]]></expression>
 	</variable>
-	<background height="802" splitType="Stretch">
-		<element kind="image" uuid="a18e561b-5cb2-43dd-bbae-53d630c1fa0b" stretchType="ElementGroupHeight" x="10" y="10" width="544" height="780" forecolor="rgba(0, 0, 0, 0.11764706)" evaluationTime="Report" linkType="None" linkTarget="Self" hImageAlign="Center" vImageAlign="Top">
+	<background height="502" splitType="Stretch">
+		<element kind="image" uuid="a18e561b-5cb2-43dd-bbae-53d630c1fa0b" stretchType="ElementGroupHeight" x="0" y="10" width="555" height="470" forecolor="rgba(0, 0, 0, 0.11764706)" evaluationTime="Report" linkType="None" linkTarget="Self" hImageAlign="Center" vImageAlign="Top">
 			<expression><![CDATA["E:/INDUNI/IJSE/Course work & projects/ITS1166_GDSE76_252762035_final_project/NRL BAG/src/main/resources/lk/ijse/nrlbag/images/output-onlinepngtools.png"]]></expression>
 		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
 	</background>
 	<title height="110" splitType="Stretch">
 		<element kind="staticText" uuid="fb335dc6-fea2-4b30-b18f-226c190f1a9b" x="381" y="12" width="180" height="20" fontName="Times New Roman" fontSize="16.0" bold="true" hTextAlign="Left">
 			<text><![CDATA[NRL Enterprises Pvt Ltd]]></text>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</element>
-		<element kind="staticText" uuid="87ed95f7-73a1-4355-aa1e-640b319daa71" x="380" y="33" width="175" height="15" fontName="Times New Roman" fontSize="12.0" italic="true" bold="false" hTextAlign="Left">
+		<element kind="staticText" uuid="87ed95f7-73a1-4355-aa1e-640b319daa71" x="380" y="33" width="175" height="15" fontName="Times New Roman" fontSize="12.0" bold="false" italic="true" hTextAlign="Left">
 			<text><![CDATA[Galle]]></text>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</element>
-		<element kind="staticText" uuid="e9728b74-78d4-40d1-b5bd-97709a738028" x="380" y="47" width="175" height="15" fontName="Times New Roman" fontSize="12.0" italic="true" bold="false" hTextAlign="Left">
+		<element kind="staticText" uuid="e9728b74-78d4-40d1-b5bd-97709a738028" x="380" y="47" width="175" height="15" fontName="Times New Roman" fontSize="12.0" bold="false" italic="true" hTextAlign="Left">
 			<text><![CDATA[0912345678 | 07612345678]]></text>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</element>
-		<element kind="staticText" uuid="bfb83ef2-a0df-4639-9ac6-d267497af48d" x="380" y="61" width="175" height="15" fontName="Times New Roman" fontSize="12.0" italic="true" bold="false" hTextAlign="Left">
+		<element kind="staticText" uuid="bfb83ef2-a0df-4639-9ac6-d267497af48d" x="380" y="61" width="175" height="15" fontName="Times New Roman" fontSize="12.0" bold="false" italic="true" hTextAlign="Left">
 			<text><![CDATA[nrlbag@gmail.com]]></text>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</element>
@@ -256,7 +257,7 @@ GROUP BY
 	</detail>
 	<columnFooter height="3" splitType="Stretch"/>
 	<pageFooter height="32" splitType="Stretch">
-		<element kind="staticText" uuid="cd8b1b93-159a-4616-8ea4-caadce58f8e8" x="0" y="6" width="100" height="15" fontName="Times New Roman" fontSize="9.0" italic="true" bold="true" hTextAlign="Left">
+		<element kind="staticText" uuid="cd8b1b93-159a-4616-8ea4-caadce58f8e8" x="0" y="6" width="100" height="15" fontName="Times New Roman" fontSize="9.0" bold="true" italic="true" hTextAlign="Left">
 			<text><![CDATA[Generated Date       :]]></text>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</element>
@@ -266,9 +267,9 @@ GROUP BY
 		</element>
 		<property name="com.jaspersoft.studio.unit.height" value="px"/>
 	</pageFooter>
-	<summary height="297" splitType="Stretch">
-		<element kind="rectangle" uuid="dfd166af-487d-4ac9-b0b0-70ff6ed05b9a" x="175" y="94" width="116" height="71" forecolor="rgba(0, 0, 0, 0.0)" backcolor="rgba(211, 211, 211, 0.56078434)"/>
-		<element kind="staticText" uuid="602b69cb-2b26-41ed-be0f-9101af744475" x="175" y="94" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+	<summary height="197" splitType="Stretch">
+		<element kind="rectangle" uuid="dfd166af-487d-4ac9-b0b0-70ff6ed05b9a" x="175" y="28" width="116" height="71" forecolor="rgba(0, 0, 0, 0.0)" backcolor="rgba(211, 211, 211, 0.56078434)"/>
+		<element kind="staticText" uuid="602b69cb-2b26-41ed-be0f-9101af744475" x="175" y="28" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Total Order Cost          :]]></text>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -280,7 +281,7 @@ GROUP BY
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="142da245-aaaf-4972-9f57-3346866d9f9d" x="175" y="112" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="142da245-aaaf-4972-9f57-3346866d9f9d" x="175" y="46" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Total Paid Amount       :]]></text>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			<box>
@@ -291,7 +292,7 @@ GROUP BY
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="938aee83-f2e2-4cde-b19c-cff8b40e0b1d" x="175" y="130" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="938aee83-f2e2-4cde-b19c-cff8b40e0b1d" x="175" y="64" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Remaining Payment     :]]></text>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			<box>
@@ -302,16 +303,16 @@ GROUP BY
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="792635ae-4bf3-4b4e-9413-887cdaed30c2" x="293" y="94" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
+		<element kind="textField" uuid="792635ae-4bf3-4b4e-9413-887cdaed30c2" x="293" y="28" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
 			<expression><![CDATA[$F{total_cost}]]></expression>
 		</element>
-		<element kind="textField" uuid="1b60e54b-c028-4da0-be92-cf715c4c64a6" x="293" y="112" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
+		<element kind="textField" uuid="1b60e54b-c028-4da0-be92-cf715c4c64a6" x="293" y="46" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
 			<expression><![CDATA[$F{total_paid}]]></expression>
 		</element>
-		<element kind="textField" uuid="b770fdb7-9019-4902-b86f-ab9e13ca927b" x="293" y="130" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
+		<element kind="textField" uuid="b770fdb7-9019-4902-b86f-ab9e13ca927b" x="293" y="64" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
 			<expression><![CDATA[$V{REMAINING_PAYMENT}]]></expression>
 		</element>
-		<element kind="staticText" uuid="21a863fb-6f6c-4050-8f12-2632f832289c" x="175" y="148" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="staticText" uuid="21a863fb-6f6c-4050-8f12-2632f832289c" x="175" y="82" width="116" height="18" backcolor="#D3D3D3" fontName="Times New Roman" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
 			<text><![CDATA[Payment Status             :]]></text>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			<box>
@@ -322,19 +323,19 @@ GROUP BY
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="textField" uuid="6d5d8f90-e41a-4625-889a-eeb397d17e51" x="293" y="148" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
+		<element kind="textField" uuid="6d5d8f90-e41a-4625-889a-eeb397d17e51" x="293" y="82" width="86" height="18" fontName="Times New Roman" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
 			<expression><![CDATA[$V{PAYMENT_STATUS}]]></expression>
 		</element>
-		<element kind="staticText" uuid="7124b7f9-ea26-4fb1-bfd9-c1a151588fea" x="22" y="253" width="86" height="16" fontName="Times New Roman" fontSize="10.0" italic="true" hTextAlign="Left">
+		<element kind="staticText" uuid="7124b7f9-ea26-4fb1-bfd9-c1a151588fea" x="30" y="140" width="86" height="16" fontName="Times New Roman" fontSize="10.0" italic="true" hTextAlign="Left">
 			<text><![CDATA[K. S. Deepani]]></text>
 		</element>
-		<element kind="staticText" uuid="6b8e0351-9eae-4079-8c9f-b358c396c3e8" x="22" y="263" width="86" height="16" fontName="Times New Roman" fontSize="10.0" italic="true" hTextAlign="Left">
+		<element kind="staticText" uuid="6b8e0351-9eae-4079-8c9f-b358c396c3e8" x="30" y="150" width="86" height="16" fontName="Times New Roman" fontSize="10.0" italic="true" hTextAlign="Left">
 			<text><![CDATA[Director]]></text>
 		</element>
-		<element kind="staticText" uuid="f0927944-9dbd-41f1-92f1-03737f6fd841" x="22" y="273" width="98" height="16" fontName="Times New Roman" fontSize="10.0" italic="true" hTextAlign="Left">
+		<element kind="staticText" uuid="f0927944-9dbd-41f1-92f1-03737f6fd841" x="30" y="160" width="98" height="16" fontName="Times New Roman" fontSize="10.0" italic="true" hTextAlign="Left">
 			<text><![CDATA[NRL Enterprises Pvt Ltd]]></text>
 		</element>
-		<element kind="image" uuid="10954637-8a1d-4e5e-9fea-6a149d48cbba" x="32" y="235" width="50" height="29">
+		<element kind="image" uuid="10954637-8a1d-4e5e-9fea-6a149d48cbba" x="40" y="122" width="50" height="29">
 			<expression><![CDATA["E:/INDUNI/IJSE/Course work & projects/ITS1166_GDSE76_252762035_final_project/NRL BAG/src/main/resources/lk/ijse/nrlbag/images/Salika signature.png"]]></expression>
 		</element>
 		<property name="com.jaspersoft.studio.unit.height" value="px"/>
