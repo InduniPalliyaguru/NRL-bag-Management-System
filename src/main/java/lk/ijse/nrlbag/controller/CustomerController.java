@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,19 +36,17 @@ public class CustomerController implements Initializable {
     @FXML
     private TextField searchField;
     @FXML
-    private TableView tblCustomer;
+    private TableView<CustomerDTO> tblCustomer;
     @FXML
-    private TableColumn colId;
+    private TableColumn<CustomerDTO, Integer> colId;
     @FXML
-    private TableColumn colName;
+    private TableColumn<CustomerDTO, String> colName;
     @FXML
-    private TableColumn colAddress;
+    private TableColumn<CustomerDTO, String> colAddress;
     @FXML
-    private TableColumn colContact;
+    private TableColumn<CustomerDTO, String> colContact;
     @FXML
-    private TableColumn colCreateDate;
-    @FXML
-    private Pane rootPane;
+    private TableColumn<CustomerDTO, String> colCreateDate;
 
     private final String CUSTOMER_CONTACT_REGEX = "^[0-9]{10}$";
 
@@ -67,6 +64,16 @@ public class CustomerController implements Initializable {
         colCreateDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         loadCustomerTable();
+
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSel, selected) -> {
+
+                    if (selected == null) return;
+                    String contact = selected.getContact();
+                    handleSearchCustomerByRowSelected(contact);
+                }
+        );
+
     }
 
     @FXML
@@ -141,7 +148,7 @@ public class CustomerController implements Initializable {
 
     private void highLightCustomer(String contact) {
         //row factory allows us to define how each row look
-        tblCustomer.setRowFactory( tv -> new TableRow<CustomerDTO>() {
+        tblCustomer.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
             protected  void updateItem(CustomerDTO item, boolean empty) {
@@ -156,7 +163,7 @@ public class CustomerController implements Initializable {
                 // search rows contact number matches to the searching customer's contact
                 if(item.getContact().equals(contact)) {
                     // here set the colour for the search customer row
-                    setStyle("-fx-background-color: #e2baf7;");
+                    setStyle("-fx-background-color: #DB804E;");
                 } else {
                     // if it does not match that keep default style
                     setStyle("");
@@ -184,6 +191,39 @@ public class CustomerController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleSearchCustomerByRowSelected(String contact) {
+
+        try {
+
+            // after that we check it is valid input or not
+            if (!contact.matches(CUSTOMER_CONTACT_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid customer contact number").show();
+            } else {
+                CustomerDTO customerDTO = customerModel.searchCustomer(contact);
+
+                // when contact are set other information to the text fields
+                if (customerDTO != null) {
+                    idField.setText(String.valueOf(customerDTO.getId()));
+                    nameField.setText(customerDTO.getName());
+                    addressField.setText(customerDTO.getAddress());
+                    contactField.setText(customerDTO.getContact());
+                    createDateField.setText(customerDTO.getDate());
+
+                    highLightCustomer(customerDTO.getContact());
+
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Customer not found!").show();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        }
+
     }
 
 }

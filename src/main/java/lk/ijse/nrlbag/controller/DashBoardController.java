@@ -6,9 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.nrlbag.model.CustomerModel;
@@ -25,10 +23,6 @@ import java.time.LocalDate;
 public class DashBoardController {
 
     @FXML
-    private StackPane mainContent;
-    @FXML
-    private BorderPane dashBoardContent;
-    @FXML
     private Label lblTotalCustomer;
     @FXML
     private Label lblDate;
@@ -41,15 +35,7 @@ public class DashBoardController {
     @FXML
     private BarChart<String,Number> barChart;
     @FXML
-    private CategoryAxis xAxis;
-    @FXML
-    private NumberAxis yAxis;
-    @FXML
     private AreaChart<String, Number> monthlyIncomeChart;
-    @FXML
-    private CategoryAxis incomeXAxis;
-    @FXML
-    private NumberAxis incomeYAxis;
 
     @FXML
     private Pane rootPane;

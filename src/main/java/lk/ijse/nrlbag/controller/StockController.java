@@ -34,17 +34,17 @@ public class StockController implements Initializable {
     @FXML
     private TextField searchField;
     @FXML
-    private TableView tblMaterial;
+    private TableView<MaterialDTO> tblMaterial;
     @FXML
-    private TableColumn colId;
+    private TableColumn<MaterialDTO, Integer> colId;
     @FXML
-    private TableColumn colName;
+    private TableColumn<MaterialDTO, String> colName;
     @FXML
-    private TableColumn colQty;
+    private TableColumn<MaterialDTO, Integer> colQty;
     @FXML
-    private TableColumn colUnit;
+    private TableColumn<MaterialDTO, String> colUnit;
     @FXML
-    private TableColumn colSupId;
+    private TableColumn<MaterialDTO, Integer> colSupId;
 
     final static MaterialModel materialModel = new MaterialModel();
 
@@ -61,6 +61,16 @@ public class StockController implements Initializable {
 
         loadMaterialTable();
         highLightLowStockMaterials();
+
+        tblMaterial.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSel, selected) -> {
+
+                    if (selected == null) return;
+                    int id = selected.getMaterial_id();
+                    handleSearchMaterialByRowSelected(String.valueOf(id));
+                }
+        );
+
     }
 
     @FXML
@@ -135,7 +145,7 @@ public class StockController implements Initializable {
 
     private void highLightStock(int id) {
         //row factory allows us to define how each row look
-        tblMaterial.setRowFactory( tv -> new TableRow<MaterialDTO>() {
+        tblMaterial.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
             protected  void updateItem(MaterialDTO item, boolean empty) {
@@ -150,7 +160,7 @@ public class StockController implements Initializable {
                 // search rows contact number matches to the searching material id
                 if(item.getMaterial_id() == id) {
                     // here set the colour for the search material row
-                    setStyle("-fx-background-color: #e2baf7;");
+                    setStyle("-fx-background-color: #DB804E;");
                 } else {
                     // if it does not match that keep default style
                     setStyle("");
@@ -200,7 +210,7 @@ public class StockController implements Initializable {
 
     private void highLightLowStockMaterials() {
         //row factory allows us to define how each row look
-        tblMaterial.setRowFactory( tv -> new TableRow<MaterialDTO>() {
+        tblMaterial.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
             protected  void updateItem(MaterialDTO item, boolean empty) {
@@ -224,6 +234,38 @@ public class StockController implements Initializable {
         });
         // after set the colour refresh table for show colour on the table
         tblMaterial.refresh();
+    }
+
+    @FXML
+    private void handleSearchMaterialByRowSelected(String id) {
+
+        try {
+            //check validity
+            if(!id.matches(MATERIAL_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Material ID").show();
+            } else {
+                // get the details of the material through MaterialDTO & MaterialModal
+                MaterialDTO materialDTO = materialModel.searchMaterial(Integer.parseInt(id));
+
+                // materialDTO is not null then assign their values into the text fields
+                if(materialDTO!= null) {
+                    idField.setText(String.valueOf(materialDTO.getMaterial_id()));
+                    nameField.setText(materialDTO.getMaterial_name());
+                    comboUnit.setValue(materialDTO.getUnit());
+                    qtyField.setText(String.valueOf(materialDTO.getQtyAvailable()));
+                    supplierIdField.setText(String.valueOf(materialDTO.getSupplier_id()));
+
+                    highLightStock(materialDTO.getMaterial_id());
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Material Not Found!").show();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+        }
+
     }
 
 }

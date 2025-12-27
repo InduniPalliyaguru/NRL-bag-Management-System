@@ -24,19 +24,19 @@ import java.util.ResourceBundle;
 public class SupplierController implements Initializable {
 
     @FXML
-    private TableView tblSupplier;
+    private TableView<SupplierDTO> tblSupplier;
     @FXML
-    private TableColumn colSupId;
+    private TableColumn<SupplierDTO, Integer> colSupId;
     @FXML
-    private TableColumn colSupName;
+    private TableColumn<SupplierDTO, String> colSupName;
     @FXML
-    private TableColumn colAddress;
+    private TableColumn<SupplierDTO, String> colAddress;
     @FXML
-    private TableColumn colContact;
+    private TableColumn<SupplierDTO, String> colContact;
     @FXML
-    private TableColumn colMaterialId;
+    private TableColumn<SupplierDTO, Integer> colMaterialId;
     @FXML
-    private TableColumn colMaterialName;
+    private TableColumn<SupplierDTO, String> colMaterialName;
     @FXML
     private TextField searchField;
     @FXML
@@ -63,6 +63,16 @@ public class SupplierController implements Initializable {
         colMaterialName.setCellValueFactory(new PropertyValueFactory<>("materialName"));
 
         loadSupplierTable();
+
+        tblSupplier.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSel, selected) -> {
+
+                    if (selected == null) return;
+                    int id = selected.getId();
+                    handleSearchSupplierByRowSelected(String.valueOf(id));
+                }
+        );
+
 
     }
 
@@ -143,7 +153,7 @@ public class SupplierController implements Initializable {
     private void highlightSearchSupplier(int id) {
 
         //row factory allows us to define how each row look
-        tblSupplier.setRowFactory( tv -> new TableRow<SupplierDTO>() {
+        tblSupplier.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
             protected  void updateItem(SupplierDTO item, boolean empty) {
@@ -158,7 +168,7 @@ public class SupplierController implements Initializable {
                 // search rows id number matches to the searching supplier's id
                 if(item.getId() == id) {
                     // here set the colour for the search supplier row
-                    setStyle("-fx-background-color: #e2baf7;");
+                    setStyle("-fx-background-color: #DB804E;");
                 } else {
                     // if it does not match that keep default style
                     setStyle("");
@@ -187,6 +197,36 @@ public class SupplierController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleSearchSupplierByRowSelected(String id) {
+
+        try {
+            // check the validity of the id
+            if (!id.matches(SUPPLIER_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Supplier ID!").show();
+            } else {
+
+                SupplierDTO supDTO = supplierModel.searchSupplier(Integer.parseInt(id));
+
+                if (supDTO != null) {
+                    supIdField.setText(String.valueOf(supDTO.getId()));
+                    supNameField.setText(supDTO.getName());
+                    addressField.setText(supDTO.getAddress());
+                    contactField.setText(supDTO.getContact());
+
+                    highlightSearchSupplier(supDTO.getId());
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Cannot Find Supplier!").show();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+        }
+
     }
 
 

@@ -17,15 +17,15 @@ import java.util.ResourceBundle;
 public class ProductController implements Initializable {
 
     @FXML
-    private TableView tblProduct;
+    private TableView<ProductDTO> tblProduct;
     @FXML
-    private TableColumn colId;
+    private TableColumn<ProductDTO, Integer> colId;
     @FXML
-    private TableColumn colName;
+    private TableColumn<ProductDTO, String> colName;
     @FXML
-    private TableColumn colSize;
+    private TableColumn<ProductDTO, String> colSize;
     @FXML
-    private TableColumn colPrice;
+    private TableColumn<ProductDTO, Double> colPrice;
     @FXML
     private TextField searchField;
     @FXML
@@ -53,6 +53,15 @@ public class ProductController implements Initializable {
 
         loadProductTable();
         comboSize.getItems().addAll("SMALL","MEDIUM","LARGE");
+
+        tblProduct.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSel, selected) -> {
+
+                    if (selected == null) return;
+                    int id = selected.getProductId();
+                    handleSearchProductBtRowSelected(String.valueOf(id));
+                }
+        );
     }
 
     @FXML
@@ -244,7 +253,7 @@ public class ProductController implements Initializable {
 
     private void highLightProduct(int id) {
         //row factory allows us to define how each row look
-        tblProduct.setRowFactory( tv -> new TableRow<ProductDTO>() {
+        tblProduct.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
             protected  void updateItem(ProductDTO item, boolean empty) {
@@ -259,7 +268,7 @@ public class ProductController implements Initializable {
                 // search rows id number matches to the searching material id
                 if(item.getProductId() == id) {
                     // here set the colour for the search material row
-                    setStyle("-fx-background-color: #e2baf7;");
+                    setStyle("-fx-background-color: #DB804E;");
                 } else {
                     // if it does not match that keep default style
                     setStyle("");
@@ -278,4 +287,35 @@ public class ProductController implements Initializable {
         priceField.setText("");
     }
 
+    @FXML
+    private void handleSearchProductBtRowSelected(String id) {
+
+        try {
+            // after that we check it is valid input or not
+            if (!id.matches(PRODUCT_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Material ID").show();
+            } else {
+                ProductDTO proDTO = productModel.searchProduct(Integer.parseInt(id));
+
+                // id are set other information to the text fields
+                if (proDTO != null) {
+
+                    productIdField.setText(String.valueOf(proDTO.getProductId()));
+                    nameField.setText(proDTO.getName());
+                    comboSize.setValue(proDTO.getSize());
+                    priceField.setText(String.valueOf(proDTO.getBasePrice()));
+
+                    highLightProduct(proDTO.getProductId());
+
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Material not found!").show();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        }
+
+    }
 }

@@ -22,19 +22,19 @@ import java.util.ResourceBundle;
 public class PaymentController implements Initializable {
 
     @FXML
-    private TableView tblPayment;
+    private TableView<PaymentDTO> tblPayment;
     @FXML
-    private TableColumn colPayId;
+    private TableColumn<PaymentDTO, Integer> colPayId;
     @FXML
-    private TableColumn colOrderId;
+    private TableColumn<PaymentDTO, Integer> colOrderId;
     @FXML
-    private TableColumn colDate;
+    private TableColumn<PaymentDTO, String> colDate;
     @FXML
-    private TableColumn colAmount;
+    private TableColumn<PaymentDTO, Double> colAmount;
     @FXML
-    private TableColumn colType;
+    private TableColumn<PaymentDTO, String> colType;
     @FXML
-    private TableColumn colStatus;
+    private TableColumn<PaymentDTO, String> colStatus;
     @FXML
     private TextField searchField;
     @FXML
@@ -66,6 +66,14 @@ public class PaymentController implements Initializable {
 
         loadPaymentTable();
 
+        tblPayment.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSel, selected) -> {
+
+                    if (selected == null) return;
+                    int id = selected.getId();
+                    handleSearchPaymentByRowSelected(String.valueOf(id));
+                }
+        );
 
     }
 
@@ -136,7 +144,7 @@ public class PaymentController implements Initializable {
     private void highlightSearchPayment(int id) {
 
         //row factory allows us to define how each row look
-        tblPayment.setRowFactory( tv -> new TableRow<PaymentDTO>() {
+        tblPayment.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
             protected  void updateItem(PaymentDTO item, boolean empty) {
@@ -151,7 +159,7 @@ public class PaymentController implements Initializable {
                 // search rows id number matches to the searching payment id
                 if(item.getId() == id) {
                     // here set the colour for the search supplier row
-                    setStyle("-fx-background-color: #e2baf7;");
+                    setStyle("-fx-background-color: #DB804E;");
                 } else {
                     // if it does not match that keep default style
                     setStyle("");
@@ -190,6 +198,39 @@ public class PaymentController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleSearchPaymentByRowSelected(String id) {
+
+        try {
+
+            // check the validity of the id
+            if (!id.matches(PAYMENT_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Payment ID!").show();
+            } else {
+
+                PaymentDTO payDTO = paymentModel.searchPayment(Integer.parseInt(id));
+
+                if (payDTO != null) {
+                    payIdField.setText(String.valueOf(payDTO.getId()));
+                    orderIdField.setText(String.valueOf(payDTO.getOrder_id()));
+                    dateField.setText(payDTO.getPayment_date());
+                    comboType.setValue(payDTO.getType());
+                    comboStatus.setValue(payDTO.getStatus());
+                    amountField.setText(String.valueOf(payDTO.getAmount()));
+
+                    highlightSearchPayment(payDTO.getId());
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Cannot Find Payment!").show();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+        }
+
     }
 
 }

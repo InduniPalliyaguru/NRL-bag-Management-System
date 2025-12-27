@@ -22,29 +22,29 @@ import java.util.ResourceBundle;
 public class OrderController implements Initializable {
 
     @FXML
-    private TableView tblOrder;
+    private TableView<OrderDTO> tblOrder;
     @FXML
-    private TableColumn colOrderId;
+    private TableColumn<OrderDTO, Integer> colOrderId;
     @FXML
-    private TableColumn colCusId;
+    private TableColumn<OrderDTO, Integer> colCusId;
     @FXML
-    private TableColumn colCusName;
+    private TableColumn<OrderDTO, String> colCusName;
     @FXML
-    private TableColumn colContact;
+    private TableColumn<OrderDTO, String> colContact;
     @FXML
-    private TableColumn colOrderDate;
+    private TableColumn<OrderDTO, String> colOrderDate;
     @FXML
-    private TableColumn colDeadline;
+    private TableColumn<OrderDTO, String> colDeadline;
     @FXML
-    private TableColumn colStatus;
+    private TableColumn<OrderDTO, String> colStatus;
     @FXML
-    private TableColumn colTotal;
+    private TableColumn<OrderDTO, Double> colTotal;
     @FXML
-    private TableColumn colRemain;
+    private TableColumn<OrderDTO, Double> colRemain;
     @FXML
-    private TableColumn colProductID;
+    private TableColumn<OrderDTO, Integer> colProductID;
     @FXML
-    private TableColumn colQty;
+    private TableColumn<OrderDTO, Integer> colQty;
     @FXML
     private ComboBox<String> comboStatus;
     @FXML
@@ -95,6 +95,14 @@ public class OrderController implements Initializable {
 
         loadOrderTable();
 
+        tblOrder.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSel, selected) -> {
+
+                    if (selected == null) return;
+                    int id = selected.getId();
+                    handleSearchOrderByRowSelected(String.valueOf(id));
+                }
+        );
 
         // in here set the values for the combo box to status
         comboStatus.getItems().addAll("Pending","Processing","Completed","Cancelled");
@@ -230,22 +238,22 @@ public class OrderController implements Initializable {
 
     private void highLightOrders(int id) {
         //row factory allows us to define how each row look
-        tblOrder.setRowFactory( tv -> new TableRow<OrderDTO>() {
+        tblOrder.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
-            protected  void updateItem(OrderDTO item, boolean empty) {
+            protected void updateItem(OrderDTO item, boolean empty) {
                 super.updateItem(item, empty);
 
                 // check row is empty or item is null
-                if(empty || item == null) {
+                if (empty || item == null) {
                     setStyle("");
                     return;
                 }
 
                 // search rows id number matches to the searching customer's id
-                if(item.getCustomer_id() == id) {
+                if (item.getCustomer_id() == id) {
                     // here set the colour for the search order row
-                    setStyle("-fx-background-color: #e2baf7;");
+                    setStyle("-fx-background-color: #DB804E;");
                 } else {
                     // if it does not match that keep default style
                     setStyle("");
@@ -258,22 +266,22 @@ public class OrderController implements Initializable {
 
     private void highLightOrdersWithAllProducts(int id) {
         //row factory allows us to define how each row look
-        tblOrder.setRowFactory( tv -> new TableRow<OrderDTO>() {
+        tblOrder.setRowFactory( tv -> new TableRow<>() {
             @Override
             // this method is called for every row in the table
-            protected  void updateItem(OrderDTO item, boolean empty) {
+            protected void updateItem(OrderDTO item, boolean empty) {
                 super.updateItem(item, empty);
 
                 // check row is empty or item is null
-                if(empty || item == null) {
+                if (empty || item == null) {
                     setStyle("");
                     return;
                 }
 
                 // search rows id number matches to the searching order's id
-                if(item.getId() == id) {
+                if (item.getId() == id) {
                     // here set the colour for the search order row
-                    setStyle("-fx-background-color: #e2baf7;");
+                    setStyle("-fx-background-color: #DB804E;");
                 } else {
                     // if it does not match that keep default style
                     setStyle("");
@@ -301,6 +309,42 @@ public class OrderController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+
+    @FXML
+    private void handleSearchOrderByRowSelected(String id) {
+
+        try {
+            //check validity
+            if(!id.matches(ORDER_ID_REGEX)) {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
+            } else {
+                // get the details of the order through orderDTO & OderModel
+                OrderDTO orderDto = orderModel.searchOrderByOrderID(Integer.parseInt(id));
+
+                // orderDTO is not null then assign their values into the text fields
+                if(orderDto!= null) {
+                    orderIdField.setText(String.valueOf(orderDto.getId()));
+                    idField.setText(String.valueOf(orderDto.getCustomer_id()));
+                    nameField.setText(orderDto.getName());
+                    contactField.setText(orderDto.getCustomerContact());
+                    orderDateField.setText(orderDto.getOrder_date());
+                    deadlineField.setText(orderDto.getDeadline());
+                    comboStatus.setValue(orderDto.getStatus());
+                    costField.setText(String.valueOf(orderDto.getTotal_cost()));
+                    remainField.setText(String.valueOf(orderDto.getRemaining_payment()));
+                    highLightOrdersWithAllProducts(orderDto.getId());
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Order Not Found!").show();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+        }
+
     }
 
 }

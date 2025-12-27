@@ -22,7 +22,7 @@ public class LoadingPageController {
 
     private void startLoading() {
 
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
                 for (int i = 1; i <= 100; i++) {

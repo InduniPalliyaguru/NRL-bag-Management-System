@@ -105,7 +105,7 @@
 
 
 .table-view .table-row-cell:selected {
-    -fx-background-color: #e0d38d;  
+    -fx-background-color: #DB804E;
     -fx-text-fill: #1c1638;              
 }
 

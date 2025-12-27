@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import lk.ijse.nrlbag.App;
 import lk.ijse.nrlbag.dto.UserDTO;
 import lk.ijse.nrlbag.model.UserModel;
