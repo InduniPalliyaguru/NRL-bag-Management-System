@@ -113,7 +113,7 @@
                   </Button>
                </children>
             </HBox>
-            <GridPane alignment="CENTER" hgap="60.0" prefHeight="112.0" prefWidth="1038.0" style="-fx-border-radius: 10; -fx-background-color: transparent;" styleClass="form-label" vgap="18.0">
+            <GridPane alignment="CENTER" hgap="100.0" prefHeight="130.0" prefWidth="1038.0" style="-fx-border-radius: 10; -fx-background-color: transparent;" styleClass="form-label" vgap="16.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -123,33 +123,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="supIdField" editable="false" opacity="0.85" promptText="Supllier ID">
-                     <styleClass>
-                        <String fx:value="input-field" />
-                        <String fx:value="input-field:focused" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="supNameField" editable="false" opacity="0.85" promptText="Supplier Name" GridPane.columnIndex="1">
-                     <styleClass>
-                        <String fx:value="input-field" />
-                        <String fx:value="input-field:focused" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="addressField" editable="false" opacity="0.85" promptText="Address" GridPane.rowIndex="1">
-                     <styleClass>
-                        <String fx:value="input-field" />
-                        <String fx:value="input-field:focused" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="contactField" editable="false" opacity="0.85" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <styleClass>
-                        <String fx:value="input-field" />
-                        <String fx:value="input-field:focused" />
-                     </styleClass>
-                  </TextField>
+                  <TextField fx:id="supIdField" editable="false" opacity="0.85" promptText="Supllier ID" styleClass="text-field" />
+                  <TextField fx:id="supNameField" editable="false" opacity="0.85" promptText="Supplier Name" styleClass="text-field" GridPane.columnIndex="1" />
+                  <TextField fx:id="addressField" editable="false" opacity="0.85" promptText="Address" styleClass="text-field" GridPane.rowIndex="1" />
+                  <TextField fx:id="contactField" editable="false" opacity="0.85" promptText="Contact" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <padding>
-                  <Insets bottom="20.0" left="30.0" right="30.0" />
+                  <Insets bottom="5.0" left="80.0" right="80.0" top="5.0" />
                </padding>
             </GridPane>
             <HBox alignment="CENTER" fillHeight="false" prefHeight="42.0" prefWidth="1038.0" spacing="18.0">

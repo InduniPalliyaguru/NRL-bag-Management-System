@@ -58,12 +58,7 @@
                   <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                </padding>
                <children>
-                  <TextField fx:id="searchField" maxHeight="42.0" maxWidth="320.0" promptText="Enter OrderID / CusID">
-                     <styleClass>
-                        <String fx:value="input-field, .date-picker, .combo-box" />
-                        <String fx:value="input-field:focused, .date-picker:focused, .combo-box:focused" />
-                     </styleClass>
-                  </TextField>
+                  <TextField fx:id="searchField" maxHeight="42.0" maxWidth="170.0" promptText="Enter OrderID / CusID" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search By">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
@@ -102,7 +97,7 @@
                   </Button>
                </children>
             </HBox>
-            <GridPane alignment="CENTER" hgap="70.0" prefHeight="228.0" prefWidth="1059.0" vgap="10.0">
+            <GridPane alignment="CENTER" hgap="100.0" prefHeight="228.0" prefWidth="1059.0" vgap="16.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -115,50 +110,20 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="idField" editable="false" prefHeight="33.0" prefWidth="427.0" promptText="Customer ID" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" styleClass="text-field:focused" />
-                  <TextField fx:id="nameField" editable="false" promptText="Customer Name" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1">
-                     <styleClass>
-                        <String fx:value="text-field:focused" />
-                        <String fx:value="text-field:disabled" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="orderIdField" editable="false" promptText="Order ID" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.rowIndex="1">
-                     <styleClass>
-                        <String fx:value="text-field:focused" />
-                        <String fx:value="text-field:disabled" />
-                     </styleClass>
-                  </TextField>
-                  <ComboBox fx:id="comboStatus" prefHeight="23.0" prefWidth="150.0" promptText="Status" style="-fx-border-color: #0052CC; -fx-background-color: none; -fx-border-width: 0 0 2 0; -fx-border-radius: 0;" GridPane.rowIndex="3">
+                  <TextField fx:id="idField" editable="false" prefHeight="33.0" prefWidth="427.0" promptText="Customer ID" styleClass="text-field" />
+                  <TextField fx:id="nameField" editable="false" promptText="Customer Name" styleClass="text-field" GridPane.columnIndex="1" />
+                  <TextField fx:id="orderIdField" editable="false" promptText="Order ID" styleClass="text-field" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboStatus" prefHeight="23.0" prefWidth="150.0" promptText="Status" style="-fx-border-color: linear-gradient(to right, #003D99, #001433); -fx-background-color: none; -fx-border-width: 0 0 1 0;" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="combo-box" />
                         <String fx:value="combo-box:focused" />
                      </styleClass>
                   </ComboBox>
-                  <TextField fx:id="costField" editable="false" promptText="Total Cost" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" styleClass="text-field:focused" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="remainField" editable="false" promptText="Remainig Payment" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.rowIndex="4">
-                     <styleClass>
-                        <String fx:value="text-field:focused" />
-                        <String fx:value="text-field:disabled" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="contactField" editable="false" promptText="Customer Contact" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <styleClass>
-                        <String fx:value="text-field:focused" />
-                        <String fx:value="text-field:disabled" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="orderDateField" editable="false" promptText=" yyyy-mm-dd (Order Date)" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.rowIndex="2">
-                     <styleClass>
-                        <String fx:value="text-field:focused" />
-                        <String fx:value="text-field:disabled" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="deadlineField" editable="false" promptText=" yyyy-mm-dd (Deadline)" style="-fx-background-radius: 8; -fx-padding: 8 12; -fx-border-color: #C8CCD5; -fx-border-radius: 8; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <styleClass>
-                        <String fx:value="text-field:focused" />
-                        <String fx:value="text-field:disabled" />
-                     </styleClass>
-                  </TextField>
+                  <TextField fx:id="costField" editable="false" promptText="Total Cost" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="remainField" editable="false" promptText="Remainig Payment" styleClass="text-field" GridPane.rowIndex="4" />
+                  <TextField fx:id="contactField" editable="false" promptText="Customer Contact" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="orderDateField" editable="false" promptText=" yyyy-mm-dd (Order Date)" styleClass="text-field" GridPane.rowIndex="2" />
+                  <TextField fx:id="deadlineField" editable="false" promptText=" yyyy-mm-dd (Deadline)" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#handleClearFields" prefWidth="100.0" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -171,7 +136,7 @@
                   </Button>
                </children>
                <padding>
-                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                  <Insets bottom="5.0" left="80.0" right="80.0" top="5.0" />
                </padding>
             </GridPane>
          </children>

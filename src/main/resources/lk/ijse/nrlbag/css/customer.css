@@ -1,16 +1,4 @@
 
-
-.form-pane {
-    -fx-background-color: #FFFFFF;
-    -fx-padding: 18 22 18 22;
-    -fx-background-radius: 12;
-    -fx-border-color: #E5E7EB;
-    -fx-border-radius: 12;
-    -fx-hgap: 30;
-    -fx-vgap: 18;
-}
-
-
 .form-label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 14px;
@@ -19,34 +7,21 @@
 
 
 .form-field {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 8;
-    -fx-border-color: #D9D9D9;
-    -fx-border-width: 1;
-    -fx-border-radius: 8;
+    -fx-background-color: none;
+    -fx-background-radius: 0;
+    -fx-border-color:  linear-gradient(to right, #003D99, #001433);
+    -fx-border-width: 0 0 1 0;
+    -fx-border-radius: 0;
     -fx-font-family: "Roboto";
     -fx-font-size: 14px;
     -fx-padding: 0 10 0 10;
     -fx-pref-height: 38;
 }
 
-
-.form-field:focused {
-    -fx-border-color: #3A6FF8;
-    -fx-background-color: #FFFFFF;
-}
-
-
 .form-field .prompt-text {
-    -fx-fill: #A6A6A6;
+    -fx-fill: #001433;
     -fx-font-size: 13px;
 }
-
-
-.form-field:disabled {
-    -fx-opacity: 0.6;
-}
-
 
 .btn-clear {
     -fx-background-color: #003D99;
