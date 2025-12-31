@@ -567,31 +567,31 @@ public class OrderPopupController implements Initializable {
     }
 
     private void clearFields() {
-        searchField1.setText("");
-        productSearchField.setText("");
-        idField1.setText("");
-        orderIdField1.setText("");
-        orderDateField1.setText("");
-        deadlineField1.setText("");
+        searchField1.clear();
+        productSearchField.clear();
+        idField1.clear();
+        orderIdField1.clear();
+        orderDateField1.clear();
+        deadlineField1.clear();
         comboStatus1.setValue("");
-        costField1.setText("");
-        productNameField1.setText("");
-        productIdField1.setText("");
-        qtyField1.setText("");
-        unitPriceField1.setText("");
+        costField1.clear();
+        productNameField1.clear();
+        productIdField1.clear();
+        qtyField1.clear();
+        unitPriceField1.clear();
     }
 
     private void clearFieldSaved() {
 
-        idField.setText("");
-        orderDateField.setText("");
-        deadlineField.setText("");
+        idField.clear();
+        orderDateField.clear();
+        deadlineField.clear();
         comboStatus.setValue("");
-        costField.setText("");
-        productIdField.setText("");
-        productNameField.setText("");
-        unitPriceField.setText("");
-        qtyField.setText("");
+        costField.clear();
+        productIdField.clear();
+        productNameField.clear();
+        unitPriceField.clear();
+        qtyField.clear();
     }
 
     private void loadProductDetails() {
@@ -835,12 +835,12 @@ public class OrderPopupController implements Initializable {
     }
 
     private void clearMaterialUsageFields() {
-        searchOrderIdField.setText("");
-        orderIdField.setText("");
-        materialIdField.setText("");
-        orderQtyField.setText("");
-        materialNameField.setText("");
-        availableQtyField.setText("");
+        searchOrderIdField.clear();
+        orderIdField.clear();
+        materialIdField.clear();
+        orderQtyField.clear();
+        materialNameField.clear();
+        availableQtyField.clear();
 
         oldUsedQty = 0;
         isUpdateMode = false;

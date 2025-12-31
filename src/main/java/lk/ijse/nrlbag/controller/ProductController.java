@@ -280,11 +280,11 @@ public class ProductController implements Initializable {
     }
 
     private void clearFields() {
-        productIdField.setText("");
-        searchField.setText("");
-        nameField.setText("");
+        productIdField.clear();
+        searchField.clear();
+        nameField.clear();
         comboSize.setValue("");
-        priceField.setText("");
+        priceField.clear();
     }
 
     @FXML

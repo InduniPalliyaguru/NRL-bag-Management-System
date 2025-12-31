@@ -172,11 +172,11 @@ public class PaymentController implements Initializable {
     }
 
     private void clearFields() {
-        searchField.setText("");
-        payIdField.setText("");
-        orderIdField.setText("");
-        dateField.setText("");
-        amountField.setText("");
+        searchField.clear();
+        payIdField.clear();
+        orderIdField.clear();
+        dateField.clear();
+        amountField.clear();
         comboType.setValue("");
         comboStatus.setValue("");
     }

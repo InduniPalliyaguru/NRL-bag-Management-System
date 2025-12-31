@@ -5,6 +5,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import lk.ijse.nrlbag.model.*;
 
+import java.util.List;
+
 public class ReportsController {
 
     @FXML
@@ -55,6 +57,8 @@ public class ReportsController {
 
             if (!orderId.matches(ORDER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
+            } else if (checkOrderIdHaving(Integer.parseInt(orderId))) {
+                new Alert(Alert.AlertType.ERROR, "Cannot find order ID").show();
             } else {
                 orderModel.printOrderConfirmation(Integer.parseInt(orderId));
                 ocOrderIdField.clear();
@@ -71,6 +75,8 @@ public class ReportsController {
 
             if (!orderId.matches(ORDER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order ID").show();
+            }  else if (checkOrderIdHaving(Integer.parseInt(orderId))) {
+                new Alert(Alert.AlertType.ERROR, "Cannot find order ID").show();
             } else {
                 paymentModel.printOrderPaymentReceipt(Integer.parseInt(orderId));
                 payReportIdField.clear();
@@ -87,6 +93,19 @@ public class ReportsController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private boolean checkOrderIdHaving(int id) {
+        // in here get the all order id and check the input id is contains their
+        try {
+            List<Integer> idList = orderModel.getAllOrdersID();
+            // in here return the result opposite value
+            return !idList.contains(id);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
     }
 
 }

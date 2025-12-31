@@ -69,9 +69,8 @@ public class CustomerPopUpController {
                     new Alert(Alert.AlertType.ERROR, result + "\nTry again!").show();
                     return;
                 } else {
-                    new Alert(Alert.AlertType.INFORMATION, "Customer save successfully!").show();
+                    new Alert(Alert.AlertType.INFORMATION, "Customer saved successfully!").show();
                     clearFieldsSaved();
-
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -208,19 +207,19 @@ public class CustomerPopUpController {
 
     private void clearFields() {
 
-        searchField1.setText("");
-        idField1.setText("");
-        nameField1.setText("");
-        addressField1.setText("");
-        contactField1.setText("");
-        createDateField1.setText("");
+        searchField1.clear();
+        idField1.clear();
+        nameField1.clear();
+        addressField1.clear();
+        contactField1.clear();
+        createDateField1.clear();
 
     }
 
     private void clearFieldsSaved() {
-        nameField1.setText("");
-        addressField1.setText("");
-        contactField1.setText("");
+        nameField.clear();
+        addressField.clear();
+        contactField.clear();
 
     }
 

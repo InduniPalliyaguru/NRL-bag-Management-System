@@ -242,19 +242,19 @@ public class PaymentPopupController implements Initializable {
     }
 
     private void clearSavedField() {
-        orderIdField.setText("");
-        amountField.setText("");
-        dateField.setText("");
+        orderIdField.clear();
+        amountField.clear();
+        dateField.clear();
         comboType.setValue("");
         comboStatus.setValue("");
     }
 
     private void clearFields() {
-        searchField.setText("");
-        payIdField.setText("");
-        orderIdField1.setText("");
-        amountField.setText("");
-        dateField.setText("");
+        searchField.clear();
+        payIdField.clear();
+        orderIdField1.clear();
+        amountField.clear();
+        dateField.clear();
         comboType.setValue("");
         comboStatus.setValue("");
     }

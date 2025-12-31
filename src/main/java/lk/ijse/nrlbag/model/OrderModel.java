@@ -166,11 +166,12 @@ public class OrderModel {
     public boolean updateOrder(OrderDTO orderDto) throws SQLException {
 
         // pass the query for update the database
-        boolean result = CrudUtil.execute("UPDATE Orders SET customer_id=?, order_date=?, deadline=?, status=?, total_cost=? WHERE orders_id=?;",
+        boolean result = CrudUtil.execute("UPDATE Orders SET customer_id=?, order_date=?, deadline=?, status=?, total_cost=?, remaining_payment=? WHERE orders_id=?;",
                 orderDto.getCustomer_id(),
                 orderDto.getOrder_date(),
                 orderDto.getDeadline(),
                 orderDto.getStatus(),
+                orderDto.getTotal_cost(),
                 orderDto.getTotal_cost(),
                 orderDto.getId()
         );
@@ -305,6 +306,16 @@ public class OrderModel {
 
         JasperViewer.viewReport(jp, false);
 
+    }
+
+    public List<Integer> getAllOrdersID() throws SQLException {
+        ResultSet rs = CrudUtil.execute("SELECT orders_id FROM Orders");
+        List<Integer> orderIdList = new ArrayList<>();
+        while (rs.next()) {
+            int id = rs.getInt("orders_id");
+            orderIdList.add(id);
+        }
+        return orderIdList;
     }
 
 }
