@@ -8,6 +8,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -132,6 +133,34 @@ public class MaterialModel {
 
         JasperViewer.viewReport(jp, false);
 
+    }
+
+    public List<MaterialDTO> searchMaterialByKeyword(String keyword) throws SQLException {
+
+        // here, get the all the material details to the list using MaterialDTO
+        String sql = "SELECT * FROM Material WHERE material_id LIKE ? OR name LIKE ? LIMIT 10";
+
+        List<MaterialDTO> materialList = new ArrayList<>();
+
+        PreparedStatement ps = DBConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ps.setString(1, "%" + keyword + "%");
+        ps.setString(2, "%" + keyword + "%");
+
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()) {
+            MaterialDTO matDTO = new MaterialDTO(
+                    rs.getInt("material_id"),
+                    rs.getInt("supplier_id"),
+                    rs.getString("name"),
+                    rs.getString("unit"),
+                    rs.getDouble("qty_available")
+
+            );
+            materialList.add(matDTO);
+        }
+        return materialList;
     }
 
 }

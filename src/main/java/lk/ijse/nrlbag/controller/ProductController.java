@@ -2,10 +2,13 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.nrlbag.dto.MaterialDTO;
 import lk.ijse.nrlbag.dto.ProductDTO;
 import lk.ijse.nrlbag.model.ProductModel;
 
@@ -39,6 +42,9 @@ public class ProductController implements Initializable {
 
     private final ProductModel productModel = new ProductModel();
 
+    private final ObservableList<ProductDTO> masterProductList = FXCollections.observableArrayList();
+    private FilteredList<ProductDTO> filteredProductList;
+
     private final String PRODUCT_ID_REGEX = "^[0-9]+$";
     private final String PRODUCT_NAME_REGEX = "^(?!\\s*$).{3,}$";
     private final String BASIC_COST_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
@@ -52,6 +58,7 @@ public class ProductController implements Initializable {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("basePrice"));
 
         loadProductTable();
+        enableLiveSearch();
         comboSize.getItems().addAll("SMALL","MEDIUM","LARGE");
 
         tblProduct.getSelectionModel().selectedItemProperty().addListener(
@@ -237,14 +244,17 @@ public class ProductController implements Initializable {
 
             List<ProductDTO> proDTO =  productModel.getProductTable();
 
-            ObservableList<ProductDTO> obList = FXCollections.observableArrayList();
+            masterProductList.clear();
+            masterProductList.addAll(proDTO);
 
-            // get one by product from the product list and they are add into the obList
-            for (ProductDTO productDTO : proDTO) {
-                obList.add(productDTO);
-            }
-            // then add that list to the table
-            tblProduct.setItems(obList);
+            // create filtered list one
+            filteredProductList = new FilteredList<>(masterProductList, p -> true);
+
+            // allow sorting also
+            SortedList<ProductDTO> sortedList = new SortedList<>(filteredProductList);
+            sortedList.comparatorProperty().bind(tblProduct.comparatorProperty());
+
+            tblProduct.setItems(sortedList);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -317,5 +327,25 @@ public class ProductController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
         }
 
+    }
+
+    private void enableLiveSearch() {
+        searchField.textProperty().addListener((obs,oldText, newText) -> {
+            String search = newText.toLowerCase().trim();
+
+            filteredProductList.setPredicate(productDTO -> {
+
+                // show all when search field is empty
+                if (search.isEmpty()) return true;
+
+                // search by product name
+                if (productDTO.getName().toLowerCase().contains(search)) {
+                    return true;
+                }
+
+                // search by customer contact
+                return String.valueOf(productDTO.getProductId()).contains(search);
+            });
+        });
     }
 }

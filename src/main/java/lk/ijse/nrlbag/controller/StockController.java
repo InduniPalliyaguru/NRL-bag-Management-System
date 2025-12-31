@@ -2,6 +2,8 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import lk.ijse.nrlbag.model.MaterialModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class StockController implements Initializable {
@@ -47,6 +50,8 @@ public class StockController implements Initializable {
     private TableColumn<MaterialDTO, Integer> colSupId;
 
     final static MaterialModel materialModel = new MaterialModel();
+    private final ObservableList<MaterialDTO> masterMaterialList = FXCollections.observableArrayList();
+    private FilteredList<MaterialDTO> filteredMaterialList;
 
     private final String MATERIAL_ID_REGEX = "^[0-9]+$";
 
@@ -61,6 +66,7 @@ public class StockController implements Initializable {
 
         loadMaterialTable();
         highLightLowStockMaterials();
+        enableLiveSearch();
 
         tblMaterial.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldSel, selected) -> {
@@ -129,14 +135,18 @@ public class StockController implements Initializable {
 
             List<MaterialDTO> matDTO  =  materialModel.getMaterial();
 
-            ObservableList<MaterialDTO> obList = FXCollections.observableArrayList();
+            masterMaterialList.clear();
+            masterMaterialList.addAll(matDTO);
 
-            // get one by material from the material list and they are add into the obList
-            for (MaterialDTO materialDTO : matDTO) {
-                obList.add(materialDTO);
-            }
-            // then add that list to the table
-            tblMaterial.setItems(obList);
+            // create filtered list once
+            filteredMaterialList = new FilteredList<>(masterMaterialList, p -> true);
+
+            // allow sorting also
+            SortedList<MaterialDTO> sortedList = new SortedList<>(filteredMaterialList);
+            sortedList.comparatorProperty().bind(tblMaterial.comparatorProperty());
+
+            // set to table
+            tblMaterial.setItems(sortedList);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -266,6 +276,31 @@ public class StockController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
+    }
+
+    private void enableLiveSearch() {
+        searchField.textProperty().addListener((obs,oldText, newText) -> {
+            String search = newText.toLowerCase().trim();
+
+            filteredMaterialList.setPredicate(materialDTO -> {
+
+                // show all when search field is empty
+                if (search.isEmpty()) return true;
+
+                // search by material name
+                if (materialDTO.getMaterial_name().toLowerCase().contains(search)) {
+                    return true;
+                }
+
+                // search by material ID
+                if (String.valueOf(materialDTO.getMaterial_id()).contains(search)) {
+                    return true;
+                }
+
+                // search by supplier ID
+                return String.valueOf(materialDTO.getSupplier_id()).contains(search);
+            });
+        });
     }
 
 }

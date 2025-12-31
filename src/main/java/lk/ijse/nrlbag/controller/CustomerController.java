@@ -2,6 +2,8 @@ package lk.ijse.nrlbag.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,6 +53,8 @@ public class CustomerController implements Initializable {
     private final String CUSTOMER_CONTACT_REGEX = "^[0-9]{10}$";
 
     private final CustomerModel customerModel = new CustomerModel();
+    private final ObservableList<CustomerDTO> customerList = FXCollections.observableArrayList();
+    private FilteredList<CustomerDTO> filteredCustomerList;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,6 +68,7 @@ public class CustomerController implements Initializable {
         colCreateDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         loadCustomerTable();
+        enableLiveSearch();
 
         tblCustomer.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldSel, selected) -> {
@@ -121,15 +126,17 @@ public class CustomerController implements Initializable {
 
             List<CustomerDTO> cusDTO =  customerModel.getCustomer();
 
-            ObservableList<CustomerDTO> obList = FXCollections.observableArrayList();
+            customerList.clear();
+            customerList.addAll(cusDTO);
 
-            // get one by customer from the customer list and they are add into the obList
-            for (CustomerDTO customerDTO : cusDTO) {
-                obList.add(customerDTO);
-            }
-            // then add that list to the table
-            tblCustomer.setItems(obList);
+            // create filtered list once
+            filteredCustomerList = new FilteredList<>(customerList, p -> true);
 
+            // allow sorting also
+            SortedList<CustomerDTO> sortedList = new SortedList<>(filteredCustomerList);
+            sortedList.comparatorProperty().bind(tblCustomer.comparatorProperty());
+
+            tblCustomer.setItems(sortedList);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -224,6 +231,31 @@ public class CustomerController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
         }
 
+    }
+
+    private void enableLiveSearch() {
+        searchField.textProperty().addListener((obs,oldText, newText) -> {
+            String search = newText.toLowerCase().trim();
+
+            filteredCustomerList.setPredicate(customerDTO -> {
+
+                // show all when search field is empty
+                if (search.isEmpty()) return true;
+
+                // search by customer name
+                if (customerDTO.getName().toLowerCase().contains(search)) {
+                    return true;
+                }
+
+                // search by customer ID
+                if (String.valueOf(customerDTO.getId()).contains(search)) {
+                    return true;
+                }
+
+                // search by customer contact
+                return String.valueOf(customerDTO.getContact()).contains(search);
+            });
+        });
     }
 
 }

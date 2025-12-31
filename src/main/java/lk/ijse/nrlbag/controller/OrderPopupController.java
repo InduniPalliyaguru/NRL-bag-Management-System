@@ -1,9 +1,11 @@
 package lk.ijse.nrlbag.controller;
 
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.control.*;
 import lk.ijse.nrlbag.dto.*;
 import lk.ijse.nrlbag.dto.tm.MaterialUsedTM;
@@ -84,7 +86,6 @@ public class OrderPopupController implements Initializable {
 
     private final String ORDER_ID_REGEX = "^[0-9]+$";
     private final String CUSTOMER_ID_REGEX = "^[0-9]+$";
-    private final String ORDER_COST_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     private final String PRODUCT_ID_REGEX = "^[0-9]+$";
     private final String QTY_REGEX = "^[0-9]+(\\.[0-9]+)?$";
     private final String MATERIAL_ID_REGEX = "^[0-9]+$";
@@ -97,6 +98,8 @@ public class OrderPopupController implements Initializable {
     private final OrderDetailsModel orderDetailsModel = new OrderDetailsModel();
     private final MaterialUsedModel materialUsedModel = new MaterialUsedModel();
     private final MaterialModel materialModel = new MaterialModel();
+
+    private final ContextMenu materialSuggestion = new ContextMenu();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -117,8 +120,17 @@ public class OrderPopupController implements Initializable {
         //Auto calculate the total cost when enter the qty in updates side
         qtyField1.textProperty().addListener((a, b, c) -> calculateTotalCostForUpdates());
 
+        materialIdField.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal) {
+                materialSuggestion.hide();
+            }
+        });
+
         //Autoload material details when enter the ID in material usage side
-        materialIdField.textProperty().addListener((a, b, c) -> loadMaterialDetails());
+        materialIdField.textProperty().addListener((obs, oldText, newText) -> {
+            loadMaterialDetails();
+            showMaterialSuggestion(newText);
+        });
 
         //Autoload qty decreasing when enter the need qty in material usage side
         orderQtyField.textProperty().addListener((a, b, c) -> loadDecreasingQty());
@@ -243,6 +255,7 @@ public class OrderPopupController implements Initializable {
             String unitPrice = unitPriceField.getText().trim();
 
             // check they are valid or not
+            String ORDER_COST_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
             if (!id.matches(CUSTOMER_ID_REGEX)) {
                 new Alert(Alert.AlertType.ERROR, "Invalid customer ID").show();
             } else if (isValidDate(orderDate)) {
@@ -771,15 +784,18 @@ public class OrderPopupController implements Initializable {
         try {
 
             //in here get the material id and check validity
-            String materialId = materialIdField.getText().trim();
+            String text = materialIdField.getText().trim();
 
-            if (!materialId.matches(MATERIAL_ID_REGEX)) {
+            if (text.isEmpty()) {
                 materialNameField.setText("");
                 availableQtyField.setText("");
                 return;
             }
+            MaterialDTO materialDTO = null;
+            if (text.matches(MATERIAL_ID_REGEX)) {
+                materialDTO = materialModel.searchMaterial(Integer.parseInt(text));
 
-            MaterialDTO materialDTO = materialModel.searchMaterial(Integer.parseInt(materialId));
+            }
 
             // after that get name and available qty according to the material id
             // set to the name and qty fields
@@ -874,5 +890,56 @@ public class OrderPopupController implements Initializable {
         // after set the colour refresh table for show colour on the table
         tblMaterialUsage.refresh();
 
+    }
+
+    private void showMaterialSuggestion(String text) {
+
+        // hide dropdown if text is too short
+        if (text == null || text.length() < 2) {
+            materialSuggestion.hide();
+            return;
+        }
+
+        try {
+            // get matching material from the database
+            List<MaterialDTO> materials = materialModel.searchMaterialByKeyword(text);
+            System.out.println("Materials found: " + materials.size());
+
+            // if empty or nothing found from material, materialSuggestion hide
+            if (materials.isEmpty()) {
+                materialSuggestion.hide();
+                return;
+            }
+            //clear ols suggestion
+            materialSuggestion.getItems().clear();
+
+            // if materials is not empty then add each into the dropdown
+            for (MaterialDTO m : materials) {
+                MenuItem item = new MenuItem(
+                        m.getMaterial_id() + " - " + m.getMaterial_name()
+                );
+                // what happen when user click an items
+                // their details set on the fields
+                item.setOnAction( e -> {
+                    materialIdField.setText(String.valueOf(m.getMaterial_id()));
+                    materialNameField.setText(m.getMaterial_name());
+                    availableQtyField.setText(String.valueOf(m.getQtyAvailable()));
+                    materialSuggestion.hide();
+                });
+                materialSuggestion.getItems().add(item);
+            }
+            materialSuggestion.hide();
+            // show dropdown belows the text field
+            Platform.runLater(() ->
+                    materialSuggestion.show(
+                            materialIdField,
+                            Side.BOTTOM,
+                            0,
+                            0
+                    ));
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
