@@ -35,7 +35,7 @@
                         <Pane fx:id="rootPane" prefHeight="345.0" />
                      </children>
                   </VBox>
-                  <VBox spacing="12.0">
+                  <VBox spacing="10.0">
                      <padding>
                         <Insets bottom="18.0" left="18.0" right="18.0" top="18.0" />
                      </padding>
@@ -59,7 +59,7 @@
                                           <Font name="Segoe UI Bold" size="22.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="#6e6e6e" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, NRL Enterprises">
+                                    <Text fx:id="lblGreeting" fill="#6e6e6e" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, NRL Enterprises">
                                        <font>
                                           <Font name="Roboto" size="14.0" />
                                        </font>
@@ -283,6 +283,43 @@
                               </StackPane>
                            </children>
                         </HBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="1058.0">
+                           <children>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label maxWidth="197.0" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8;" text="OVERDUE ORDERS : ">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color opacity="0.10000000149011612" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                       <graphic>
+                                          <Label fx:id="lblOverdue" maxWidth="160.0" prefHeight="100.0" style="-fx-background-color: none; -fx-text-fill: red;" text="0" translateX="150.0">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow>
+                                                   <color>
+                                                      <Color opacity="0.10000000149011612" />
+                                                   </color>
+                                                </DropShadow>
+                                             </effect>
+                                          </Label>
+                                       </graphic>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
                         <HBox spacing="10.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="10.0" />

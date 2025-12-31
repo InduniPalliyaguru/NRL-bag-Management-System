@@ -318,4 +318,13 @@ public class OrderModel {
         return orderIdList;
     }
 
+    public static int getOverdueOrderCount() throws SQLException {
+        ResultSet rs = CrudUtil.execute("SELECT COUNT(*) FROM Orders WHERE deadline < CURDATE() AND status NOT IN ('Completed','Cancelled')");
+
+        if (rs.next()) {
+            return rs.getInt(1);  // get the value from first column
+        }
+        return 0;
+    }
+
 }

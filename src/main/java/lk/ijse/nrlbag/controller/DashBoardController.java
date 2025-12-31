@@ -7,12 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lk.ijse.nrlbag.model.CustomerModel;
-import lk.ijse.nrlbag.model.MaterialModel;
-import lk.ijse.nrlbag.model.OrderModel;
-import lk.ijse.nrlbag.model.PaymentModel;
+import lk.ijse.nrlbag.dto.UserDTO;
+import lk.ijse.nrlbag.model.*;
 import lk.ijse.nrlbag.util.SetBackground;
 
 import java.io.IOException;
@@ -33,14 +32,17 @@ public class DashBoardController {
     @FXML
     private Label lblPendingCount;
     @FXML
+    private Label lblOverdue;
+    @FXML
+    private Text lblGreeting;
+    @FXML
     private BarChart<String,Number> barChart;
     @FXML
     private AreaChart<String, Number> monthlyIncomeChart;
-
     @FXML
     private Pane rootPane;
 
-
+    private final UserModel userModel = new UserModel();
 
     public void initialize() throws SQLException {
 
@@ -63,6 +65,14 @@ public class DashBoardController {
         /* here get the total pending payments count from the PaymentModel class, it assigns into the
             label total pending payments that have in dashboard. */
         lblPendingCount.setText(String.valueOf(PaymentModel.totalPendingPaymentsCount()));
+
+        /* here get the total order count where deadline is overdue from the OrderModel class, it assigns into the
+            label overdue that have in dashboard. */
+        lblOverdue.setText(String.valueOf(OrderModel.getOverdueOrderCount()));
+
+        /* here get the name from userModel class, it assigns into the
+            text lblGreeting that have in dashboard. */
+        lblGreeting.setText("Hi.. " + getName());
 
         // this is load at everytime dashboard barchart
         loadMonthlyOrders();
@@ -140,6 +150,16 @@ public class DashBoardController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private String getName() {
+        try {
+            UserDTO user = userModel.getUserDetails();
+            return user.getName();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
 }

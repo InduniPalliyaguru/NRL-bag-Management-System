@@ -19,6 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -119,8 +120,32 @@
                         <String fx:value="combo-box:focused" />
                      </styleClass>
                   </ComboBox>
+                   <!-- ================= ORDER STATUS TIMELINE ================= -->
+                   <HBox fx:id="orderTimeline" alignment="CENTER_LEFT" spacing="45.0" style="-fx-padding: 8 0 0 0;" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                     <children>
+      
+                          <VBox alignment="CENTER" spacing="4">
+                              <Circle fx:id="circlePending" fill="#B0B0B0" radius="6" />
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #000000;" text="Pending">
+                              <font>
+                                 <Font name="System Italic" size="12.0" />
+                              </font>
+                           </Label>
+                          </VBox>
+      
+                          <VBox alignment="CENTER" spacing="4">
+                              <Circle fx:id="circleProcessing" fill="#B0B0B0" radius="6" />
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #000000;" text="Processing" />
+                          </VBox>
+      
+                          <VBox alignment="CENTER" spacing="4">
+                              <Circle fx:id="circleCompleted" fill="#B0B0B0" radius="6" />
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #000000;" text="Completed" />
+                          </VBox>
+                     </children>
+
+                   </HBox>
                   <TextField fx:id="costField" editable="false" promptText="Total Cost" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="remainField" editable="false" promptText="Remainig Payment" styleClass="text-field" GridPane.rowIndex="4" />
                   <TextField fx:id="contactField" editable="false" promptText="Customer Contact" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="orderDateField" editable="false" promptText=" yyyy-mm-dd (Order Date)" styleClass="text-field" GridPane.rowIndex="2" />
                   <TextField fx:id="deadlineField" editable="false" promptText=" yyyy-mm-dd (Deadline)" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -133,7 +158,16 @@
                         <String fx:value="btn-reset:hover" />
                         <String fx:value="btn-reset:pressed" />
                      </styleClass>
+                     <GridPane.margin>
+                        <Insets left="300.0" />
+                     </GridPane.margin>
                   </Button>
+
+                            <TextField fx:id="remainField" editable="false" promptText="Remainig Payment" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="110.0" />
+                     </GridPane.margin>
+                  </TextField>
                </children>
                <padding>
                   <Insets bottom="5.0" left="80.0" right="80.0" top="5.0" />

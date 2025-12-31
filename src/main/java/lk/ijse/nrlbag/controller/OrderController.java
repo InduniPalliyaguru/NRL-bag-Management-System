@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.nrlbag.dto.OrderDTO;
@@ -16,6 +18,7 @@ import lk.ijse.nrlbag.model.OrderModel;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -73,6 +76,13 @@ public class OrderController implements Initializable {
     private Label lblProcessing;
     @FXML
     private Label lblCancel;
+    @FXML
+    private Circle circlePending;
+    @FXML
+    private Circle circleProcessing;
+    @FXML
+    private Circle circleCompleted;
+
 
     private final String ORDER_ID_REGEX = "^[0-9]+$";
 
@@ -94,6 +104,7 @@ public class OrderController implements Initializable {
         colQty.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         loadOrderTable();
+        checkDeadlinePassed();
 
         tblOrder.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldSel, selected) -> {
@@ -101,6 +112,12 @@ public class OrderController implements Initializable {
                     if (selected == null) return;
                     int id = selected.getId();
                     handleSearchOrderByRowSelected(String.valueOf(id));
+                    // in here call the method for the set status
+                    updateOrderTimeLine(selected.getStatus());
+                    // in here show the error when selected row order id deadline passed
+                    if (isDeadlinePassed(LocalDate.parse(selected.getDeadline()), selected.getStatus())) {
+                        new Alert(Alert.AlertType.WARNING, "Order deadline has been exceeded!").show();
+                    }
                 }
         );
 
@@ -234,6 +251,9 @@ public class OrderController implements Initializable {
         comboStatus.setValue("");
         costField.setText("");
         remainField.setText("");
+        circlePending.setFill(Color.web("#B0B0B0"));
+        circleProcessing.setFill(Color.web("#B0B0B0"));
+        circleCompleted.setFill(Color.web("#B0B0B0"));
     }
 
     private void highLightOrders(int id) {
@@ -311,7 +331,6 @@ public class OrderController implements Initializable {
         }
     }
 
-
     @FXML
     private void handleSearchOrderByRowSelected(String id) {
 
@@ -345,6 +364,66 @@ public class OrderController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
         }
 
+    }
+
+    private void updateOrderTimeLine(String status) {
+
+        // here set the colours for the circle
+        Color inactive = Color.web("#B0B0B0");
+        Color active = Color.web("#3ba31c");
+
+        circlePending.setFill(inactive);
+        circleProcessing.setFill(inactive);
+        circleCompleted.setFill(inactive);
+
+        // according to the selected order status change the colour of the circle
+        switch (status) {
+            case "Pending" :
+                circlePending.setFill(active);
+                break;
+
+            case "Processing" :
+                circlePending.setFill(active);
+                circleProcessing.setFill(active);
+                break;
+
+            case "Completed" :
+                circlePending.setFill(active);
+                circleProcessing.setFill(active);
+                circleCompleted.setFill(active);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private boolean isDeadlinePassed(LocalDate deadline, String status) {
+        return LocalDate.now().isAfter(deadline) && !status.equals("Completed") && !status.equals("Cancelled");
+    }
+
+    private void checkDeadlinePassed() {
+        //row factory allows us to define how each row look
+        tblOrder.setRowFactory( tv -> new TableRow<>() {
+            @Override
+            // this method is called for every row in the table
+            protected void updateItem(OrderDTO item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // check row is empty or item is null
+                if (empty || item == null) {
+                    setStyle("");
+                } else if (isDeadlinePassed(LocalDate.parse(item.getDeadline()), item.getStatus())) {
+                    // here set the colour for the search order row
+                    setStyle("-fx-background-color:  #FFCDD2;");
+                } else {
+                    // if it does not match that keep default style
+                    setStyle("");
+                }
+            }
+        });
+        // after set the colour refresh table for show colour on the table
+        tblOrder.refresh();
     }
 
 }
