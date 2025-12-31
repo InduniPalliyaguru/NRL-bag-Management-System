@@ -7,6 +7,7 @@ module lk.ijse.nrlbag {
     requires javafx.base;
     requires javafx.graphics;
     requires net.sf.jasperreports.core;
+    requires java.mail;
 
     opens lk.ijse.nrlbag.controller to javafx.fxml;
     opens lk.ijse.nrlbag.dto to java.base;

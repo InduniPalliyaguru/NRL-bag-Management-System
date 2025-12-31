@@ -1,5 +1,4 @@
 
-/* ===== Main Card / Panel ===== */
 .report-card {
     -fx-background-color: #ffffff;
     -fx-background-radius: 10;
@@ -12,21 +11,18 @@
     -fx-background-color: #F5F9FF;
 }
 
-/* ===== Report Title ===== */
 .report-title {
     -fx-text-fill: #001433;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
-/* ===== Section Labels ===== */
 .form-label {
     -fx-text-fill: #002966;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
 
-/* ===== TextFields ===== */
 .text-field {
     -fx-background-color: #f0f5fc;
     -fx-border-color: #99C2FF;
@@ -42,7 +38,6 @@
     -fx-border-width: 0 0 1 0;
 }
 
-/* ===== Generate Button ===== */
 .link-button {
     -fx-background-color: transparent;
     -fx-text-fill: #003D99;

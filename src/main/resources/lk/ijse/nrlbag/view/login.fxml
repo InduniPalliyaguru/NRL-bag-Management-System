@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -116,7 +118,7 @@
                         <Insets left="120.0" right="120.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox prefHeight="68.2" prefWidth="320.0">
+                  <VBox prefHeight="108.0" prefWidth="280.0">
                      <children>
                         <Label cache="true" prefHeight="28.0" prefWidth="184.0" style="-fx-text-fill: linear-gradient(to right, #002966, #001433);;" text="Password">
                            <font>
@@ -162,6 +164,20 @@
                               <Image url="@../images/password_96px.png" />
                            </image>
                         </ImageView>
+                        <HBox translateY="-25.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="20.0" text="Forget Password ?">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="link-button" />
+                                    <String fx:value="link-button:hover" />
+                                    <String fx:value="link-button:pressed" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                      <VBox.margin>
                         <Insets left="120.0" right="120.0" top="10.0" />

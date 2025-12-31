@@ -154,3 +154,23 @@
 .settings-btn:hover .graphic {
     -fx-opacity: 1;
 }
+
+.link-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #003D99;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-underline: true;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+
+.link-button:hover {
+    -fx-text-fill: #001433;
+    -fx-background-color: transparent;
+}
+
+.link-button:pressed {
+    -fx-text-fill: #0052CC;
+    -fx-background-color: transparent;
+}

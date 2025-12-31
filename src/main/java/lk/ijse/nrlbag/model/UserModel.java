@@ -54,4 +54,15 @@ public class UserModel {
         return result;
     }
 
+    public String getPasswordByEmail(String email) throws SQLException {
+        String retrievedPassword = null;
+
+        ResultSet rs = CrudUtil.execute("SELECT user_password FROM User WHERE email=?", email);
+
+        if (rs.next()) {
+            retrievedPassword = rs.getString("user_password");
+        }
+        return retrievedPassword;
+    }
+
 }
