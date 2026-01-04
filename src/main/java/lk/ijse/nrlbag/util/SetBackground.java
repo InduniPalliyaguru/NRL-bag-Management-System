@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class SetBackground {
     public static void setBackground(Pane rootPane) {
-        // 1 Load the image from resources (Portable path)
+        // 1 Load the image from resources
         // This looks inside 'src/main/resources' for the path
         String imagePath = "/lk/ijse/nrlbag/images/Blue-Abstract-Design-PNG-Cutout-300x225.png";
         URL imageUrl = App.class.getResource(imagePath);
