@@ -35,16 +35,7 @@ A robust and centralized Java-based desktop application developed as a **Semeste
 
 ---
 
-### ⚙️ Installation & Local Setup
-
-To run this standalone desktop application on your local machine, follow these steps:
-
-#### Prerequisites
-* Ensure you have **Java JDK 11 or higher** installed.
-* Ensure **MySQL Server** is running locally.
-
-#### Step-by-Step Configuration
-
-1. **Clone the Repository:**
-```bash
-   git clone [https://github.com/InduniPalliyaguru/NRL-bag-Management-System.git](https://github.com/InduniPalliyaguru/NRL-bag-Management-System.git)
+### 👩‍💻 Author
+* **Induni Palliyaguru** - Software Engineering Undergraduate
+* **LinkedIn:** [Connect on LinkedIn](https://www.linkedin.com/in/induni-palliyaguru-6195a9371)
+* **GitHub Profile:** [@InduniPalliyaguru](https://github.com/InduniPalliyaguru)
